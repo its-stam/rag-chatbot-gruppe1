@@ -28,7 +28,7 @@
 ### Phase 2: Setup
 **Start:** next | **End:** +3 days  
 - [ ] Supabase Project
-- [ ] OpenRouter Key
+- [ ] LLM API Key
 - [ ] n8n Cloud/Self-Hosted
 - [ ] PDFs in `/company-docs/`
 
@@ -58,9 +58,7 @@
 ## Issue Tracking
 
 ### Open
-- **#1:** Case noch nicht definiert
-- **#2:** PDFs noch zu schreiben
-- **#3:** Supabase + OpenRouter Setup pending
+- **#3:** Supabase + LLM API Setup pending
 
 ### In Progress
 - None yet

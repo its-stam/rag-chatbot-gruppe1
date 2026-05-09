@@ -42,14 +42,14 @@ LLM-Agentics-RAG-Projekt/
 ## 🎯 Quick Start
 
 ### 1. Case definieren (today)
-- [ ] Firma/Szenario wählen (z.B. IT-Support, HR-Services, etc.)
-- [ ] Firmenkontext aufschreiben
-- [ ] 3 Testfragen definieren
+- [x] Firma/Szenario wählen → BergTech Maschinenbau GmbH (HR)
+- [x] Firmenkontext aufschreiben
+- [x] 3 Testfragen definieren
 
 ### 2. PDFs vorbereiten (next)
-- [ ] 5 Firmendokumente schreiben (je 1+ Seite)
-- [ ] In `/company-docs` speichern
-- [ ] Format: PDF
+- [x] 5 Firmendokumente schreiben (company-docs/rustam/, Deutsch, RAG-optimiert)
+- [x] In `/company-docs/rustam/` gespeichert
+- [ ] Format: PDF (vor Submission generieren)
 
 ### 3. n8n Workflows (Phase 2)
 - [ ] Supabase Project setup

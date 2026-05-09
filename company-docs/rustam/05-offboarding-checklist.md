@@ -1,21 +1,27 @@
 # Employee Offboarding Checklist — BergTech Maschinenbau GmbH
 
 **Dokumenttyp:** Internes HR-Dokument  
-**Zielgruppe:** Ausscheidende Mitarbeiter und Vorgesetzte  
+**Zielgruppe:** Ausscheidende Mitarbeiter und deren Vorgesetzte bei BergTech Maschinenbau GmbH  
 **Gültig ab:** 01.01.2025  
-**Verantwortlich:** HR-Abteilung BergTech
+**Verantwortlich:** HR-Abteilung BergTech Maschinenbau GmbH  
+**Kontakt:** hr@bergtech.de
 
 ---
 
-## 1. Kündigung und Fristen
+## 1. Kündigung und Fristen bei BergTech
 
 ### Nach Eingang der Kündigung
-- Schriftliche Bestätigung des Kündigungseingangs durch HR (innerhalb von 3 Werktagen)
+- Schriftliche Bestätigung des Kündigungseingangs durch HR BergTech (innerhalb von 3 Werktagen)
 - Berechnung des letzten Arbeitstages gemäß Kündigungsfrist
-- Information an direkten Vorgesetzten und IT-Abteilung
+- Information an direkten Vorgesetzten und IT-Abteilung BergTech
+
+### Kündigungsfristen bei BergTech
+- Probezeit (6 Monate): 2 Wochen
+- Ab Probezeitende: 4 Wochen zum 15. oder Monatsende (§ 622 BGB)
+- Ab 2 Jahren Betriebszugehörigkeit: verlängert sich stufenweise gemäß § 622 BGB
 
 ### Freistellung
-- Freistellung während der Kündigungsfrist ist möglich (Absprache mit HR und Vorgesetztem)
+- Freistellung während der Kündigungsfrist nach Absprache mit HR und Vorgesetztem möglich
 - Resturlaub wird bei Freistellung angerechnet
 
 ---
@@ -26,94 +32,98 @@
 1. Übergabedokument erstellen (Formular OB-01) — Frist: 2 Wochen vor letztem Arbeitstag
 2. Laufende Projekte dokumentieren und an Nachfolger oder Vorgesetzten übergeben
 3. Kundenkontakte und externe Partner informieren (nach Absprache mit Vorgesetztem)
-4. Interne Systeme und Zugänge dokumentieren (Passwörter über IT-Support übergeben, nicht direkt)
+4. IT-Zugangsdaten und Systemdokumentation über IT-Support übergeben (nicht direkt an Kollegen)
 
 ### Aufgaben des direkten Vorgesetzten
 - Übergabeplan erstellen und Nachfolger benennen
-- Abschlussgespräch (Exit-Interview) mit HR vereinbaren
-- Leistungsbeurteilung für Arbeitszeugnis an HR senden
+- Abschlussgespräch (Exit-Interview) mit HR BergTech vereinbaren
+- Leistungsbeurteilung für Arbeitszeugnis an hr@bergtech.de senden
 
 ---
 
-## 3. Equipment-Rückgabe
+## 3. Equipment-Rückgabe am letzten Arbeitstag
 
 Folgende Gegenstände müssen **am letzten Arbeitstag** zurückgegeben werden:
 
-| Gegenstand | Ansprechpartner |
-|-----------|----------------|
-| Laptop und Peripheriegeräte | IT-Abteilung (it-support@bergtech.de) |
-| Mobiltelefon (dienstlich) | IT-Abteilung |
-| Zugangskarte und Mitarbeiterausweis | Empfang Gebäude A |
-| Parkausweis (falls vorhanden) | HR-Abteilung |
-| Schlüssel (Büro, Spind, Fahrzeug) | Direkter Vorgesetzter |
-| Dienstfahrzeug (falls vorhanden) | Fuhrparkmanagement |
-| Arbeitskleidung und Schutzausrüstung | Abteilungsleitung |
+| Gegenstand | Ansprechpartner | Kontakt |
+|-----------|----------------|---------|
+| Laptop und Peripheriegeräte | IT-Abteilung BergTech | it-support@bergtech.de |
+| Mobiltelefon (dienstlich) | IT-Abteilung BergTech | it-support@bergtech.de |
+| Zugangskarte und Mitarbeiterausweis | Empfang Gebäude A | — |
+| Parkausweis (falls vorhanden) | HR-Abteilung | hr@bergtech.de |
+| Schlüssel (Büro, Spind, Fahrzeug) | Direkter Vorgesetzter | — |
+| Dienstfahrzeug (falls vorhanden) | Fuhrparkmanagement BergTech | fuhrpark@bergtech.de |
+| Arbeitskleidung und Schutzausrüstung | Abteilungsleitung | — |
 
-**Hinweis:** Nicht zurückgegebene Gegenstände werden dem letzten Gehalt in Rechnung gestellt.
+**Folge bei Nicht-Rückgabe:** Nicht zurückgegebene Gegenstände werden dem letzten Gehalt in Rechnung gestellt.
 
 ---
 
-## 4. IT-Zugang und Datenlöschung
+## 4. IT-Abschluss bei BergTech
 
 ### IT-Abteilung erledigt am letzten Arbeitstag
-- Sperrung E-Mail-Konto (automatische Weiterleitung für 30 Tage einrichten)
-- Sperrung aller Systemzugänge (SAP, Intranet, VPN, Microsoft 365)
+- Sperrung E-Mail-Konto (automatische Weiterleitung an Vorgesetzten für 30 Tage)
+- Sperrung aller Systemzugänge (SAP HR Portal, BergTech Intranet, VPN, Microsoft 365)
 - Sicherung und Löschung persönlicher Daten vom Firmenlaptop
 - Deaktivierung Zeiterfassungskarte
 
-### Mitarbeiter
-- Keine privaten Daten auf Firmengeräten oder -servern belassen
-- Dienstliche E-Mails nicht an private Adressen weiterleiten
-- Vertrauliche Dokumente nicht mitnehmen (gilt auch für digitale Kopien)
+### Pflichten des ausscheidenden Mitarbeiters
+- Keine privaten Daten auf BergTech-Geräten oder -Servern belassen
+- Keine dienstlichen E-Mails an private E-Mail-Adressen weiterleiten
+- Keine vertraulichen Dokumente mitnehmen (gilt auch für digitale Kopien)
 
 ---
 
-## 5. HR-Abschluss
+## 5. HR-Abschluss-Checkliste
 
-### Checkliste HR-Abteilung
+### HR-Abteilung BergTech
 - [ ] Kündigungsbestätigung ausgestellt
 - [ ] Letztes Gehalt berechnet (inkl. Resturlaub-Auszahlung)
 - [ ] Arbeitszeugnis erstellt und ausgehändigt (Frist: 2 Wochen nach letztem Arbeitstag)
 - [ ] Sozialversicherungsmeldung abgegeben
 - [ ] Lohnsteuerbescheinigung ausgestellt (bis 28. Februar des Folgejahres)
-- [ ] Betriebliche Altersvorsorge informiert
+- [ ] Betriebliche Altersvorsorge (bav@bergtech.de) informiert
 - [ ] Exit-Interview durchgeführt
 
-### Checkliste ausscheidender Mitarbeiter
-- [ ] Übergabedokument (OB-01) vollständig ausgefüllt
-- [ ] Alle Equipmentgegenstände zurückgegeben
-- [ ] IT-Rückgabe bestätigt
+### Ausscheidender Mitarbeiter
+- [ ] Übergabedokument (Formular OB-01) vollständig ausgefüllt
+- [ ] Alle Equipmentgegenstände zurückgegeben und quittiert
+- [ ] IT-Rückgabe durch IT-Support bestätigt
 - [ ] Letzten Urlaubsstand geprüft
-- [ ] Kontaktdaten für Zeugnis-Zustellung angegeben
+- [ ] Kontaktadresse für Zeugnis-Zustellung an hr@bergtech.de übermittelt
 - [ ] Exit-Interview absolviert
 
 ---
 
-## 6. Arbeitszeugnis
+## 6. Arbeitszeugnis bei BergTech
 
-- Einfaches Zeugnis (auf Wunsch): enthält Beschäftigungsdauer und Tätigkeitsbeschreibung
-- Qualifiziertes Zeugnis (Standard): enthält zusätzlich Leistungs- und Verhaltensbeurteilung
+| Zeugnisart | Inhalt |
+|-----------|--------|
+| Einfaches Zeugnis (auf Wunsch) | Beschäftigungsdauer + Tätigkeitsbeschreibung |
+| Qualifiziertes Zeugnis (Standard) | Zusätzlich: Leistungs- und Verhaltensbeurteilung |
+
 - Antrag: formlos per E-Mail an hr@bergtech.de oder mündlich beim Exit-Interview
-- Ausstellungsfrist: spätestens 2 Wochen nach dem letzten Arbeitstag
+- Ausstellungsfrist: spätestens **2 Wochen** nach dem letzten Arbeitstag
 
 ---
 
-## 7. Exit-Interview
+## 7. Exit-Interview bei BergTech
 
 - Dauer: ca. 30 Minuten
-- Teilnehmer: ausscheidender Mitarbeiter und HR-Vertreter
+- Teilnehmer: ausscheidender Mitarbeiter und HR-Vertreter BergTech
 - Inhalt: Kündigungsgrund, Verbesserungsvorschläge, allgemeines Feedback
-- Vertraulich: Inhalte werden nicht an direkten Vorgesetzten weitergegeben
-- Termin: letzte Arbeitswoche, Vereinbarung über hr@bergtech.de
+- Vertraulichkeit: Inhalte werden nicht an den direkten Vorgesetzten weitergegeben
+- Terminvereinbarung: letzte Arbeitswoche, über hr@bergtech.de
 
 ---
 
-## 8. Kontakte Offboarding
+## 8. Kontakte Offboarding BergTech
 
 | Thema | Kontakt |
 |-------|---------|
 | HR-Allgemein | hr@bergtech.de |
-| IT-Rückgabe | it-support@bergtech.de |
+| IT-Rückgabe und Zugangssperrung | it-support@bergtech.de |
 | Arbeitszeugnis | hr@bergtech.de |
 | Betriebliche Altersvorsorge | bav@bergtech.de |
 | Betriebsrat | betriebsrat@bergtech.de |
+| Compliance-Fragen | compliance@bergtech.de |

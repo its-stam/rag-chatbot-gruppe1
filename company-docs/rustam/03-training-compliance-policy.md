@@ -1,82 +1,89 @@
 # Training and Compliance Policy — BergTech Maschinenbau GmbH
 
 **Dokumenttyp:** Internes HR-Dokument  
-**Zielgruppe:** Alle Mitarbeiter, insbesondere neue Mitarbeiter  
+**Zielgruppe:** Alle Mitarbeiter bei BergTech Maschinenbau GmbH, insbesondere neue Mitarbeiter  
 **Gültig ab:** 01.01.2025  
-**Verantwortlich:** HR-Abteilung und Compliance-Beauftragter
+**Verantwortlich:** HR-Abteilung und Compliance-Beauftragter BergTech  
+**Kontakt:** hr@bergtech.de | compliance@bergtech.de
 
 ---
 
-## 1. Pflichttrainings im Onboarding
+> **Key Facts Onboarding-Pflichttrainings**
+> - Tag 1: **Arbeitssicherheitsunterweisung** (Präsenz, Unterschrift Formular AS-01)
+> - Bis Tag 5: **Datenschutz und DSGVO** (E-Learning, automatisches Zertifikat)
+> - Bis Tag 10: **IT-Sicherheit** und **Compliance/Verhaltenskodex** (E-Learning)
+> - Bis Tag 20: **Brandschutzunterweisung** (Präsenz, Unterschrift Formular BS-01)
 
-Alle neuen Mitarbeiter müssen folgende Trainings innerhalb der angegebenen Fristen absolvieren:
+---
+
+## 1. Pflichttrainings im Onboarding bei BergTech
+
+Alle neuen Mitarbeiter bei BergTech Maschinenbau GmbH müssen folgende Trainings innerhalb der angegebenen Fristen absolvieren:
 
 | Training | Frist ab Eintritt | Format | Nachweis |
 |----------|------------------|--------|---------|
 | Arbeitssicherheitsunterweisung | 1. Arbeitstag | Präsenz | Unterschrift Formular AS-01 |
-| Datenschutz und DSGVO | 5 Werktage | E-Learning | Zertifikat (automatisch) |
-| IT-Sicherheit und Passwortsicherheit | 10 Werktage | E-Learning | Zertifikat (automatisch) |
-| Compliance und Verhaltenskodex | 10 Werktage | E-Learning | Zertifikat (automatisch) |
+| Datenschutz und DSGVO | 5 Werktage | E-Learning | Zertifikat (automatisch gespeichert) |
+| IT-Sicherheit und Passwortsicherheit | 10 Werktage | E-Learning | Zertifikat (automatisch gespeichert) |
+| Compliance und Verhaltenskodex | 10 Werktage | E-Learning | Zertifikat (automatisch gespeichert) |
 | Brandschutzunterweisung | 20 Werktage | Präsenz | Unterschrift Formular BS-01 |
 
-**Hinweis:** Nicht abgeschlossene Pflichttrainings werden automatisch an den direkten Vorgesetzten und HR gemeldet.
+**Folge bei Nicht-Absolvierung:** Nicht abgeschlossene Pflichttrainings werden automatisch an den direkten Vorgesetzten und die HR-Abteilung BergTech gemeldet.
 
 ---
 
-## 2. Jährliche Pflichttrainings (alle Mitarbeiter)
+## 2. Jährliche Pflichttrainings (alle Mitarbeiter BergTech)
 
-Folgende Trainings müssen jährlich von allen Mitarbeitern wiederholt werden:
+Folgende Trainings müssen jährlich von allen Mitarbeitern bei BergTech wiederholt werden:
 
-1. **Datenschutz und DSGVO** — Frist: 31. Januar des Folgejahres
-2. **IT-Sicherheit** — Frist: 28. Februar des Folgejahres
-3. **Arbeitssicherheitsunterweisung** — Frist: 31. März des Folgejahres
-4. **Compliance und Verhaltenskodex** — Frist: 30. April des Folgejahres
+| Training | Jahresfrist |
+|----------|------------|
+| Datenschutz und DSGVO | 31. Januar des Folgejahres |
+| IT-Sicherheit | 28. Februar des Folgejahres |
+| Arbeitssicherheitsunterweisung | 31. März des Folgejahres |
+| Compliance und Verhaltenskodex | 30. April des Folgejahres |
 
-Erinnerungen werden 4 Wochen vor Fristablauf per E-Mail versendet.
+Erinnerungen werden automatisch **4 Wochen vor Fristablauf** per E-Mail an den Mitarbeiter versendet.
 
 ---
 
-## 3. E-Learning Plattform
+## 3. E-Learning Plattform BergTech
 
 - **Zugang:** intranet.bergtech.de → Bereich „Training & Entwicklung"
-- **Login:** Mitarbeiter-E-Mail-Adresse und IT-Passwort
+- **Login:** Mitarbeiter-E-Mail-Adresse, Single Sign-On über Microsoft 365
 - **Verfügbarkeit:** 24/7, auch mobil nutzbar
-- **Zertifikate:** Werden automatisch in der Personalakte gespeichert
-
-### Technische Voraussetzungen
-- Browser: Chrome (empfohlen), Firefox, Edge
-- Kein separates Login erforderlich (Single Sign-On über Microsoft 365)
+- **Zertifikate:** Werden automatisch in der Personalakte bei BergTech gespeichert
 
 ---
 
-## 4. Präsenzschulungen
+## 4. Präsenzschulungen bei BergTech
 
 | Schulungsart | Häufigkeit | Anmeldung |
 |-------------|-----------|-----------|
-| Arbeitssicherheitsunterweisung | Jährlich | Über Vorgesetzten |
-| Brandschutzübung | Jährlich | Automatische Teilnahme (Pflicht) |
-| Erste Hilfe | Alle 2 Jahre | HR-Portal oder hr@bergtech.de |
-| Führerschein Flurförderzeug | Bei Bedarf | Antrag über HR |
+| Arbeitssicherheitsunterweisung | Jährlich | Über direkten Vorgesetzten |
+| Brandschutzübung | Jährlich | Automatische Pflicht-Teilnahme |
+| Erste Hilfe | Alle 2 Jahre | hr@bergtech.de oder HR-Portal |
+| Flurförderzeug-Führerschein | Bei Bedarf | Antrag über hr@bergtech.de |
 
 ---
 
-## 5. Compliance-Richtlinien
+## 5. Compliance-Richtlinien BergTech
 
 ### Verhaltenskodex (Code of Conduct)
-- Gilt für alle Mitarbeiter, Führungskräfte und externe Dienstleister
+- Gilt für alle Mitarbeiter, Führungskräfte und Dienstleister bei BergTech
 - Verbot von Korruption, Bestechung und Interessenkonflikten
-- Meldepflicht bei bekannten Verstößen (Whistleblowing-Kanal: compliance@bergtech.de)
+- Meldepflicht bei bekannten Verstößen: compliance@bergtech.de (anonym möglich)
 
 ### Datenschutz (DSGVO)
-- Keine Weitergabe von Kundendaten an Dritte ohne schriftliche Genehmigung
-- Personenbezogene Daten nur auf genehmigten Systemen verarbeiten
-- Datenpannen (Data Breach) sofort an datenschutz@bergtech.de melden
+- Keine Weitergabe von Kundendaten ohne schriftliche Genehmigung der HR-/Rechtsabteilung BergTech
+- Personenbezogene Daten nur auf genehmigten BergTech-Systemen verarbeiten
+- Datenpannen (Data Breach) sofort melden: datenschutz@bergtech.de
 
 ### IT-Sicherheit
 - Passwörter: mindestens 12 Zeichen, Groß-/Kleinbuchstaben, Zahlen, Sonderzeichen
-- Passwortwechsel: alle 90 Tage
-- Keine Installation nicht genehmigter Software
-- Phishing-Verdacht sofort an it-security@bergtech.de melden
+- Passwortwechsel: alle 90 Tage (automatische Aufforderung durch IT)
+- Keine Installation nicht durch IT-Abteilung genehmigter Software
+- Phishing-Verdacht sofort melden: it-security@bergtech.de
 
 ---
 
@@ -87,13 +94,13 @@ Erinnerungen werden 4 Wochen vor Fristablauf per E-Mail versendet.
 | Pflichttraining nicht absolviert | Erinnerung → Abmahnung → arbeitsrechtliche Konsequenzen |
 | DSGVO-Verstoß | Disziplinarverfahren, ggf. fristlose Kündigung |
 | Compliance-Verstoß | Disziplinarverfahren, ggf. strafrechtliche Verfolgung |
-| IT-Sicherheitsverletzung | Sofortige Sperrung der Zugänge, Untersuchung |
+| IT-Sicherheitsverletzung | Sofortige Zugangssperrung, interne Untersuchung |
 
 ---
 
-## 7. Weiterbildung und freiwillige Trainings
+## 7. Weiterbildung (freiwillig)
 
-- Weiterbildungsbudget: 500 EUR pro Mitarbeiter und Jahr
-- Antrag: Formular WB-01, Genehmigung durch Vorgesetzten und HR
-- Externe Seminare, Konferenzen und Online-Kurse förderfähig
-- Bildungsurlaub: 5 Tage pro Jahr (gemäß Bildungsurlaubsgesetz BW)
+- Weiterbildungsbudget bei BergTech: **500 EUR pro Mitarbeiter und Kalenderjahr**
+- Antrag: Formular WB-01, Genehmigung durch Vorgesetzten und hr@bergtech.de
+- Förderfähig: externe Seminare, Konferenzen, Online-Kurse (mit Berufsrelevanz)
+- Bildungsurlaub: 5 Tage pro Jahr (gemäß Bildungsurlaubsgesetz Baden-Württemberg)

@@ -2,7 +2,7 @@
 
 **Kurs:** LLM & Agentics (Prof. Dozent)  
 **Deadline:** 31.05.2026  
-**Team:** Rustam Kohen + [Partner]
+**Team:** Gruppe 1 — Teammitglied A, Teammitglied B, Rustam Kohen
 
 ---
 

@@ -45,30 +45,26 @@
 **Status:** done
 
 **Was gebaut:**
-- Workflow 1 Skeleton: Ingestion (Manual Trigger → Read Files → Extract Text → Embedding → Supabase Insert) — 5 Nodes
-- Workflow 2 Skeleton: Query (Webhook → Parse Question → Embed → Similarity Search → Build Prompt → LLM Call → Format → Response) — 8 Nodes
-- Workflow-JSONs in `/workflows/ingestion-v1.json` + `/workflows/query-v1.json`
+- Workflow 1 v1: Ingestion (5 Nodes) — Erstversion
+- Workflow 2 v1: Query (8 Nodes) — Erstversion
+- v1 Issues identifiziert (kein Chunking, Binary-Data-Bug, kein Auth)
 
-**Konfiguration:**
-- Umgebungsvariablen benötigt: `LLM_API_BASE`, `LLM_CHAT_MODEL`, `EMBEDDING_MODEL`, Supabase Credentials
-- Embedding-Model separat konfigurierbar (nicht an Chat-Model gebunden)
-- System-Prompt vorbereitet mit NovaWork-Kontext + "Ich weiß nicht"-Fallback
+### [2026-05-10 01:30] Iteration 0.5 — v2 Fixes
+
+**Phase:** Setup (Pre-Sprint)
+**Status:** done
+
+**Was gefixt (alle 5 Issues aus v1):**
+- ✅ Chunking: Text-Splitter mit 500 Token + 50 Overlap
+- ✅ Binary-Data: Extract liest jetzt `item.binary` (Base64 decode), nicht `item.json.data`
+- ✅ Dedup: chunk_id-basierte Deduplizierung vor Embedding
+- ✅ Webhook Auth: `callerPolicy` auf `headerAuth`, Validate-Node vorbereitet
+- ✅ max_tokens: 500 → 1000
 
 **Probleme:**
-- Supabase noch nicht aufgesetzt (Juliana-Task, blockiert E2E-Test)
-- Read Binary Files Node in n8n liest nur lokale Pfade — für Docker muss Volume gemountet sein
-- Webhook-Authentifizierung (HMAC) noch nicht eingebaut, für Phase 3 eingeplant
-
-**Screenshots:**
-- Noch keine (erst nach Import in n8n)
-
-**Doku-Take-Aways (für Juliana):**
-- Architecture Overview: Node-by-Node Diagramm aus Ingestion + Query Workflow
-- Workflow Details: genau diese 5+8 Nodes mit Screenshots dokumentieren
-
-**Slide-Take-Aways (für Anastasiia):**
-- Live Demo: beide Workflows nacheinander zeigen (Ingestion auslösen → Chat-Frage stellen → Antwort erscheint)
-- Architektur-Slide: diese Pipelines visualisieren
+- Dedup ist noch Pass-Through (braucht Supabase-Verbindung für echte Query)
+- Chunk-Size 500 Tokens geschätzt (Wort-basiert) — genauer mit n8n Text-Splitter-Node in Phase 3
+- Embedding API Rate-Limiting: batchInterval 3000ms gesetzt, muss live getestet werden
 
 **Nächste Schritte:**
 1. Supabase Project anlegen + pgvector Extension aktivieren (Juliana-Task)

@@ -39,19 +39,42 @@
 
 ## Iterationen
 
-### [TBD] Iteration 0 — Setup-Plan
+### [2026-05-10 01:00] Iteration 0 — Workflow-Skeletons
 
-**Phase:** Setup
-**Status:** Pending
+**Phase:** Setup (Pre-Sprint)
+**Status:** done
 
 **Was gebaut:**
-- Noch nichts, Build startet nach Phase 2 (Doku-Erstellung 10.-12.05)
+- Workflow 1 Skeleton: Ingestion (Manual Trigger → Read Files → Extract Text → Embedding → Supabase Insert) — 5 Nodes
+- Workflow 2 Skeleton: Query (Webhook → Parse Question → Embed → Similarity Search → Build Prompt → LLM Call → Format → Response) — 8 Nodes
+- Workflow-JSONs in `/workflows/ingestion-v1.json` + `/workflows/query-v1.json`
+
+**Konfiguration:**
+- Umgebungsvariablen benötigt: `LLM_API_BASE`, `LLM_CHAT_MODEL`, `EMBEDDING_MODEL`, Supabase Credentials
+- Embedding-Model separat konfigurierbar (nicht an Chat-Model gebunden)
+- System-Prompt vorbereitet mit NovaWork-Kontext + "Ich weiß nicht"-Fallback
+
+**Probleme:**
+- Supabase noch nicht aufgesetzt (Juliana-Task, blockiert E2E-Test)
+- Read Binary Files Node in n8n liest nur lokale Pfade — für Docker muss Volume gemountet sein
+- Webhook-Authentifizierung (HMAC) noch nicht eingebaut, für Phase 3 eingeplant
+
+**Screenshots:**
+- Noch keine (erst nach Import in n8n)
+
+**Doku-Take-Aways (für Juliana):**
+- Architecture Overview: Node-by-Node Diagramm aus Ingestion + Query Workflow
+- Workflow Details: genau diese 5+8 Nodes mit Screenshots dokumentieren
+
+**Slide-Take-Aways (für Anastasiia):**
+- Live Demo: beide Workflows nacheinander zeigen (Ingestion auslösen → Chat-Frage stellen → Antwort erscheint)
+- Architektur-Slide: diese Pipelines visualisieren
 
 **Nächste Schritte:**
-1. Supabase Project anlegen + pgvector Extension aktivieren
-2. LLM API Key besorgen
-3. n8n via Docker lokal starten
-4. Erste Workflow-Skeletons
+1. Supabase Project anlegen + pgvector Extension aktivieren (Juliana-Task)
+2. LLM API Key bereitstellen (in .env, niemals committen)
+3. Workflows in n8n importieren (localhost:5678)
+4. Nodes verkabeln mit echten Credentials
 
 ---
 
@@ -59,13 +82,13 @@
 
 | Sprint | Datum | Iteration | Owner | Output |
 |--------|-------|-----------|-------|--------|
-| 1 | 13.05 | Setup (Supabase + n8n + Keys) | Rustam | Funktionierende Basis |
-| 2 | 14.05 | Workflow 1: Ingestion Skeleton | Rustam | PDFs lesen + chunken |
-| 3 | 15.05 | Workflow 1: Vector Store Insert | Rustam | Embeddings in Supabase |
-| 4 | 16.-17.05 | Workflow 2: Chat Trigger + AI Agent | Rustam | Erste Antworten |
-| 5 | 18.-19.05 | Retrieval Tuning + System Prompt | Rustam | 3 Demo-Fragen funktionieren |
-| 6 | 20.05 | E2E Test + JSON Export | Rustam | Submission-fähig |
-| 7 | 21.-22.05 | (Optional) Online Deployment | Rustam | 1.0-Bonus |
+| Pre   | 10.05 | Workflow-Skeletons | Rustam | ingestion-v1.json + query-v1.json |
+| 1 | 13.05 | Setup (Supabase + n8n + Keys) | Rustam + Juliana | Funktionierende Basis |
+| 2 | 14.05 | Workflow 1: Ingestion live | Rustam | MDs lesen + embedden + insert |
+| 3 | 15.05 | Workflow 2: Query live | Rustam | Erste Antworten auf Demo-Fragen |
+| 4 | 16.-17.05 | Retrieval Tuning + System Prompt | Rustam | 3 Demo-Fragen funktionieren |
+| 5 | 18.-19.05 | E2E Test + JSON Export | Rustam | Submission-fähig |
+| 6 | 20.-21.05 | (Optional) Online Deployment | Rustam | 1.0-Bonus |
 
 ---
 

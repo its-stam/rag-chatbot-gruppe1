@@ -1,0 +1,53 @@
+{
+  "name": "Workflow 2 — Chat Query (v3 — Dozent-konform, 3 Nodes)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chat",
+        "options": {}
+      },
+      "id": "chat-trigger",
+      "name": "Chat Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "rag-chat"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Du bist der HR Assistant von NovaWork GmbH. Beantworte Fragen NUR mit Fakten aus den dir zur Verfügung stehenden Dokumenten. Zitiere die Quelle. Wenn die Antwort nicht in den Dokumenten steht, sage: \"Diese Information liegt mir nicht vor. Bitte wende dich an hr@novawork.de.\"",
+        "options": {
+          "maxTokens": 800,
+          "temperature": 0.3
+        }
+      },
+      "id": "ai-agent",
+      "name": "AI Agent (LLM + Retrieval)",
+      "type": "n8n-nodes-base.aiAgent",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "options": {}
+      },
+      "id": "respond",
+      "name": "Respond to Chat",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Chat Trigger": {
+      "main": [[ { "node": "AI Agent (LLM + Retrieval)", "type": "main", "index": 0 } ]]
+    },
+    "AI Agent (LLM + Retrieval)": {
+      "main": [[ { "node": "Respond to Chat", "type": "main", "index": 0 } ]]
+    }
+  },
+  "settings": { "saveExecutionProgress": true }
+}

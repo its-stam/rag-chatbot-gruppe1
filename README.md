@@ -31,8 +31,9 @@ LLM-Agentics-RAG-Projekt/
 │   ├── doc-4-faq.pdf               # Firmendokument 4
 │   └── doc-5-contacts.pdf          # Firmendokument 5
 ├── /individual-reports
-│   ├── rustam-individual-report.md # Dein Individual Report
-│   └── [partner]-individual-report.md
+│   ├── team-doku-individual-report.md
+│   ├── hr-set-a-individual-report.md
+│   └── rustam-individual-report.md
 └── CHANGELOG.md                    # Fortschritt & Änderungen
 ```
 

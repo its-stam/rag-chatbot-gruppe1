@@ -1,0 +1,129 @@
+{
+  "name": "Workflow 1 — Document Ingestion (v2)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "fileSelector": "/company-docs/final/",
+        "options": {}
+      },
+      "id": "read-files",
+      "name": "Read MD Files from Disk",
+      "type": "n8n-nodes-base.readBinaryFiles",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// INPUT: binary file from readBinaryFiles node\n// OUTPUT: { filename, content, doctype, chunked_at }\n\nconst items = $input.all();\nreturn items.map(item => {\n  const binary = item.binary;\n  const propName = Object.keys(binary)[0];\n  const data = binary[propName];\n  const content = data.data ? Buffer.from(data.data, 'base64').toString('utf-8') : '';\n  const filename = data.fileName || propName;\n  const doctype = filename.replace(/^\\d+-/, '').replace('.md', '').replace(/-/g, ' ');\n\n  return {\n    json: {\n      filename: filename,\n      content: content,\n      doctype: doctype,\n      chunked_at: new Date().toISOString()\n    }\n  };\n});"
+      },
+      "id": "extract-text",
+      "name": "Extract Text from Binary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "mode": "define",
+        "values": {
+          "string": [
+            { "name": "chunk_size", "value": "500" },
+            { "name": "chunk_overlap", "value": "50" }
+          ]
+        }
+      },
+      "id": "chunking-params",
+      "name": "Chunking Params (500/50)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Split document into 500-token chunks with 50-token overlap\n// Input: { filename, content }\n// Output: one item per chunk with { text, chunk_index, filename, doctype }\n\nconst items = $input.all();\nconst chunks = [];\n\nfor (const item of items) {\n  const { filename, content, doctype } = item.json;\n  const words = content.split(/\\s+/);\n  const chunkSize = 500;\n  const overlap = 50;\n  let i = 0;\n\n  while (i < words.length) {\n    const chunk = words.slice(i, i + chunkSize).join(' ');\n    chunks.push({\n      json: {\n        filename: filename,\n        chunk_index: chunks.length,\n        text: chunk,\n        doctype: doctype,\n        chunk_id: `${filename}#${chunks.length}`\n      }\n    });\n    i += chunkSize - overlap;\n  }\n}\n\nreturn chunks;"
+      },
+      "id": "chunk-text",
+      "name": "Chunk Text (500 tokens)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Skip chunks that already exist in Supabase (dedup by chunk_id)\n// If no Supabase connection yet, pass-through all chunks\n// TODO: Replace with real Supabase dedup query in Phase 3\n\nreturn $input.all();"
+      },
+      "id": "dedup-check",
+      "name": "Dedup Check (chunk_id)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.LLM_API_BASE }}/embeddings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "batchInterval": 3000,
+          "body": {
+            "contentType": "json",
+            "parametersJson": "={\"model\": \"{{ $env.EMBEDDING_MODEL }}\", \"input\": \"{{ $json.text }}\"}"
+          }
+        }
+      },
+      "id": "create-embedding",
+      "name": "Create Embedding",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableName": "documents",
+        "dataMode": "autoMapInputData",
+        "options": {}
+      },
+      "id": "supabase-insert",
+      "name": "Supabase Vector Insert",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1650, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[ { "node": "Read MD Files from Disk", "type": "main", "index": 0 } ]]
+    },
+    "Read MD Files from Disk": {
+      "main": [[ { "node": "Extract Text from Binary", "type": "main", "index": 0 } ]]
+    },
+    "Extract Text from Binary": {
+      "main": [[ { "node": "Chunking Params (500/50)", "type": "main", "index": 0 } ]]
+    },
+    "Chunking Params (500/50)": {
+      "main": [[ { "node": "Chunk Text (500 tokens)", "type": "main", "index": 0 } ]]
+    },
+    "Chunk Text (500 tokens)": {
+      "main": [[ { "node": "Dedup Check (chunk_id)", "type": "main", "index": 0 } ]]
+    },
+    "Dedup Check (chunk_id)": {
+      "main": [[ { "node": "Create Embedding", "type": "main", "index": 0 } ]]
+    },
+    "Create Embedding": {
+      "main": [[ { "node": "Supabase Vector Insert", "type": "main", "index": 0 } ]]
+    }
+  },
+  "settings": {
+    "saveExecutionProgress": true,
+    "callerPolicy": "any"
+  }
+}

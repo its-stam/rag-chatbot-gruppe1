@@ -39,32 +39,19 @@
 
 ## Iterationen
 
-### [2026-05-10 01:00] Iteration 0 — Workflow-Skeletons
+### [TBD] Iteration 0 — Setup-Plan
 
-**Phase:** Setup (Pre-Sprint)
-**Status:** done
+**Phase:** Setup
+**Status:** Pending
 
 **Was gebaut:**
-- Workflow 1 v1: Ingestion (5 Nodes) — Erstversion
-- Workflow 2 v1: Query (8 Nodes) — Erstversion
-- v1 Issues identifiziert (kein Chunking, Binary-Data-Bug, kein Auth)
+- Noch nichts, Build startet nach Phase 2 (Doku-Erstellung 10.-12.05)
 
-### [2026-05-10 01:30] Iteration 0.5 — v2 Fixes
-
-**Phase:** Setup (Pre-Sprint)
-**Status:** done
-
-**Was gefixt (alle 5 Issues aus v1):**
-- ✅ Chunking: Text-Splitter mit 500 Token + 50 Overlap
-- ✅ Binary-Data: Extract liest jetzt `item.binary` (Base64 decode), nicht `item.json.data`
-- ✅ Dedup: chunk_id-basierte Deduplizierung vor Embedding
-- ✅ Webhook Auth: `callerPolicy` auf `headerAuth`, Validate-Node vorbereitet
-- ✅ max_tokens: 500 → 1000
-
-**Probleme:**
-- Dedup ist noch Pass-Through (braucht Supabase-Verbindung für echte Query)
-- Chunk-Size 500 Tokens geschätzt (Wort-basiert) — genauer mit n8n Text-Splitter-Node in Phase 3
-- Embedding API Rate-Limiting: batchInterval 3000ms gesetzt, muss live getestet werden
+**Nächste Schritte:**
+1. Supabase Project anlegen + pgvector Extension aktivieren
+2. LLM API Key bereitstellen
+3. n8n via Docker lokal starten
+4. Erste Workflow-Skeletons
 
 **Nächste Schritte:**
 1. Supabase Project anlegen + pgvector Extension aktivieren (Juliana-Task)
@@ -78,13 +65,13 @@
 
 | Sprint | Datum | Iteration | Owner | Output |
 |--------|-------|-----------|-------|--------|
-| Pre   | 10.05 | Workflow-Skeletons | Rustam | ingestion-v1.json + query-v1.json |
-| 1 | 13.05 | Setup (Supabase + n8n + Keys) | Rustam + Juliana | Funktionierende Basis |
-| 2 | 14.05 | Workflow 1: Ingestion live | Rustam | MDs lesen + embedden + insert |
-| 3 | 15.05 | Workflow 2: Query live | Rustam | Erste Antworten auf Demo-Fragen |
-| 4 | 16.-17.05 | Retrieval Tuning + System Prompt | Rustam | 3 Demo-Fragen funktionieren |
-| 5 | 18.-19.05 | E2E Test + JSON Export | Rustam | Submission-fähig |
-| 6 | 20.-21.05 | (Optional) Online Deployment | Rustam | 1.0-Bonus |
+| 1 | 13.05 | Setup (Supabase + n8n + Keys) | Rustam | Funktionierende Basis |
+| 2 | 14.05 | Workflow 1: Ingestion Skeleton | Rustam | PDFs lesen + chunken |
+| 3 | 15.05 | Workflow 1: Vector Store Insert | Rustam | Embeddings in Supabase |
+| 4 | 16.-17.05 | Workflow 2: Chat Trigger + AI Agent | Rustam | Erste Antworten |
+| 5 | 18.-19.05 | Retrieval Tuning + System Prompt | Rustam | 3 Demo-Fragen funktionieren |
+| 6 | 20.05 | E2E Test + JSON Export | Rustam | Submission-fähig |
+| 7 | 21.-22.05 | (Optional) Online Deployment | Rustam | 1.0-Bonus |
 
 ---
 

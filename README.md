@@ -45,7 +45,7 @@ LLM-Agentics-RAG-Projekt/
 ## 🎯 Quick Start
 
 ### 1. Case definieren (today)
-- [x] Firma/Szenario wählen → NovaWork Maschinenbau GmbH (HR)
+- [x] Firma/Szenario wählen → BergTech Maschinenbau GmbH Maschinenbau GmbH (HR)
 - [x] Firmenkontext aufschreiben
 - [x] 3 Testfragen definieren
 

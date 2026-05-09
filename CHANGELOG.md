@@ -7,12 +7,13 @@
 - 🧹 Alte PRD-PDFs (v1-v4) aus Repo gelöscht, nur PRD.md + Dozent-Assignment bleiben
 - 📝 README: Ordnerstruktur korrigiert, Team-Kontakt vervollständigt
 - 🗂 UNI-Ordner aufgeräumt: projekt-2-rag-chatbot (vorher rag-chatbot-gruppe1)
+- 🔄 Firmenname bestätigt: BergTech Maschinenbau GmbH (Dozent-Vorgabe aus Transkript)
 - ✅ Phase 1 abgeschlossen, CHANGELOG bereinigt
 
 ### 09.05.2026
 - ✅ PRD v4 erstellt (Requirements, Roadmap, Success Criteria)
 - ✅ README & Ordnerstruktur angelegt
-- ✅ Case definiert: NovaWork Maschinenbau GmbH — HR Knowledge Assistant
+- ✅ Case definiert: BergTech Maschinenbau GmbH — HR Knowledge Assistant
 - ✅ 3 Demo-Fragen definiert (Onboarding, Urlaub, Pflichttrainings)
 - ✅ 5 HR-Dokumente geschrieben (Deutsch, RAG-optimiert, `company-docs/rustam/`)
 - ✅ RAG-Kollision gefixt: FAQ Formular-Präfix-Aussage korrigiert
@@ -28,7 +29,7 @@
 **Start:** 09.05.2026 | **End:** 09.05.2026 | **Status:** ✅ DONE
 - [x] PRD schreiben
 - [x] Ordnerstruktur
-- [x] Case definieren (NovaWork HR)
+- [x] Case definieren (BergTech HR)
 - [x] 5 HR-Docs geschrieben + gepusht (company-docs/rustam/)
 - [x] 3 Testfragen definiert
 
@@ -71,7 +72,7 @@
 - None yet
 
 ### Closed
-- **#1:** Case definiert (NovaWork HR, 09.05)
+- **#1:** Case definiert (BergTech HR, 09.05)
 - **#2:** 5 HR-Docs geschrieben + gepusht (09.05)
 
 ---

@@ -91,7 +91,7 @@ A: Schriftlich (Brief oder persönlich) an die HR-Abteilung oder die Geschäftsf
 ## Sonstiges
 
 **F: Wo finde ich HR-Formulare bei BergTech?**  
-A: Unter intranet.bergtech.de → HR → Formulare. Alle Formulare sind mit dem Präfix HR- nummeriert (z.B. HR-01, HR-05).
+A: Unter intranet.bergtech.de → HR → Formulare. Formulare nutzen themen-spezifische Präfixe: HR- (Personal, z.B. HR-01 Personalfragebogen, HR-05 Urlaubsantrag), AS- (Arbeitssicherheit, z.B. AS-01), BS- (Brandschutz, z.B. BS-01), OB- (Offboarding, z.B. OB-01 Übergabedokument), WB- (Weiterbildung, z.B. WB-01), HO- (Homeoffice, z.B. HO-01).
 
 **F: Gibt es eine betriebliche Altersvorsorge bei BergTech?**  
 A: Ja. BergTech bietet eine arbeitgeberfinanzierte betriebliche Altersvorsorge (bAV) ab dem zweiten Beschäftigungsjahr. Kontakt: bav@bergtech.de oder intranet.bergtech.de → Sozialleistungen.

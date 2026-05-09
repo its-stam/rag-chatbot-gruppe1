@@ -9,6 +9,9 @@
 - 🗂 UNI-Ordner aufgeräumt: projekt-2-rag-chatbot (vorher rag-chatbot-gruppe1)
 - 🔄 Firmenname bestätigt: BergTech Maschinenbau GmbH (Saile-Vorgabe aus Transkript)
 - ✅ Phase 1 abgeschlossen, CHANGELOG bereinigt
+- ✅ Workflow v4 erstellt: ingestion-v4.3.json + query-v4.1.json (3 Hauptnodes + 3 Sub-Nodes, Saile-konform)
+- 🐛 n8n Fehler gefixt: Text Splitter Sub-Node-Connection, Embeddings Modes, System-Prompt-Location
+- ✅ Workflows lokal getestet, n8n-importierbar
 
 ### 09.05.2026
 - ✅ PRD v4 erstellt (Requirements, Roadmap, Success Criteria)

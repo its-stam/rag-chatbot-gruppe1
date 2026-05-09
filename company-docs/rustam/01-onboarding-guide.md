@@ -1,15 +1,15 @@
-# Onboarding Guide — NovaWork Maschinenbau GmbH
+# Onboarding Guide — BergTech GmbH
 
 **Dokumenttyp:** Internes HR-Dokument  
-**Zielgruppe:** Neue Mitarbeiter bei NovaWork Maschinenbau GmbH  
+**Zielgruppe:** Neue Mitarbeiter bei BergTech GmbH  
 **Gültig ab:** 01.01.2025  
-**Verantwortlich:** HR-Abteilung NovaWork Maschinenbau GmbH  
-**Kontakt:** hr@novawork.de
+**Verantwortlich:** HR-Abteilung BergTech GmbH  
+**Kontakt:** hr@bergtech.de
 
 ---
 
 > **Key Facts für neue Mitarbeiter**
-> - Dokumente einreichen: spätestens **5 Werktage vor dem ersten Arbeitstag** an hr@novawork.de
+> - Dokumente einreichen: spätestens **5 Werktage vor dem ersten Arbeitstag** an hr@bergtech.de
 > - Pflichttraining Tag 1: **Arbeitssicherheitsunterweisung** (Präsenz)
 > - Pflichttraining bis Tag 5: **Datenschutz und DSGVO** (E-Learning)
 > - Pflichttraining bis Tag 10: **IT-Sicherheit** und **Compliance** (E-Learning)
@@ -18,7 +18,7 @@
 
 ## 1. Einzureichende Dokumente vor dem ersten Arbeitstag
 
-Neue Mitarbeiter bei NovaWork Maschinenbau GmbH müssen folgende Dokumente **spätestens 5 Werktage vor dem ersten Arbeitstag** per E-Mail an hr@novawork.de einreichen:
+Neue Mitarbeiter bei BergTech GmbH müssen folgende Dokumente **spätestens 5 Werktage vor dem ersten Arbeitstag** per E-Mail an hr@bergtech.de einreichen:
 
 1. Ausgefüllter Personalfragebogen (Formular HR-01, wird von HR per E-Mail zugesandt)
 2. Steueridentifikationsnummer (Steuer-ID)
@@ -29,23 +29,23 @@ Neue Mitarbeiter bei NovaWork Maschinenbau GmbH müssen folgende Dokumente **sp�
 7. Letztes Arbeitszeugnis (falls vorhanden)
 8. Hochschul- oder Berufsabschluss-Zeugnis (beglaubigte Kopie, falls stellenrelevant)
 
-**Folge bei fehlenden Unterlagen:** Ohne vollständige Dokumente kann die Einstellung nicht im HR-System NovaWork erfasst werden. Dies verzögert die erste Gehaltsauszahlung.
+**Folge bei fehlenden Unterlagen:** Ohne vollständige Dokumente kann die Einstellung nicht im HR-System BergTech erfasst werden. Dies verzögert die erste Gehaltsauszahlung.
 
 ---
 
-## 2. Ablauf des ersten Arbeitstages bei NovaWork
+## 2. Ablauf des ersten Arbeitstages bei BergTech
 
 ### 08:00 Uhr — Empfang
-- Meldung am Empfang (NovaWork Gebäude A, Erdgeschoss)
+- Meldung am Empfang (BergTech Gebäude A, Erdgeschoss)
 - Abholung durch HR-Mitarbeiter oder direkten Vorgesetzten
 
 ### 08:30 Uhr — HR-Einführungsgespräch
 - Übergabe und Unterzeichnung des Arbeitsvertrags
 - Ausgabe Mitarbeiterausweis und Zugangskarte
-- Einrichtung E-Mail-Konto und IT-Zugänge durch die IT-Abteilung NovaWork
+- Einrichtung E-Mail-Konto und IT-Zugänge durch die IT-Abteilung BergTech
 
 ### 10:00 Uhr — Unternehmensrundgang
-- Führung durch NovaWork-Gebäude, Abteilungen, Sozialräume, Kantine
+- Führung durch BergTech-Gebäude, Abteilungen, Sozialräume, Kantine
 - Einführung in Sicherheitsvorschriften und Notausgänge
 
 ### 11:00 Uhr — Abteilungsvorstellung
@@ -60,7 +60,7 @@ Neue Mitarbeiter bei NovaWork Maschinenbau GmbH müssen folgende Dokumente **sp�
 
 ## 3. Pflichttrainings im Onboarding (Übersicht)
 
-Vollständige Details zu allen Onboarding-Pflichttrainings und Fristen: siehe **Training and Compliance Policy NovaWork Maschinenbau GmbH**.
+Vollständige Details zu allen Onboarding-Pflichttrainings und Fristen: siehe **Training and Compliance Policy BergTech GmbH**.
 
 | Training | Frist ab Eintritt | Format |
 |----------|------------------|--------|
@@ -72,21 +72,21 @@ Vollständige Details zu allen Onboarding-Pflichttrainings und Fristen: siehe **
 
 ---
 
-## 4. Ansprechpartner bei NovaWork
+## 4. Ansprechpartner bei BergTech
 
 | Thema | Kontakt | Erreichbarkeit |
 |-------|---------|----------------|
-| HR-Allgemein | hr@novawork.de | Mo–Fr 08:00–17:00 |
-| IT-Zugänge | it-support@novawork.de | Mo–Fr 07:00–18:00 |
-| Arbeitssicherheit | sicherheit@novawork.de | Mo–Fr 08:00–16:00 |
-| Betriebsrat | betriebsrat@novawork.de | Mo–Fr 09:00–15:00 |
+| HR-Allgemein | hr@bergtech.de | Mo–Fr 08:00–17:00 |
+| IT-Zugänge | it-support@bergtech.de | Mo–Fr 07:00–18:00 |
+| Arbeitssicherheit | sicherheit@bergtech.de | Mo–Fr 08:00–16:00 |
+| Betriebsrat | betriebsrat@bergtech.de | Mo–Fr 09:00–15:00 |
 
 ---
 
 ## 5. Erste Woche — Checkliste für neue Mitarbeiter
 
-- [ ] Alle Dokumente vollständig an hr@novawork.de eingereicht (Frist: 5 Werktage vor Tag 1)
-- [ ] IT-Zugänge (E-Mail, VPN, NovaWork Intranet) eingerichtet
+- [ ] Alle Dokumente vollständig an hr@bergtech.de eingereicht (Frist: 5 Werktage vor Tag 1)
+- [ ] IT-Zugänge (E-Mail, VPN, BergTech Intranet) eingerichtet
 - [ ] Arbeitssicherheitsunterweisung absolviert und Formular AS-01 unterschrieben
 - [ ] Datenschutzunterweisung DSGVO (E-Learning) abgeschlossen
 - [ ] IT-Sicherheitsschulung gebucht (Frist: 10 Werktage)
@@ -96,7 +96,7 @@ Vollständige Details zu allen Onboarding-Pflichttrainings und Fristen: siehe **
 
 ---
 
-## 6. Probezeit bei NovaWork
+## 6. Probezeit bei BergTech
 
 - Dauer: 6 Monate (gemäß Arbeitsvertrag)
 - Kündigungsfrist in der Probezeit: 2 Wochen
@@ -108,8 +108,8 @@ Vollständige Details zu allen Onboarding-Pflichttrainings und Fristen: siehe **
 
 | System | Zweck | Zugang |
 |--------|-------|--------|
-| SAP HR Portal | Gehaltsabrechnungen, Urlaubsanträge, Dokumente | NovaWork Intranet → SAP-Portal |
+| SAP HR Portal | Gehaltsabrechnungen, Urlaubsanträge, Dokumente | BergTech Intranet → SAP-Portal |
 | Microsoft Teams | Interne Kommunikation, Videomeetings | IT-Zugangsdaten (Microsoft 365) |
-| NovaWork Intranet | Dokumente, Richtlinien, HR-Formulare | intranet.novawork.de |
+| BergTech Intranet | Dokumente, Richtlinien, HR-Formulare | intranet.bergtech.de |
 | E-Learning Plattform | Pflichttrainings und Weiterbildung | Intranet → Training & Entwicklung |
 | Zeiterfassung | Arbeitszeiterfassung | Terminal im Eingangsbereich Gebäude A |

@@ -25,11 +25,14 @@ LLM-Agentics-RAG-Projekt/
 │   ├── speaker-notes.md            # Redeskript
 │   └── demo-script.md              # Live Demo Script
 ├── /company-docs
-│   ├── doc-1-company-info.pdf      # Firmendokument 1
-│   ├── doc-2-processes.pdf         # Firmendokument 2
-│   ├── doc-3-policies.pdf          # Firmendokument 3
-│   ├── doc-4-faq.pdf               # Firmendokument 4
-│   └── doc-5-contacts.pdf          # Firmendokument 5
+│   ├── rustam/
+│   │   ├── 01-onboarding-guide.md
+│   │   ├── 02-vacation-policy.md
+│   │   ├── 03-training-compliance-policy.md
+│   │   ├── 04-hr-faq.md
+│   │   └── 05-offboarding-checklist.md
+│   ├── juliana/                     # 5 Docs (ausstehend)
+│   └── anastasiia/                  # 5 Docs (ausstehend)
 ├── /individual-reports
 │   ├── juliana-individual-report.md
 │   ├── anastasiia-individual-report.md
@@ -53,7 +56,7 @@ LLM-Agentics-RAG-Projekt/
 
 ### 3. n8n Workflows (Phase 2)
 - [ ] Supabase Project setup
-- [ ] OpenRouter API
+- [ ] LLM API Key
 - [ ] Workflow 1: PDFs → Vektoren → DB
 - [ ] Workflow 2: Query → Retrieval → LLM Response
 - [ ] Als JSON exportieren
@@ -133,7 +136,7 @@ LLM-Agentics-RAG-Projekt/
 
 ## 📧 Kontakt
 
-**Team:** Rustam Kohen + [Partner Name]  
+**Team:** Rustam Kohen + Juliana Paar + Anastasiia Sereda
 **Email:** korus23@googlemail.com  
 **Updated:** 09.05.2026
 

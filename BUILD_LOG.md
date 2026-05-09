@@ -49,7 +49,7 @@
 
 **Nächste Schritte:**
 1. Supabase Project anlegen + pgvector Extension aktivieren
-2. OpenRouter API Key besorgen
+2. LLM API Key besorgen
 3. n8n via Docker lokal starten
 4. Erste Workflow-Skeletons
 

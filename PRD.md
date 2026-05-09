@@ -14,7 +14,7 @@
 
 **Case 1 — HR Knowledge Assistant für BergTech Maschinenbau GmbH**
 
-Entwicklung eines RAG-Chatbots, der HR-Mitarbeiter und Angestellte bei repetitiven Fragen entlastet (Onboarding, Urlaubsregeln, Trainings, interne HR-Prozesse). Stack: **n8n (lokal) + Supabase + OpenRouter/OpenAI**.
+Entwicklung eines RAG-Chatbots, der HR-Mitarbeiter und Angestellte bei repetitiven Fragen entlastet (Onboarding, Urlaubsregeln, Trainings, interne HR-Prozesse). Stack: **n8n (lokal) + Supabase + LLM API**.
 
 ---
 
@@ -131,7 +131,7 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 ### Primary
 - **n8n (lokal/self-hosted)** — Workflow Orchestration
 - **Supabase** — Vector Database (pgvector)
-- **OpenRouter / OpenAI** — LLM + Embeddings
+- **LLM API** — Chat + Embeddings (Anthropic)
 
 ### Hosting Strategy
 - **Default:** Lokal (n8n self-hosted via Docker)
@@ -140,7 +140,7 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 ### Why these choices
 - **n8n** — visuelle Workflows, einfacher Export als JSON
 - **Supabase** — pgvector kostenlos, einfach zu setupen
-- **OpenRouter** — flexible Model-Wahl, günstig
+- **LLM API** — flexible Model-Wahl, OpenAI-kompatibles Format
 
 ---
 
@@ -161,7 +161,7 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 │      ↓                                          │
 │  Chat Trigger                                   │
 │      ↓                                          │
-│  AI Agent (OpenRouter LLM + Vector Tool)        │
+│  AI Agent (LLM + Vector Tool)                   │
 │      ↓                                          │
 │  Retrieved Chunks + LLM Response                │
 └─────────────────────────────────────────────────┘
@@ -191,7 +191,7 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 | 4 | Workflow Details | 2 | Ingestion + Query Workflow Node-by-Node |
 | 5 | Example Questions + Demo | 1 | 3 Fragen mit Chatbot-Antworten (Screenshots) |
 | 6 | Risk Assessment | 1.5 | **2 Ebenen:** (1) Praxis-Risiken bei Nutzung (Halluzination, DSGVO, Outdated Info) + Mitigationen; (2) EU AI Act Compliance-Risiken (Art. 50, Art. 4 Verstöße) + Maßnahmen |
-| 7 | EU AI Act Analysis | 1.5 | **Rollen explizit** (Provider = wir, Deployer = BergTech, Affected Persons = Mitarbeiter, GPAI = OpenAI); Risikoklasse Limited-Risk; Pflichten + Umsetzung |
+| 7 | EU AI Act Analysis | 1.5 | **Rollen explizit** (Provider = wir, Deployer = BergTech, Affected Persons = Mitarbeiter, GPAI = Anthropic); Risikoklasse Limited-Risk; Pflichten + Umsetzung |
 | 8 | Implementation Reflection | 1 | **Struktur:** Was gut geklappt hat / Was schlecht lief / Konkrete Probleme + Lösungsweg / Learnings |
 | **Total** | | **10** | |
 
@@ -219,7 +219,7 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 - Embedding-Konzept visuell erklärt
 - Supabase pgvector Setup-Details
 - Edge Cases: Was passiert bei unbekannter Frage (Fallback)
-- Kostenübersicht OpenRouter (Token-Kosten)
+- Kostenübersicht LLM API (Token-Kosten)
 
 ---
 
@@ -229,7 +229,7 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 - **Provider:** Du (entwickelst Chatbot)
 - **Deployer:** BergTech (setzt ihn ein)
 - **Affected Persons:** Mitarbeiter
-- **GPAI Provider:** OpenAI/Anthropic (wir nutzen API)
+- **GPAI Provider:** LLM-Anbieter (wir nutzen API)
 
 ### Risikoklasse
 **Limited-Risk** (Chatbots mit menschlicher Interaktion)
@@ -257,7 +257,7 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 |--------|-------|---------------|
 | **Anastasiia Sereda** | EU AI Act Lead (vorerst) | EU AI Act Analyse: Rollen-Klassifikation (Provider/Deployer/Affected Persons/GPAI), Risikoklasse Limited-Risk, Pflichten Art. 50 + Art. 4, Compliance-Risiken + Mitigationen |
 | **Juliana Paar** | Supabase Lead (Vorschlag) | Supabase Setup (pgvector), Schema, Embedding Storage, Retrieval-Konfiguration, Anbindung an n8n |
-| **Rustam Kohen** | n8n Lead | n8n Workflows (Ingestion + Query), OpenRouter Integration, Live-Demo, JSON Export, optional Online-Deployment |
+| **Rustam Kohen** | n8n Lead | n8n Workflows (Ingestion + Query), LLM-Integration, Live-Demo, JSON Export, optional Online-Deployment |
 
 ### HR-Dokumente — Best-of-Approach
 
@@ -312,7 +312,7 @@ Rustam dokumentiert jede n8n-Build-Iteration in `BUILD_LOG.md`:
 
 ### Phase 3: Setup (13.-15.05)
 - [ ] Supabase Project (pgvector)
-- [ ] OpenRouter API Key
+- [ ] LLM API Key
 - [ ] n8n lokal via Docker
 - [ ] Erste Workflow-Skeletons
 

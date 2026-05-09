@@ -1,6 +1,6 @@
 # RAG Chatbot — LLM & Agentics Prüfung
 
-**Kurs:** LLM & Agentics (Prof. Saile)  
+**Kurs:** LLM & Agentics (Dozent: Hr. Saile)  
 **Deadline:** 31.05.2026  
 **Team:** Gruppe 1 — Anastasiia Sereda, Juliana Paar, Rustam Kohen
 

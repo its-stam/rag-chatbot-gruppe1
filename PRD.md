@@ -12,7 +12,7 @@
 
 ## Executive Summary
 
-**Case 1 — HR Knowledge Assistant für BergTech Maschinenbau GmbH**
+**Case 1 — HR Knowledge Assistant für NovaWork Maschinenbau GmbH**
 
 Entwicklung eines RAG-Chatbots, der HR-Mitarbeiter und Angestellte bei repetitiven Fragen entlastet (Onboarding, Urlaubsregeln, Trainings, interne HR-Prozesse). Stack: **n8n (lokal) + Supabase + LLM API**.
 
@@ -21,7 +21,7 @@ Entwicklung eines RAG-Chatbots, der HR-Mitarbeiter und Angestellte bei repetitiv
 ## Case Definition
 
 ### Company Situation
-**BergTech Maschinenbau GmbH** — mittelständisches Maschinenbauunternehmen, 450 Mitarbeiter. Die HR-Abteilung erhält viele repetitive Fragen zu Onboarding, Urlaub, Trainings und internen Prozessen.
+**NovaWork Maschinenbau GmbH** — mittelständisches Maschinenbauunternehmen, 450 Mitarbeiter. Die HR-Abteilung erhält viele repetitive Fragen zu Onboarding, Urlaub, Trainings und internen Prozessen.
 
 ### Main Focus
 - Employee Knowledge Access
@@ -186,12 +186,12 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 | # | Section | Pages | Inhalt |
 |---|---------|-------|--------|
 | 1 | Cover + Inhaltsverzeichnis | 1 | Titel, Team, Datum |
-| 2 | Company Situation | 1 | BergTech HR Case, Problem, Zielgruppe |
+| 2 | Company Situation | 1 | NovaWork HR Case, Problem, Zielgruppe |
 | 3 | Architecture Overview | 1 | Diagramm, Stack-Begründung |
 | 4 | Workflow Details | 2 | Ingestion + Query Workflow Node-by-Node |
 | 5 | Example Questions + Demo | 1 | 3 Fragen mit Chatbot-Antworten (Screenshots) |
 | 6 | Risk Assessment | 1.5 | **2 Ebenen:** (1) Praxis-Risiken bei Nutzung (Halluzination, DSGVO, Outdated Info) + Mitigationen; (2) EU AI Act Compliance-Risiken (Art. 50, Art. 4 Verstöße) + Maßnahmen |
-| 7 | EU AI Act Analysis | 1.5 | **Rollen explizit** (Provider = wir, Deployer = BergTech, Affected Persons = Mitarbeiter, GPAI = Anthropic); Risikoklasse Limited-Risk; Pflichten + Umsetzung |
+| 7 | EU AI Act Analysis | 1.5 | **Rollen explizit** (Provider = wir, Deployer = NovaWork, Affected Persons = Mitarbeiter, GPAI = Anthropic); Risikoklasse Limited-Risk; Pflichten + Umsetzung |
 | 8 | Implementation Reflection | 1 | **Struktur:** Was gut geklappt hat / Was schlecht lief / Konkrete Probleme + Lösungsweg / Learnings |
 | **Total** | | **10** | |
 
@@ -203,7 +203,7 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 
 | Min | Content |
 |-----|---------|
-| 0-2 | Problem + Use Case (BergTech HR) |
+| 0-2 | Problem + Use Case (NovaWork HR) |
 | 2-3 | RAG-Konzept + Why RAG (1 Min reicht) |
 | 3-6 | Architektur + n8n Workflows (Screens) |
 | 6-10 | **Live Chatbot Demo** (3 Fragen) |
@@ -227,7 +227,7 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 
 ### Rollenklassifikation
 - **Provider:** Du (entwickelst Chatbot)
-- **Deployer:** BergTech (setzt ihn ein)
+- **Deployer:** NovaWork (setzt ihn ein)
 - **Affected Persons:** Mitarbeiter
 - **GPAI Provider:** LLM-Anbieter (wir nutzen API)
 
@@ -298,7 +298,7 @@ Rustam dokumentiert jede n8n-Build-Iteration in `BUILD_LOG.md`:
 ### ✅ Phase 1: Planning (heute, 09.05)
 - [x] PRD erstellt
 - [x] Ordnerstruktur
-- [x] Case definiert (Case 1 — BergTech HR)
+- [x] Case definiert (Case 1 — NovaWork HR)
 - [x] Testfragen identifiziert
 - [ ] PDF-Konzepte (5 Stück)
 

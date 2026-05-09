@@ -2,7 +2,7 @@
 
 **Kurs:** LLM & Agentics (Prof. Saile)  
 **Deadline:** 31.05.2026  
-**Team:** Rustam Kohen + [Partner]
+**Team:** Gruppe 1 — Anastasiia Sereda, Juliana Paar, Rustam Kohen
 
 ---
 

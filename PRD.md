@@ -255,9 +255,9 @@ Die 5 Dokumente werden so strukturiert, dass Chunking + Retrieval optimal funkti
 
 | Person | Rolle | Verantwortung |
 |--------|-------|---------------|
-| **Rustam Kohen** | n8n Lead | n8n Workflows (Ingestion + Query), OpenRouter Integration, Live-Demo, JSON Export, optional Online-Deployment |
-| **Juliana Paar** | Supabase Lead (Vorschlag) | Supabase Setup (pgvector), Schema, Embedding Storage, Retrieval-Konfiguration, Anbindung an n8n |
 | **Anastasiia Sereda** | EU AI Act Lead (vorerst) | EU AI Act Analyse: Rollen-Klassifikation (Provider/Deployer/Affected Persons/GPAI), Risikoklasse Limited-Risk, Pflichten Art. 50 + Art. 4, Compliance-Risiken + Mitigationen |
+| **Juliana Paar** | Supabase Lead (Vorschlag) | Supabase Setup (pgvector), Schema, Embedding Storage, Retrieval-Konfiguration, Anbindung an n8n |
+| **Rustam Kohen** | n8n Lead | n8n Workflows (Ingestion + Query), OpenRouter Integration, Live-Demo, JSON Export, optional Online-Deployment |
 
 ### HR-Dokumente — Best-of-Approach
 

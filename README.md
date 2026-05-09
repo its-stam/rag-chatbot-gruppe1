@@ -1,6 +1,6 @@
 # RAG Chatbot — LLM & Agentics Prüfung
 
-**Kurs:** LLM & Agentics (Prof. Dozent)  
+**Kurs:** LLM & Agentics (Dozent)  
 **Deadline:** 31.05.2026  
 **Team:** Gruppe 1 — Teammitglied A, Teammitglied B, Rustam Kohen
 

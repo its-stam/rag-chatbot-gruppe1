@@ -1,10 +1,10 @@
-# Vacation and Absence Policy — BergTech Maschinenbau GmbH
+# Vacation and Absence Policy — NovaWork Maschinenbau GmbH
 
 **Dokumenttyp:** Internes HR-Dokument  
-**Zielgruppe:** Alle Mitarbeiter bei BergTech Maschinenbau GmbH  
+**Zielgruppe:** Alle Mitarbeiter bei NovaWork Maschinenbau GmbH  
 **Gültig ab:** 01.01.2025  
-**Verantwortlich:** HR-Abteilung BergTech Maschinenbau GmbH  
-**Kontakt:** hr@bergtech.de
+**Verantwortlich:** HR-Abteilung NovaWork Maschinenbau GmbH  
+**Kontakt:** hr@novawork.de
 
 ---
 
@@ -16,7 +16,7 @@
 
 ---
 
-## 1. Urlaubsanspruch bei BergTech
+## 1. Urlaubsanspruch bei NovaWork
 
 | Beschäftigungsart | Jahresurlaub |
 |-------------------|-------------|
@@ -31,7 +31,7 @@
 
 ## 2. Urlaubsantrag — Vorlauffristen
 
-Urlaubsanträge bei BergTech Maschinenbau GmbH müssen mit folgenden Vorlauffristen eingereicht werden:
+Urlaubsanträge bei NovaWork Maschinenbau GmbH müssen mit folgenden Vorlauffristen eingereicht werden:
 
 | Urlaubsdauer | Mindest-Vorlaufzeit |
 |-------------|---------------------|
@@ -46,24 +46,24 @@ Urlaubsanträge bei BergTech Maschinenbau GmbH müssen mit folgenden Vorlauffris
 ## 3. Urlaubsantrag stellen
 
 ### Digitaler Antrag (bevorzugt)
-1. BergTech Intranet öffnen: intranet.bergtech.de
+1. NovaWork Intranet öffnen: intranet.novawork.de
 2. SAP HR Portal → Urlaubsantrag aufrufen
 3. Gewünschten Zeitraum eingeben und Antrag absenden
 4. Genehmigung durch direkten Vorgesetzten (Benachrichtigung per E-Mail)
 5. HR-Bestätigung erfolgt innerhalb von 3 Werktagen
 
 ### Schriftlicher Antrag (alternativ)
-- Formular HR-05 ausfüllen (verfügbar unter intranet.bergtech.de → HR → Formulare)
+- Formular HR-05 ausfüllen (verfügbar unter intranet.novawork.de → HR → Formulare)
 - Beim direkten Vorgesetzten einreichen
-- Kopie an HR-Abteilung weiterleiten: hr@bergtech.de
+- Kopie an HR-Abteilung weiterleiten: hr@novawork.de
 
 ---
 
 ## 4. Genehmigung und Ablehnung
 
-- Genehmigungspflichtig: direkter Vorgesetzter bei BergTech
+- Genehmigungspflichtig: direkter Vorgesetzter bei NovaWork
 - Ablehnungsgrund muss dem Mitarbeiter schriftlich mitgeteilt werden
-- Widerspruch bei Ablehnung: innerhalb von 5 Werktagen an HR (hr@bergtech.de)
+- Widerspruch bei Ablehnung: innerhalb von 5 Werktagen an HR (hr@novawork.de)
 - Betrieblicher Urlaubsplan wird jährlich im Januar erstellt und veröffentlicht
 
 ---
@@ -72,16 +72,16 @@ Urlaubsanträge bei BergTech Maschinenbau GmbH müssen mit folgenden Vorlauffris
 
 - Resturlaub kann bis maximal **31. März** des Folgejahres übertragen werden
 - Nicht genommener Urlaub verfällt nach dem 31. März (Ausnahmen: Krankheit, betriebliche Gründe)
-- Antrag auf Übertragung: schriftlich bis **15. Dezember** an hr@bergtech.de
+- Antrag auf Übertragung: schriftlich bis **15. Dezember** an hr@novawork.de
 
 ---
 
-## 6. Krankmeldung bei BergTech
+## 6. Krankmeldung bei NovaWork
 
 ### Vorgehen bei Krankheit
 1. Direkten Vorgesetzten **vor Arbeitsbeginn** telefonisch informieren
 2. Ab dem **3. Kalendertag** der Erkrankung: Arbeitsunfähigkeitsbescheinigung (AU) einreichen
-3. AU per E-Mail oder Post an: hr@bergtech.de
+3. AU per E-Mail oder Post an: hr@novawork.de
 4. Bei Verlängerung der Erkrankung: neue AU erforderlich
 
 **Hinweis:** Eine AU kann auch ab dem ersten Krankheitstag verlangt werden, wenn der Vorgesetzte dies ausdrücklich anordnet.
@@ -99,13 +99,13 @@ Urlaubsanträge bei BergTech Maschinenbau GmbH müssen mit folgenden Vorlauffris
 | Umzug des eigenen Haushalts | 1 Werktag |
 | Jubiläum (25 oder 40 Jahre Betriebszugehörigkeit) | 1 Werktag |
 
-Sonderurlaub ist beim direkten Vorgesetzten und der HR-Abteilung BergTech zu beantragen.
+Sonderurlaub ist beim direkten Vorgesetzten und der HR-Abteilung NovaWork zu beantragen.
 
 ---
 
 ## 8. Unbezahlter Urlaub
 
 - Möglich nach vollständigem Verbrauch des Jahresurlaubs
-- Antrag mindestens **4 Wochen** im Voraus bei hr@bergtech.de
-- Genehmigung liegt im Ermessen von BergTech Maschinenbau GmbH
+- Antrag mindestens **4 Wochen** im Voraus bei hr@novawork.de
+- Genehmigung liegt im Ermessen von NovaWork Maschinenbau GmbH
 - Maximaldauer: 3 Monate pro Kalenderjahr

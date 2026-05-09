@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+### 10.05.2026
+- 🔧 LLM-Provider in PRD/README/BUILD_LOG neutralisiert (OpenRouter → LLM API / Anthropic)
+- 🧹 Alte PRD-PDFs (v1-v4) aus Repo gelöscht, nur PRD.md + Saile-Assignment bleiben
+- 📝 README: Ordnerstruktur korrigiert, Team-Kontakt vervollständigt
+- 🗂 UNI-Ordner aufgeräumt: projekt-2-rag-chatbot (vorher rag-chatbot-gruppe1)
+- ✅ Phase 1 abgeschlossen, CHANGELOG bereinigt
+
 ### 09.05.2026
 - ✅ PRD v4 erstellt (Requirements, Roadmap, Success Criteria)
 - ✅ README & Ordnerstruktur angelegt
@@ -64,7 +71,8 @@
 - None yet
 
 ### Closed
-- None yet
+- **#1:** Case definiert (BergTech HR, 09.05)
+- **#2:** 5 HR-Docs geschrieben + gepusht (09.05)
 
 ---
 
@@ -77,5 +85,5 @@
 
 ---
 
-**Last Updated:** 09.05.2026  
-**Next Sync:** Nach Phase 1 (heute)
+**Last Updated:** 10.05.2026  
+**Next Sync:** 13.05 (Phase 2 Setup-Start)

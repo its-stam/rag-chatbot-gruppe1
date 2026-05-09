@@ -2,13 +2,27 @@
 
 ## [Unreleased]
 
+### 10.05.2026 (Nacht)
+- ✅ Workflow v4.2 live auf GitHub: workflows/rag-workflows-combined.json
+- 🔧 Echter n8n-Export: Ingestion + Query auf einer Canvas mit Sticky Notes
+- 🗂 Alte Workflow-Versionen (v1–v3 Einzeldateien) gelöscht
+- 📝 Workflow-Name: "RAG Chatbot — Ingestion + Query (v4.2 — Gruppe 1, Case 1)"
+- ✅ Saile-konform: 3 Hauptnodes pro Section (Manual Trigger + Read Files + Supabase / Chat Trigger + AI Agent + Respond)
+- ⏳ Offen: Supabase Credentials + OpenAI Key + Dateipfad → ab 13.05
+
 ### 10.05.2026
-- 🔧 LLM-Provider in PRD/README/BUILD_LOG neutralisiert (OpenRouter → LLM API / Anthropic)
-- 🧹 Alte PRD-PDFs (v1-v4) aus Repo gelöscht, nur PRD.md + Saile-Assignment bleiben
+- 🔧 LLM-Provider in Docs neutralisiert (Anthropic Chat + OpenAI Embeddings)
+- 🧹 Alte PRD-PDFs (v1-v4) gelöscht, nur PRD.md + Saile-Assignment
 - 📝 README: Ordnerstruktur korrigiert, Team-Kontakt vervollständigt
-- 🗂 UNI-Ordner aufgeräumt: projekt-2-rag-chatbot (vorher rag-chatbot-gruppe1)
-- 🔄 Firmenname bestätigt: BergTech Maschinenbau GmbH (Saile-Vorgabe aus Transkript)
-- ✅ Phase 1 abgeschlossen, CHANGELOG bereinigt
+- 🗂 UNI-Ordner aufgeräumt: projekt-2-rag-chatbot
+- 🔄 Firmenname bestätigt: BergTech Maschinenbau GmbH (Saile-Transkript)
+- ✅ Workflow v4.2: Ingestion + Query kombiniert, n8n-Export ready
+  - 3 Nodes/Section, Saile-konform
+  - Stack: Supabase + Anthropic (Chat) + OpenAI (Embeddings)
+  - Chunking: 500/50, Retrieval: top-5
+  - System Prompt: Fakten-only, Source-Citation, Fallback
+- ✅ Phase 1+Workflow abgeschlossen
+- ⏳ Phase 3 Setup ab 13.05: Supabase + Credentials + Live-Test
 - ✅ Workflow v4 erstellt: ingestion-v4.3.json + query-v4.1.json (3 Hauptnodes + 3 Sub-Nodes, Saile-konform)
 - 🐛 n8n Fehler gefixt: Text Splitter Sub-Node-Connection, Embeddings Modes, System-Prompt-Location
 - ✅ Workflows lokal getestet, n8n-importierbar

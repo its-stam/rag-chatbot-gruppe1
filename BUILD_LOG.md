@@ -1,5 +1,4 @@
 # Build Log — n8n RAG Chatbot
-## Iterationsprotokoll für Doku + Präsi
 
 **Owner:** Rustam (Tech)
 **Konsumenten:** Juliana (Doku), Anastasiia (Slides)
@@ -7,77 +6,60 @@
 
 ---
 
-## Format pro Eintrag
-
-```
-### [YYYY-MM-DD HH:MM] Iteration N — Kurztitel
-
-**Phase:** Setup / Ingestion / Query / Demo / Deployment
-**Status:** in progress / done / blocked
-
-**Was gebaut:**
-- Konkreter Schritt 1
-- Konkreter Schritt 2
-
-**Konfiguration:**
-- Node-Typ, Parameter, API-Endpoints
-
-**Probleme:**
-- Was lief nicht, wie gelöst (für Reflection)
-
-**Screenshots:**
-- /workflows/screens/iter-N-title.png
-
-**Doku-Take-Aways (für Juliana):**
-- Was muss in welchen Doku-Abschnitt
-
-**Slide-Take-Aways (für Anastasiia):**
-- Welche Visuals/Erklärungen für Präsi
-```
-
----
-
 ## Iterationen
 
-### [TBD] Iteration 0 — Setup-Plan
+### [2026-05-10 02:45] Iteration 1 — Workflow v4.2 Final
 
-**Phase:** Setup
-**Status:** Pending
+**Phase:** Setup (Pre-Sprint)
+**Status:** done
 
 **Was gebaut:**
-- Noch nichts, Build startet nach Phase 2 (Doku-Erstellung 10.-12.05)
+- Workflow v4.2: Ingestion + Query kombiniert in einem n8n-Export
+- Ingestion: Manual Trigger → Read Files → Supabase Vector Store + Embeddings (OpenAI) + Data Loader + Text Splitter (500/50)
+- Query: Chat Trigger → AI Agent → Respond + Chat Model (Anthropic Claude Haiku) + Supabase Vector Tool + Embeddings (OpenAI)
+- 3 sichtbare Nodes pro Section (Saile-konform)
 
-**Nächste Schritte:**
-1. Supabase Project anlegen + pgvector Extension aktivieren
-2. LLM API Key bereitstellen
-3. n8n via Docker lokal starten
-4. Erste Workflow-Skeletons
+**Konfiguration:**
+- Embedding: OpenAI text-embedding-3-small
+- Chat: Anthropic Claude 3 Haiku (temperature 0.3)
+- Chunking: 500 Tokens, 50 Overlap
+- System Prompt: BergTech Maschinenbau GmbH, 4 Regeln (Fakten-only, Quellen-Zitat, Fallback, keine Spekulation)
+- Retrieval: top-5 matches aus Supabase
 
-**Nächste Schritte:**
-1. Supabase Project anlegen + pgvector Extension aktivieren (Juliana-Task)
-2. LLM API Key bereitstellen (in .env, niemals committen)
-3. Workflows in n8n importieren (localhost:5678)
-4. Nodes verkabeln mit echten Credentials
+**Probleme:**
+- v1: kein Chunking → verworfen
+- v2: over-engineered (8+9 Nodes) → verworfen
+- v3: falsche Node-Types → verworfen
+- Name-Chaos: BergTech → NovaWork → BergTech (Saile-Transkript bestätigt BergTech)
+- CCR DeepSeek 400-Fehler: Thinking-Mode disabled via Transformer-Config
+
+### Nächste Schritte (Phase 3, ab 13.05)
+
+1. Supabase Project + pgvector + documents Table (Juliana-Task. Rustam kann vorziehen)
+2. Anthropic + OpenAI API Keys in n8n Credentials eintragen
+3. Workflow in n8n importieren + testen
+4. 3 Demo-Fragen durchlaufen (Onboarding Docs, Urlaubsfrist, Pflichttrainings)
+5. E2E Test + JSON Export
 
 ---
 
-## Sprint-Übersicht (geplant)
+## Sprint-Übersicht
 
-| Sprint | Datum | Iteration | Owner | Output |
-|--------|-------|-----------|-------|--------|
-| 1 | 13.05 | Setup (Supabase + n8n + Keys) | Rustam | Funktionierende Basis |
-| 2 | 14.05 | Workflow 1: Ingestion Skeleton | Rustam | PDFs lesen + chunken |
-| 3 | 15.05 | Workflow 1: Vector Store Insert | Rustam | Embeddings in Supabase |
-| 4 | 16.-17.05 | Workflow 2: Chat Trigger + AI Agent | Rustam | Erste Antworten |
-| 5 | 18.-19.05 | Retrieval Tuning + System Prompt | Rustam | 3 Demo-Fragen funktionieren |
-| 6 | 20.05 | E2E Test + JSON Export | Rustam | Submission-fähig |
-| 7 | 21.-22.05 | (Optional) Online Deployment | Rustam | 1.0-Bonus |
+| Sprint | Datum | Status | Output |
+|--------|-------|--------|--------|
+| Pre   | 10.05 | ✅ Done | Workflow v4.2, Docs gepusht, Name fix |
+| 1 | 13.05 | ⏳ | Supabase + Credentials |
+| 2 | 14.-15.05 | — | Workflow live testen |
+| 3 | 16.-19.05 | — | 3 Demo-Fragen, Tuning |
+| 4 | 20.-21.05 | — | E2E Test, Deployment (optional) |
+| 5 | 22.-27.05 | — | Doku + EU AI Act |
+| 6 | 28.-31.05 | — | Slides, Rehearsal, Submission |
 
 ---
 
 ## Konventionen
 
 - **Screenshots:** `/workflows/screens/iter-N-titel.png`
-- **JSON Exports:** `/workflows/ingestion-vN.json`, `/workflows/query-vN.json`
+- **JSON Exports:** `/workflows/rag-workflows-combined.json`
 - **System Prompts:** `/workflows/prompts/system-vN.md`
 - **API Keys:** **NIEMALS** in Files committen, nur lokal in `.env`

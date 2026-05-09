@@ -3,23 +3,27 @@
 ## [Unreleased]
 
 ### 09.05.2026
-- ✅ PRD created (Requirements, Roadmap, Success Criteria)
+- ✅ PRD v4 erstellt (Requirements, Roadmap, Success Criteria)
 - ✅ README & Ordnerstruktur angelegt
-- ✅ Phase 1 Planning initiated
-- ⏳ Case/Firma noch zu definieren
-- ⏳ 5 PDFs noch zu schreiben
+- ✅ Case definiert: BergTech Maschinenbau GmbH — HR Knowledge Assistant
+- ✅ 3 Demo-Fragen definiert (Onboarding, Urlaub, Pflichttrainings)
+- ✅ 5 HR-Dokumente geschrieben (Deutsch, RAG-optimiert, `company-docs/rustam/`)
+- ✅ RAG-Kollision gefixt: FAQ Formular-Präfix-Aussage korrigiert
+- ✅ Englische root-Docs gelöscht (Verwirrung eliminiert)
+- ✅ Alles gepusht auf GitHub (its-stam/rag-chatbot-gruppe1)
+- ⏳ Teammitglied B + Teammitglied A: je 5 Docs ausstehend
 
 ---
 
 ## Phases
 
 ### Phase 1: Planning
-**Start:** 09.05.2026 | **End:** today  
+**Start:** 09.05.2026 | **End:** 09.05.2026 | **Status:** ✅ DONE
 - [x] PRD schreiben
 - [x] Ordnerstruktur
-- [ ] Case definieren
-- [ ] 5 PDFs konzipieren
-- [ ] 3 Testfragen
+- [x] Case definieren (BergTech HR)
+- [x] 5 HR-Docs geschrieben + gepusht (company-docs/rustam/)
+- [x] 3 Testfragen definiert
 
 ### Phase 2: Setup
 **Start:** next | **End:** +3 days  

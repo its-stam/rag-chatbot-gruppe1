@@ -66,7 +66,7 @@
     },
     {
       "parameters": {
-        "model": "claude-3-haiku-20240307",
+        "model": "claude-3-5-haiku-20241022",
         "options": {
           "temperature": 0.3
         }
@@ -131,6 +131,7 @@
     },
     {
       "parameters": {
+        "model": "text-embedding-3-small",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
@@ -144,6 +145,7 @@
     },
     {
       "parameters": {
+        "model": "text-embedding-3-small",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
@@ -324,7 +326,7 @@
   },
   "active": false,
   "settings": {
-    "executionOrder": "v1",
+    "executionOrder": "v2",
     "binaryMode": "separate"
   },
   "versionId": "2e506354-0a0b-4bd5-b603-4f514d989628",

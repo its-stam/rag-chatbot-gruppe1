@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### 11.05.2026
+- 🔧 Workflow v4.3: Modell-Update + Embedding-Fix + Default-Hardening
+- 🔧 Claude Haiku: `claude-3-haiku-20240307` → `claude-3-5-haiku-20241022` (schneller, günstiger)
+- 🐛 Embedding-Modell explizit gesetzt: `text-embedding-3-small` in beiden Nodes (vorher Default `ada-002`)
+- 🐛 Docs-Fix: "500 Tokens" → "500 Zeichen" (Splitter arbeitet Char-basiert)
+- ⚡ executionOrder: v1 → v2
+- 📝 Implementation Reflection erweitert: 2 neue What-Went-Wrong (#5 Embedding-Default, #6 Char-vs-Token)
+- 📝 Q&A-Vorbereitung: 9 Saile-Fragen mit Redeskript (15-Min-Präsi + 10-Min-Q&A)
+- 📝 2 neue Lessons Learned (#2 erweitert, #7 neu)
+
 ### 10.05.2026 (Nacht)
 - ✅ Workflow v4.2 live auf GitHub: workflows/rag-workflows-combined.json
 - 🔧 Echter n8n-Export: Ingestion + Query auf einer Canvas mit Sticky Notes
@@ -103,5 +113,5 @@
 
 ---
 
-**Last Updated:** 10.05.2026  
-**Next Sync:** 13.05 (Phase 2 Setup-Start)
+**Last Updated:** 11.05.2026  
+**Next Sync:** 13.05 (Phase 3 Setup-Start)

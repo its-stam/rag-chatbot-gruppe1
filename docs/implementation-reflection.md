@@ -3,7 +3,7 @@
 **Projekt:** LLM & Agentics, Gruppe 1, Case 1  
 **Firma:** BergTech Maschinenbau GmbH (Dozent-Vorgabe)  
 **Produkt:** HR Knowledge Assistant — RAG-Chatbot mit n8n + Supabase  
-**Stand:** 10.05.2026 | **Deadline:** 31.05.2026 | **Präsentation:** 01.06.2026
+**Stand:** 11.05.2026 | **Deadline:** 31.05.2026 | **Präsentation:** 01.06.2026
 
 ---
 
@@ -18,7 +18,7 @@ Workflow steht, Docs stehen, Architektur validiert. 3 Nodes pro Section, Dozent-
 | Entscheidung | Warum | Impact |
 |-------------|-------|--------|
 | Anthropic für Chat, OpenAI für Embeddings | Anthropic hat keine Embeddings. Beste Aufteilung: Claude Haiku (günstig, schnell) + text-embedding-3-small | Kosteneffizient, 2 Provider statt 1 |
-| Chunking 500/50 | HR-Docs haben kurze, dichte Abschnitte. 500 Tokens reicht für eine Policy-Regel oder FAQ-Antwort | Präzisere Retrieval-Matches |
+| Chunking 500/50 (Zeichen) | HR-Docs haben kurze, dichte Abschnitte. 500 Zeichen reichen für eine Policy-Regel oder FAQ-Antwort | Präzisere Retrieval-Matches |
 | 3 sichtbare Nodes | Dozent-Vorgabe: "einfach halten". AI Agent macht intern Retrieval + LLM | Weniger Fehlerpunkte in Live-Demo |
 | BergTech als Name | Dozent-Transkript 17:01: "Gruppe 1 macht einen HR-Assistent für die fiktive Bergtech Maschinenbau GmbH" | Vorgabe, keine Diskussion |
 | Workflow kombinieren statt teilen | Eine Canvas, zwei Sections mit Sticky Notes. In der Demo zeigst du alles auf einen Blick | Besserer Demo-Flow |
@@ -65,21 +65,43 @@ Teammitglied B (Supabase) und Teammitglied A (EU AI Act) haben Stand 10.05. kein
 
 **Risk:** 
 
+### 5. Embedding-Modell-Default-Falle (11.05 entdeckt)
+
+**Root cause:** Beide Embedding-Nodes im Workflow hatten `"options": {}` — kein Modell explizit gesetzt. n8n nimmt dann OpenAIs Default `text-embedding-ada-002` (2022). In der PRD und Reflection stand aber `text-embedding-3-small`.
+
+Das ist doppelt gefährlich:
+1. **Default-Änderung:** OpenAI kann den Default jederzeit wechseln → Ingestion und Query laufen dann mit unterschiedlichen Modellen → Vektoren passen nicht mehr → Retrieval findet nichts
+2. **Doku-Realitäts-Gap:** Wir behaupten Modell X, Workflow nutzt Y. Dozent würde das im Q&A zerlegen.
+
+**Fix:** Beide Nodes auf `"model": "text-embedding-3-small"` gesetzt. `3-small` ist neuer (2024), günstiger ($0.02/1M tokens vs $0.10) und produziert bessere Embeddings als `ada-002`.
+
+**Learning:** n8n-Defaults nie blind vertrauen. Jeder Node-Parameter muss explizit gesetzt sein — was nicht im JSON steht, kontrollieren wir nicht.
+
+### 6. Character Splitter ≠ Token Splitter (11.05 entdeckt)
+
+**Root cause:** Der `RecursiveCharacterTextSplitter` in n8n arbeitet **Zeichen-basiert**, nicht Token-basiert. Unser Chunking 500/50 sind 500 Zeichen, nicht 500 Tokens wie in der Doku behauptet. 500 Zeichen ≈ 125-200 Tokens (Deutsch).
+
+**Impact:** Die tatsächlichen Chunks sind deutlich kleiner als gedacht. Das ist nicht unbedingt schlecht (präzisere Matches), aber es muss korrekt dokumentiert sein.
+
+**Fix:** Doku auf "500 Zeichen" korrigiert. In der Präsi können wir das als bewusste Entscheidung framen: HR-Docs haben kurze, dichte Abschnitte — kleine Chunks = präziseres Retrieval.
+
 ---
 
 ## What We Learned
 
 1. **n8n-Workflows in der UI bauen, nicht im JSON.** Die JSON-Struktur ist versionsabhängig und enthält interne IDs die n8n selbst generiert.
 
-2. **Embedding-Modell muss für Write und Read identisch sein.** Ingestion mit OpenAI, Query mit einem anderen Modell = keine Matches.
+2. **Embedding-Modell muss für Write und Read identisch sein.** Ingestion mit OpenAI, Query mit einem anderen Modell = keine Matches. Zusätzlich: Modell IMMER explizit setzen, nie auf n8n-Defaults verlassen. Ein Default-Wechsel von OpenAI würde den Workflow unbemerkt zerbrechen.
 
 3. **System Prompt gehört in `options.systemMessage`.** `promptType: define` mit festem `text` überschreibt die User-Frage.
 
 4. **AI Agent Node ist mächtiger als er aussieht.** Intern: LLM-Call + Tool-Auswahl + Retrieval + Antwort-Formatierung. 3 Nodes auf dem Canvas, 5 Sub-Nodes unsichtbar.
 
-5. **Ein zweiter Review-Durchlauf findet Bugs, die man selbst übersieht.** 
+5. **Ein zweiter Review-Durchlauf findet Bugs, die man selbst übersieht.**  Bei sicherheitskritischer Konfiguration (Embedding-Modelle, Chunking) lohnt ein zweiter Review-Durchlauf.
 
 6. **Transkripte lesen, nicht raten.** Firmenname, Dokumenttypen, Node-Limit — alles steht wörtlich in Dozents Aufzeichnung.
+
+7. **Character-based ≠ Token-based.** n8ns RecursiveCharacterTextSplitter arbeitet auf Zeichenebene. 500 Chunk-Size = 500 Zeichen, nicht 500 Tokens. Immer prüfen welche Einheit der Splitter tatsächlich verwendet.
 
 ---
 
@@ -107,6 +129,7 @@ Teammitglied B (Supabase) und Teammitglied A (EU AI Act) haben Stand 10.05. kein
 | Datum | Milestone |
 |-------|-----------|
 | 10.05 | ✅ Workflow v4.2 + Docs gepusht |
+| 11.05 | ✅ Workflow v4.3: Modell-Update + Embedding-Fix + Default-Hardening |
 | 13.05 | Phase 3 Start: Supabase + Credentials |
 | 18.05 | Q&A Session mit Dozent (freiwillig) |
 | 22.05 | E2E Test mit 3 Demo-Fragen |
@@ -117,5 +140,83 @@ Teammitglied B (Supabase) und Teammitglied A (EU AI Act) haben Stand 10.05. kein
 
 ---
 
-**Last Updated:** 10.05.2026  
+---
+
+## Q&A-Vorbereitung — Dozents wahrscheinlichste Fragen
+
+> 15 Min Präsi + 10 Min Q&A. Dozent stellt technische Detailfragen. Diese Sektion = Redeskript für die Präsentation.
+
+### "Warum 5 Workflow-Iterationen (v1—v4.3)?"
+
+Weil v1—v3 KI-generiertes JSON war — syntaktisch korrekt, aber mit falschen Node-Types. Erst als wir den Workflow manuell in der n8n-UI gebaut und als echten Export gespeichert haben (v4), war er funktionsfähig.
+
+Die JSON-Struktur von n8n ist versionsabhängig und enthält interne IDs, Connection-Types (`ai_languageModel`, `ai_tool`) und Sub-Node-Referenzen, die nur die n8n-UI korrekt erzeugt.
+
+**Take-away:** n8n-JSON ist Output, nicht Input. In der UI bauen, exportieren, versionieren. Das ist eine der wichtigsten Lessons Learned.
+
+### "Warum GitHub für ein Uni-Projekt?"
+
+1. **Team-Transparenz:** Alle 3 Mitglieder sehen wer was wann committed hat. Kein "ich hab's dir gemailt"-Chaos.
+2. **Versionierung:** Jede Workflow-Iteration ist nachvollziehbar (v1→v4.3). Rollback jederzeit möglich.
+3. **Professioneller Workflow:** In der Industrie wird niemand JSONs per Teams hin- und herschicken. Git ist Standard.
+4. **Nachweisbarkeit:** Contribution Reports sind durch Commit-Historie belegbar.
+
+### "Warum Claude Haiku und nicht GPT-4 oder Gemini?"
+
+- **Haiku** ist der günstigste und schnellste Claude (0.25/1M Input, 1.25/1M Output). Für eine HR-FAQ mit festem Dokument-Pool reicht die Reasoning-Tiefe völlig.
+- **GPT-4** wäre teurer bei gleicher Antwortqualität für diesen Use Case.
+- **Gemini** hat keinen n8n-native Node — Anthropic und OpenAI sind first-class in n8n integriert.
+
+Außerdem: Wir nutzen bereits OpenAI für Embeddings. Zwei Provider = Ausfallsicherheit.
+
+### "Warum text-embedding-3-small und nicht ada-002?"
+
+- `3-small` (2024) ist neuer, 5× günstiger ($0.02 vs $0.10/1M tokens) und produziert bessere Embeddings bei Benchmark-Tests (MTEB).
+- Wir haben das Modell **explizit im JSON gesetzt**, weil wir nicht auf OpenAIs Default vertrauen. Ein Default-Wechsel würde Ingestion und Query mit unterschiedlichen Modellen laufen lassen → Retrieval kaputt.
+
+### "Warum RecursiveCharacterTextSplitter mit 500 Zeichen?"
+
+- HR-Docs bestehen aus kurzen, dichten Abschnitten (Policy-Regeln, FAQ-Antworten, Checklisten-Items).
+- 500 Zeichen ≈ ein Abschnitt. So landet jede Policy-Regel als eigener Chunk → präzisere Matches.
+- Overlap 50 verhindert dass Informationen an Chunk-Grenzen abgeschnitten werden.
+- Größere Chunks (1000+) würden mehrere Themen mischen → Retrieval wird unscharf.
+
+### "Warum 3 Nodes und nicht mehr?"
+
+Dozent-Vorgabe: "n8n einfach halten, 3-4 Nodes." Der AI Agent Node ist intern mächtiger als er aussieht:
+
+- `ai_languageModel` → LLM-Call (Anthropic)
+- `ai_tool` → Vector Store Abfrage (Supabase)
+- `ai_embedding` → Query-Vektorisierung
+
+Das sind 5 Sub-Nodes, aber nur 3 auf dem Canvas. Best Practice: sichtbare Komplexität minimieren, interne Arbeit delegieren.
+
+### "Was passiert wenn eine Frage nicht beantwortet werden kann?"
+
+Der System Prompt hat einen expliziten Fallback:
+
+> "Diese Information liegt mir nicht vor. Bitte wende dich an hr@bergtech.de."
+
+Das verhindert Halluzinationen — der Chatbot darf NUR aus den bereitgestellten Dokumenten antworten. Keine Spekulation, keine externen Informationen. Das ist besonders wichtig für HR (rechtliche Relevanz) und eine direkte Anforderung aus dem EU AI Act (Transparenz, menschliche Eskalation).
+
+### "Wie stellt ihr sicher dass Embeddings von Write und Read identisch sind?"
+
+Beide Nodes — Ingestion UND Query — haben explizit `"model": "text-embedding-3-small"` gesetzt. Kein Default-Verhalten, kein impliziter Fallback.
+
+Das war einer unserer Bugs in der ersten Review: `"options": {}` → n8n nimmt Default. Wir haben das am 11.05. entdeckt und in v4.3 gehärtet.
+
+### "EU AI Act — welche Rolle spielt euer Chatbot?"
+
+- **Provider:** Wir (Gruppe 1) — entwickeln und deployen den Chatbot
+- **Deployer:** BergTech — setzt ihn intern ein
+- **Affected Persons:** BergTech-Mitarbeiter — interagieren mit dem Bot
+- **GPAI Provider:** Anthropic (Claude) + OpenAI (Embeddings)
+
+Risikoklasse: **Limited-Risk** (Chatbot mit menschlicher Interaktion, Art. 50 Transparenzpflicht).
+
+Umsetzung: Transparenzhinweis im System Prompt, "Ich weiß nicht"-Fallback, Quellenangabe in Antworten, keine PII-Verarbeitung.
+
+---
+
+**Last Updated:** 11.05.2026  
 **Next Review:** 13.05 (Phase 3 Start)

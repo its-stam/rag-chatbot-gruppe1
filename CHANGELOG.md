@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### 17.05.2026
+- 🐛 Workflow v4.7: Chat Trigger Fix — v4.6 hatte `n8n-nodes-base.webhook` statt `@n8n/n8n-nodes-langchain.chatTrigger` → kein n8n Chat-Sidebar möglich
+- 🔧 v4.7: `When chat message received` Node (langchain, public=true), Respond-to-Webhook entfernt (AI Agent letztes Node)
+- 🐛 Sticky Note Typo gefixt: QUERRY → QUERY
+- 📁 workflows/_archiv/ angelegt: v4.3, v4.4, v4.6-BROKEN archiviert (workflows/ enthält nur noch v4.7)
+- 📄 5 HR-Docs als PDF konvertiert (Saile-Vorgabe: PDF-Upload) → company-docs/rustam/pdf/
+- 🔧 GitHub Repo-Description: NovaWork → BergTech HR (Case 1, Saile)
+- 📝 README Typo: doppeltes "Maschinenbau GmbH"
+
 ### 16.05.2026
 - 🐛 Workflow v4.4: Read/Write Files from Disk — Operation + fileSelector gefixt (waren leer → ⚠️ in n8n)
 - 🐛 Supabase Vector Store (retrieve) — tableName von leerem Resource-Locator auf "documents" gesetzt

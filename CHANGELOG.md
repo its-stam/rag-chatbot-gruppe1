@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### 16.05.2026
+- 🐛 Workflow v4.4: Read/Write Files from Disk — Operation + fileSelector gefixt (waren leer → ⚠️ in n8n)
+- 🐛 Supabase Vector Store (retrieve) — tableName von leerem Resource-Locator auf "documents" gesetzt
+- 📝 Team-Status: WhatsApp-Update an Gruppe gesendet, Q&A 18.05. via Transkript bestätigt
+
 ### 11.05.2026
 - 🔧 Workflow v4.3: Modell-Update + Embedding-Fix + Default-Hardening
 - 🔧 Claude Haiku: `claude-3-haiku-20240307` → `claude-3-5-haiku-20241022` (schneller, günstiger)

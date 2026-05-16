@@ -77,6 +77,16 @@ Das ist doppelt gefährlich:
 
 **Learning:** n8n-Defaults nie blind vertrauen. Jeder Node-Parameter muss explizit gesetzt sein — was nicht im JSON steht, kontrollieren wir nicht.
 
+### 7. Unvollständiger Node-Export: Read/Write Files + Supabase ohne Pflichtparameter (16.05 entdeckt)
+
+**Root cause:** Zwei Nodes waren im JSON-Export unvollständig: "Read/Write Files from Disk" hatte weder `operation` noch `fileSelector`, und "Supabase Vector Store" (retrieve) hatte leeren Resource-Locator statt `tableName`. Beide zeigten ⚠️ in n8n.
+
+**Warum spät entdeckt:** Der Resource-Locator mit `"__rl": true` sieht im n8n-UI wie ein Dropdown aus — erst im JSON sieht man `"value": ""`. Der Read/Write-Node war vom UI her angeklickt, aber die Pflichtfelder nicht ausgefüllt.
+
+**Fix v4.4:** `"operation": "read"` + `"fileSelector": "company-docs/**/*.md"`, `"tableName": "documents"` (konkret statt dynamischem Selector).
+
+**Learning:** Nach jedem UI-Export das JSON manuell gegenchecken: alle Nodes auf fehlende Pflichtparameter (`operation`, `fileSelector`, `tableName`, `model`). n8n exportiert unvollständige Nodes ohne Warnung.
+
 ### 6. Character Splitter ≠ Token Splitter (11.05 entdeckt)
 
 **Root cause:** Der `RecursiveCharacterTextSplitter` in n8n arbeitet **Zeichen-basiert**, nicht Token-basiert. Unser Chunking 500/50 sind 500 Zeichen, nicht 500 Tokens wie in der Doku behauptet. 500 Zeichen ≈ 125-200 Tokens (Deutsch).
@@ -102,6 +112,8 @@ Das ist doppelt gefährlich:
 6. **Transkripte lesen, nicht raten.** Firmenname, Dokumenttypen, Node-Limit — alles steht wörtlich in Dozents Aufzeichnung.
 
 7. **Character-based ≠ Token-based.** n8ns RecursiveCharacterTextSplitter arbeitet auf Zeichenebene. 500 Chunk-Size = 500 Zeichen, nicht 500 Tokens. Immer prüfen welche Einheit der Splitter tatsächlich verwendet.
+
+8. **n8n-JSON-Export validiert keine Pflichtparameter.** Der Export schreibt auch unvollständige Nodes. Nach jedem Export: JSON manuell auf `operation`, `fileSelector`, `tableName`, `model` prüfen. Resource-Locators mit `"__rl": true` sind im JSON nicht sichtbar leer, aber im UI schon.
 
 ---
 

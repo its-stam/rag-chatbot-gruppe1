@@ -1,5 +1,5 @@
 {
-  "name": "RAG Chatbot — Ingestion + Query (v4.2 — Gruppe 1, Case 1)",
+  "name": "RAG Chatbot — Ingestion + Query (v4.7 — Gruppe 1, Case 1)",
   "nodes": [
     {
       "parameters": {
@@ -11,10 +11,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -96,
-        -48
+        0,
+        0
       ],
-      "id": "8061cab5-b48f-4b2a-880c-a910e133d819",
+      "id": "85eea4a9-b17f-4ab0-8432-3d57d0308abb",
       "name": "Sticky Note"
     },
     {
@@ -23,29 +23,27 @@
         "tableName": "documents",
         "options": {}
       },
-      "id": "8b36ae7e-f3cc-4f16-8e48-229b71e33a28",
+      "id": "756db1e2-e15c-406d-b94b-39108f58e961",
       "name": "Supabase Vector Store1",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1,
       "position": [
-        512,
-        16
+        608,
+        64
       ]
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "chat",
-        "responseMode": "responseNode",
+        "public": true,
         "options": {}
       },
-      "id": "d39d895c-8ac5-4502-847a-47982a6fde05",
-      "name": "Chat Trigger1",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
+      "id": "57edbfce-964f-4d60-a2dd-d5b744881a54",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
       "position": [
-        128,
-        816
+        224,
+        864
       ],
       "webhookId": "rag-chat-v4"
     },
@@ -55,13 +53,13 @@
           "systemMessage": "Du bist der HR Assistant von BergTech Maschinenbau GmbH.\n\nRegeln:\n1. Antworte ausschließlich mit Fakten aus den bereitgestellten Dokumenten.\n2. Zitiere die Quelle als [Dokumentname].\n3. Wenn die Frage nicht beantwortet werden kann: \"Diese Information liegt mir nicht vor. Bitte wende dich an hr@bergtech.de.\"\n4. Keine Spekulation, keine externen Informationen."
         }
       },
-      "id": "5b184f8d-518f-46d3-b9ca-4919ea09936b",
+      "id": "014ccb07-269c-43be-bc65-bb57a1bb874c",
       "name": "AI Agent1",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1,
       "position": [
-        384,
-        816
+        480,
+        864
       ]
     },
     {
@@ -71,28 +69,20 @@
           "temperature": 0.3
         }
       },
-      "id": "672b8866-70d9-4070-9bdf-eda0c5d44353",
+      "id": "1862acab-baee-457e-b90a-186656e1d594",
       "name": "Chat Model (Anthropic)1",
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1,
       "position": [
-        352,
-        1040
-      ]
-    },
-    {
-      "parameters": {
-        "respondWith": "json",
-        "options": {}
-      },
-      "id": "66fe1fdb-125c-4367-8df3-151aacf61fd9",
-      "name": "Respond to Chat1",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1,
-      "position": [
-        848,
-        816
-      ]
+        448,
+        1088
+      ],
+      "credentials": {
+        "anthropicApi": {
+          "id": "EhaEuwSIVgNDh9og",
+          "name": "Anthropic account"
+        }
+      }
     },
     {
       "parameters": {
@@ -103,15 +93,15 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1.3,
       "position": [
-        480,
-        1040
+        576,
+        1088
       ],
-      "id": "8d415862-338a-48ed-87b4-b4e8e61fb385",
+      "id": "6d2758ac-b705-4c55-a60c-c2b090bd0fa6",
       "name": "Supabase Vector Store"
     },
     {
       "parameters": {
-        "content": "## QUERRY\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
+        "content": "## QUERY\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
         "height": 624,
         "width": 1152,
         "color": "#B2A624"
@@ -119,10 +109,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -48,
-        752
+        48,
+        800
       ],
-      "id": "8d90ee0c-0b5f-4c7c-a54d-bf211b838ede",
+      "id": "d83b8684-8959-4b90-ad47-16f2da081856",
       "name": "Sticky Note1"
     },
     {
@@ -133,11 +123,17 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.2,
       "position": [
-        560,
-        1248
+        656,
+        1296
       ],
-      "id": "a3993e7b-be3e-4cf4-8aa8-164f5e72f08d",
-      "name": "Embeddings OpenAI"
+      "id": "f7f1389e-38ba-42ae-8788-93c7311c5acf",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "rOu35isYGAK7PSup",
+          "name": "OpenAI account"
+        }
+      }
     },
     {
       "parameters": {
@@ -147,11 +143,17 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.2,
       "position": [
-        480,
-        240
+        576,
+        288
       ],
-      "id": "06958de9-4158-45ed-9f24-45e05da0dbd7",
-      "name": "Embeddings OpenAI1"
+      "id": "1b4b1fb1-73c6-4af1-a233-9beba48ae5c2",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "rOu35isYGAK7PSup",
+          "name": "OpenAI account"
+        }
+      }
     },
     {
       "parameters": {
@@ -161,10 +163,10 @@
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1.1,
       "position": [
-        688,
-        240
+        784,
+        288
       ],
-      "id": "653d960d-5d6a-401f-884e-a6fed3cfba68",
+      "id": "75546ff2-4a8a-4487-9acc-d10df84fdc2c",
       "name": "Default Data Loader"
     },
     {
@@ -176,10 +178,10 @@
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
       "position": [
-        688,
-        448
+        784,
+        496
       ],
-      "id": "52435802-827e-4465-b1dc-c1cbe64664ae",
+      "id": "c7989997-1299-4cc0-92cb-9038e08439de",
       "name": "Recursive Character Text Splitter"
     },
     {
@@ -187,46 +189,35 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        32,
-        224
+        128,
+        272
       ],
-      "id": "7a51b233-2504-4885-bd3f-1ad24ad0ac35",
+      "id": "39d2d118-3140-475d-98c7-68f1b18f1c9d",
       "name": "READ MD-File"
     },
     {
       "parameters": {
         "operation": "read",
-        "fileSelector": "company-docs/**/*.md",
+        "fileSelector": "/Users/stm/.n8n-files/company-docs/**/*.md",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        256,
-        224
+        352,
+        272
       ],
-      "id": "52dec6fb-dee7-48b3-b06e-e216faaf5a48",
+      "id": "941df2ad-c1e8-49dc-a909-4686b378e0f4",
       "name": "Read/Write Files from Disk"
     }
   ],
   "pinData": {},
   "connections": {
-    "Chat Trigger1": {
+    "When chat message received": {
       "main": [
         [
           {
             "node": "AI Agent1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent1": {
-      "main": [
-        [
-          {
-            "node": "Respond to Chat1",
             "type": "main",
             "index": 0
           }
@@ -327,10 +318,10 @@
     "executionOrder": "v2",
     "binaryMode": "separate"
   },
-  "versionId": "2e506354-0a0b-4bd5-b603-4f514d989628",
+  "versionId": "a7f1c2b8-4d3e-4f0a-9c1b-5e8d6f7a2b9c",
   "meta": {
     "instanceId": "7eabe7066065a9a2f7474da57a51f64e22c0a18329def4738d9e693895df45f5"
   },
-  "id": "CFmuBZPqBB8iS7sT",
+  "id": "j8AgGTjKS1jErGxf",
   "tags": []
 }

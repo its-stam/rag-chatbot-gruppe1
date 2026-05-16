@@ -97,11 +97,7 @@
     {
       "parameters": {
         "mode": "retrieve-as-tool",
-        "tableName": {
-          "__rl": true,
-          "mode": "list",
-          "value": ""
-        },
+        "tableName": "documents",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
@@ -199,6 +195,8 @@
     },
     {
       "parameters": {
+        "operation": "read",
+        "fileSelector": "company-docs/**/*.md",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",

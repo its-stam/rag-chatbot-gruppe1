@@ -77,6 +77,14 @@ Das ist doppelt gefährlich:
 
 **Learning:** n8n-Defaults nie blind vertrauen. Jeder Node-Parameter muss explizit gesetzt sein — was nicht im JSON steht, kontrollieren wir nicht.
 
+### 6. Character Splitter ≠ Token Splitter (11.05 entdeckt)
+
+**Root cause:** Der `RecursiveCharacterTextSplitter` in n8n arbeitet **Zeichen-basiert**, nicht Token-basiert. Unser Chunking 500/50 sind 500 Zeichen, nicht 500 Tokens wie in der Doku behauptet. 500 Zeichen ≈ 125-200 Tokens (Deutsch).
+
+**Impact:** Die tatsächlichen Chunks sind deutlich kleiner als gedacht. Das ist nicht unbedingt schlecht (präzisere Matches), aber es muss korrekt dokumentiert sein.
+
+**Fix:** Doku auf "500 Zeichen" korrigiert. In der Präsi können wir das als bewusste Entscheidung framen: HR-Docs haben kurze, dichte Abschnitte — kleine Chunks = präziseres Retrieval.
+
 ### 7. Unvollständiger Node-Export: Read/Write Files + Supabase ohne Pflichtparameter (16.05 entdeckt)
 
 **Root cause:** Zwei Nodes waren im JSON-Export unvollständig: "Read/Write Files from Disk" hatte weder `operation` noch `fileSelector`, und "Supabase Vector Store" (retrieve) hatte leeren Resource-Locator statt `tableName`. Beide zeigten ⚠️ in n8n.
@@ -87,13 +95,30 @@ Das ist doppelt gefährlich:
 
 **Learning:** Nach jedem UI-Export das JSON manuell gegenchecken: alle Nodes auf fehlende Pflichtparameter (`operation`, `fileSelector`, `tableName`, `model`). n8n exportiert unvollständige Nodes ohne Warnung.
 
-### 6. Character Splitter ≠ Token Splitter (11.05 entdeckt)
+### 8. Falscher Chat Trigger im Query-Pfad (16.–17.05 entdeckt, v4.7 fixt)
 
-**Root cause:** Der `RecursiveCharacterTextSplitter` in n8n arbeitet **Zeichen-basiert**, nicht Token-basiert. Unser Chunking 500/50 sind 500 Zeichen, nicht 500 Tokens wie in der Doku behauptet. 500 Zeichen ≈ 125-200 Tokens (Deutsch).
+**Root cause:** In v4.6 war der Query-Trigger `n8n-nodes-base.webhook` (Standard-POST-Endpoint mit `httpMethod`, `path: chat`, `responseMode: responseNode`). Optisch sah er wie ein Chat-Trigger aus, war aber ein generischer Webhook. Folgen:
 
-**Impact:** Die tatsächlichen Chunks sind deutlich kleiner als gedacht. Das ist nicht unbedingt schlecht (präzisere Matches), aber es muss korrekt dokumentiert sein.
+1. Die n8n **Chat-Sidebar** (links, "Chat beta") liess sich nicht aktivieren — sie verlangt einen LangChain-Chat-Trigger.
+2. Im Node-Panel fehlte die Option **"Make Chat Publicly Available"**.
+3. Der Workflow brauchte zwingend einen `Respond to Webhook`-Node am Ende, damit die HTTP-Antwort zurückgeht — also ein Zusatz-Node ohne fachlichen Mehrwert.
+4. Die generierte URL `webhook-test/chat` ist ein API-Endpoint für externe POSTs, kein Chat-UI-Trigger.
 
-**Fix:** Doku auf "500 Zeichen" korrigiert. In der Präsi können wir das als bewusste Entscheidung framen: HR-Docs haben kurze, dichte Abschnitte — kleine Chunks = präziseres Retrieval.
+**Warum erst spät entdeckt:** v4.2–v4.6 wurden nie live mit der Chat-Sidebar getestet — wir haben mit Manual-Trigger gearbeitet. Erst beim Versuch, die Chat-Sidebar für die Demo zu aktivieren, fiel der falsche Node-Type auf.
+
+**Fix v4.7:**
+- Node-Type: `n8n-nodes-base.webhook` → `@n8n/n8n-nodes-langchain.chatTrigger` (typeVersion 1.1)
+- Parameter: `httpMethod`, `path`, `responseMode` entfernt → `public: true`, `options: {}`
+- Node-Name: "Chat Trigger1" → "When chat message received" (n8n-Konvention)
+- `Respond to Webhook`-Node komplett entfernt: bei LangChain-Chat-Trigger liefert der **letzte ausgeführte Node** (= AI Agent1) seine Output automatisch zurück an die Chat-Sidebar. Kein Zwischen-Node nötig.
+- Connection geändert: AI Agent1 hat kein outgoing `main` mehr (war → Respond)
+
+**Impact:**
+- Chat-Sidebar funktioniert (Demo-tauglich für 01.06.)
+- Sticky Note Typo "QUERRY" → "QUERY" mitgefixt
+- Saile-Vorgabe "3 Nodes pro Section" weiterhin erfüllt: Trigger + AI Agent + Vector Store (als Tool) statt Trigger + Agent + Respond
+
+**Learning:** Trigger-Typ beim ersten Build verifizieren. `n8n-nodes-base.webhook` und `@n8n/n8n-nodes-langchain.chatTrigger` sehen im UI ähnlich aus (beide haben einen Webhook-Endpunkt), funktional sind sie aber unterschiedlich. Bei Chatbot-Use-Cases immer den LangChain-Trigger nehmen — er gibt dir die Chat-Sidebar, Session-Memory und automatisches Output-Routing gratis. Den Standard-Webhook nur, wenn du externe Systeme als Caller hast.
 
 ---
 
@@ -114,6 +139,8 @@ Das ist doppelt gefährlich:
 7. **Character-based ≠ Token-based.** n8ns RecursiveCharacterTextSplitter arbeitet auf Zeichenebene. 500 Chunk-Size = 500 Zeichen, nicht 500 Tokens. Immer prüfen welche Einheit der Splitter tatsächlich verwendet.
 
 8. **n8n-JSON-Export validiert keine Pflichtparameter.** Der Export schreibt auch unvollständige Nodes. Nach jedem Export: JSON manuell auf `operation`, `fileSelector`, `tableName`, `model` prüfen. Resource-Locators mit `"__rl": true` sind im JSON nicht sichtbar leer, aber im UI schon.
+
+9. **Chat-Trigger ≠ Webhook-Trigger.** `n8n-nodes-base.webhook` ist ein generischer HTTP-Endpoint, `@n8n/n8n-nodes-langchain.chatTrigger` ist der LangChain-spezifische Chat-Hook mit Sidebar-Integration, Session-Memory und automatischem Output-Routing. Für Chatbot-Demos immer den LangChain-Trigger. Erkennungsmerkmale im Panel: Option "Make Chat Publicly Available", kein expliziter HTTP-Path, Sprechblasen-Icon.
 
 ---
 

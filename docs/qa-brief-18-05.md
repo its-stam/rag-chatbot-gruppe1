@@ -61,6 +61,31 @@ v4.6 hatte versehentlich `n8n-nodes-base.webhook` (Standard-POST-Endpoint) statt
 ### 12. "Was ist die größte Schwäche eurer Architektur?"
 **Antwort ehrlich:** Single-Point-of-Failure beim AI Agent — er macht Retrieval + LLM + Response in einer Black Box. Wenn Anthropic ausfällt, fällt alles. Mitigation: zwei Provider (OpenAI Embeddings + Anthropic Chat), aber kein automatisches Failover. Für Prod würden wir das aufsplitten.
 
+### 13. "Warum kein Agentic Loop (Plan-Execute-Reflect)?"
+
+**Antwort:** Bewusste Entscheidung gegen vollen Agentic Loop, für folgende Gründe:
+
+1. **Saile-Vorgabe** wörtlich: "n8n einfach halten, 3-4 Nodes". Ein voller Plan-Execute-Reflect-Loop braucht mindestens 6-7 Nodes (Plan-LLM, Execute, Reflect-LLM, Decision-Branch, Re-Query).
+2. **HR-Use-Case ist single-hop**: Fragen wie "Wie viele Tage Urlaub vorher beantragen?" brauchen eine Suche, keine Multi-Hop-Iteration. Agentic Loop bringt für unsere 5 HR-Docs keinen messbaren Mehrwert.
+3. **Mini-Agentic ist schon drin**: Der AI Agent Node entscheidet selbst ob er das Vector-Store-Tool aufruft oder direkt antwortet — das ist eine implizite Plan + Execute Stufe.
+4. **Halluzinations-Risiko**: Reflection-Loops können sich verlaufen — der Bot überzeugt sich selbst von falschen Antworten durch wiederholtes Re-Querying. Bei HR mit rechtlicher Relevanz ist deterministische Fallback-Antwort sicherer.
+5. **Demo-Stabilität**: Weniger Nodes = weniger Failure-Points live. v4.7 ist robust genug für die 3 Demo-Fragen.
+
+**Future Work (Doku-Section + Slide):**
+
+```
+Linear RAG (v4.7, aktuell):
+User → AI Agent → [Tool: Vector Search] → LLM → Response
+
+Agentic Loop (Future Work, für komplexere Use-Cases):
+User → Plan-LLM → Execute (Search) → Reflect-LLM
+              ↑                            ↓
+              └─ Re-Query bei Gaps ───────┘
+              → Final Answer
+```
+
+Für Multi-Document-Reasoning oder Multi-Hop-Queries ("Was muss ich vor dem ersten Tag tun UND welche Pflichttrainings warten auf mich?") wäre der nächste Schritt ein zweiter LLM-Call als Critic-Node. Das haben wir bewusst als Future Work skizziert — die aktuelle Aufgabe verlangt es nicht, und das Risiko überwiegt für unseren Use-Case.
+
 ---
 
 ## Risiken laut Saile-Aufgabe (Case 1 Pflicht)

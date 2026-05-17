@@ -75,46 +75,67 @@
 - [x] 3 Testfragen definiert
 
 ### Phase 2: Setup
-**Start:** next | **End:** +3 days  
-- [ ] Supabase Project
-- [ ] LLM API Key
-- [ ] n8n Cloud/Self-Hosted
-- [ ] PDFs in `/company-docs/`
+**Ziel-Ende:** ~20.05.2026 | **Status:** ⏳ Supabase-Setup läuft (Teammitglied B)
+- [ ] Supabase Project + pgvector
+- [ ] LLM API Keys in n8n Credentials
+- [x] n8n lokal (Docker, localhost:5678)
+- [x] HR-Docs als PDF (company-docs/rustam/pdf/)
 
 ### Phase 3: Implementation
-**Start:** +4 days | **End:** +8 days  
-- [ ] Workflow 1: Ingestion (PDF → Vector)
-- [ ] Workflow 2: Query (Retrieval → LLM)
-- [ ] E2E Testing (3 Testfragen)
-- [ ] JSON Exports
+**Ziel-Ende:** ~22.05.2026 | **Status:** 🟡 Workflow done, Live-Test fehlt
+- [x] Workflow Ingestion (Manual Trigger → Read/Write Files → Supabase)
+- [x] Workflow Query (Chat Trigger → AI Agent → Tool: Vector Store)
+- [x] JSON Export (rag-workflows-v4.7.json)
+- [ ] E2E Testing (3 Testfragen mit echten Embeddings, wartet auf Phase 2)
 
 ### Phase 4: Documentation
-**Start:** +9 days | **End:** +11 days  
+**Ziel-Ende:** ~28.05.2026 | **Status:** ⏳ Implementation-Reflection done, Rest offen
+- [x] Implementation-Reflection (8 Sections, 9 Learnings)
+- [x] Q&A-Brief (qa-brief-18-05.md)
 - [ ] 10-Seiten Doku
-- [ ] EU AI Act Analyse
-- [ ] Screenshots + Diagramme
-- [ ] PDF Generation
+- [ ] EU AI Act Analyse (Teammitglied A)
+- [ ] Architektur-Diagramm
+- [ ] Risk-Section (Case-1-spezifisch)
+- [ ] Screenshots vom Workflow
+- [ ] PDF Generation der Doku
 
 ### Phase 5: Presentation
-**Start:** +13 days | **End:** 31.05.2026  
-- [ ] Slides 15 Min
+**Ziel-Ende:** 30.05.2026 | **Status:** —
+- [ ] Foliensatz (15 Min Sprechzeit)
 - [ ] Live Demo Rehearsal
 - [ ] Speaker Notes
-- [ ] Q&A Prep
+- [ ] Q&A Prep (Brief existiert)
+
+### Submission + Live-Präsi
+- **Submission Teams:** 31.05.2026 | **Status:** —
+- **Live-Präsentation:** 01.06.2026, 15 Min + 10 Min Q&A | **Status:** —
 
 ---
 
 ## Issue Tracking
 
 ### Open
-- **#3:** Supabase + LLM API Setup pending
+- **#3:** Supabase + LLM API Setup (Teammitglied B)
+- **#4:** EU AI Act Analyse (Teammitglied A)
+- **#5:** Teammitglied Bs 5 HR-Docs (kommt noch)
+- **#6:** 10-Seiten Doku zusammenführen (Gruppe)
+- **#7:** Architektur-Diagramm (Rustam)
+- **#8:** Risk-Section Case 1 (Gruppe)
+- **#9:** Foliensatz 15 Min (Gruppe)
+- **#10:** Live Demo Rehearsal (nach Supabase live)
+- **#11:** Set-Auswahl rustam/ vs hr-set-a/ vs de/ (Sync-Entscheidung)
 
 ### In Progress
-- None yet
+- Workflow Live-Test (wartet auf Supabase)
+- Doku-Drafts pro Person
 
 ### Closed
 - **#1:** Case definiert (BergTech HR, 09.05)
-- **#2:** 5 HR-Docs geschrieben + gepusht (09.05)
+- **#2:** rustam/-Set 5 HR-Docs geschrieben + gepusht (09.05)
+- **#2b:** hr-set-a/-Set 5 HR-Docs ins Repo (17.05, hochgeladen 09.05)
+- **#12:** Workflow v4.7 Chat-Trigger-Fix (17.05)
+- **#13:** HR-Docs als PDF konvertiert (17.05)
+- **#14:** Repo-Description NovaWork → BergTech (17.05)
 
 ---
 
@@ -127,5 +148,5 @@
 
 ---
 
-**Last Updated:** 11.05.2026  
-**Next Sync:** 13.05 (Phase 3 Setup-Start)
+**Last Updated:** 17.05.2026  
+**Next Sync:** Team-Treffen 17.05. (Set-Auswahl, Doku-Aufteilung, Präsi-Verteilung)

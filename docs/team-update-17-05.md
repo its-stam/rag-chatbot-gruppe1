@@ -136,5 +136,5 @@ Einverstanden?
 
 1. Wie sieht's bei Supabase aus — kommen wir bis ~Mittwoch (20.05.) voran, oder hilft's wenn wir zusammen ran?
 2. EU AI Act — ist ~25.05. machbar, oder lieber später? Quellen-Hilfe von meiner Seite?
-3. Präsi-Slides: wie wollen wir die aufteilen? Eine Idee wäre nach Themen (technisch / Compliance / Setup+Demo), aber offen für andere Vorschläge.
+3. Präsi-Sprechzeit: Saile gibt 15 Min vor (Slide-Anzahl nicht fix). Aufteilung also nach Minuten — z.B. ~5 Min pro Person, oder anders nach Themen-Beitrag. Was passt euch?
 4. Agentic-Loop als Future-Work-Slide — ja oder nein?

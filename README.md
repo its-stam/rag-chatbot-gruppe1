@@ -64,7 +64,9 @@ rag-chatbot-gruppe1/
 
 ### 3. n8n Workflows 🟡
 - [ ] Supabase Project + pgvector (Juliana)
-- [ ] LLM API Keys in n8n Credentials
+- [ ] Supabase Credentials in n8n eintragen (sobald Projekt steht)
+- [x] Anthropic API Key in n8n Credentials (Chat-Modell)
+- [x] OpenAI API Key in n8n Credentials (Embeddings)
 - [x] Workflow Ingestion (Manual Trigger → Files → Vector Store)
 - [x] Workflow Query (Chat Trigger → AI Agent → Tool: Vector Store)
 - [x] JSON Export (workflows/rag-workflows-v4.7.json)
@@ -119,7 +121,7 @@ rag-chatbot-gruppe1/
 | Phase | Deadline | Status |
 |-------|----------|--------|
 | Phase 1: Planning | 09.05.2026 | ✅ Done |
-| Phase 2: Setup (Supabase + Credentials) | ~20.05.2026 | ⏳ Supabase-Setup läuft (Juliana) |
+| Phase 2: Setup (Supabase + Credentials) | ~20.05.2026 | 🟡 Anthropic + OpenAI Keys ✅, Supabase läuft (Juliana) |
 | Phase 3: Implementation (Workflow + Ingestion) | ~22.05.2026 | 🟡 Großteils done — v4.7 gepusht, Live-Test fehlt |
 | Phase 4: Documentation (10 Seiten + EU AI Act + Risks) | ~28.05.2026 | ⏳ In Progress (implementation-reflection ✅, Rest offen) |
 | Phase 5: Presentation (Slides + Rehearsal) | 30.05.2026 | — |

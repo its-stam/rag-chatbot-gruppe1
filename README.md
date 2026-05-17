@@ -106,12 +106,13 @@ LLM-Agentics-RAG-Projekt/
 
 | Phase | Deadline | Status |
 |-------|----------|--------|
-| Phase 1: Planning | today | ⏳ |
-| Phase 2: Setup | +3 days | — |
-| Phase 3: Implementation | +6 days | — |
-| Phase 4: Documentation | +10 days | — |
-| Phase 5: Presentation | +12 days | — |
-| Submission | 31.05.2026 | — |
+| Phase 1: Planning | 09.05.2026 | ✅ Done |
+| Phase 2: Setup (Supabase + Credentials) | ~20.05.2026 | ⏳ Supabase-Setup läuft (Teammitglied B) |
+| Phase 3: Implementation (Workflow + Ingestion) | ~22.05.2026 | 🟡 Großteils done — v4.7 gepusht, Live-Test fehlt |
+| Phase 4: Documentation (10 Seiten + EU AI Act + Risks) | ~28.05.2026 | ⏳ In Progress (implementation-reflection ✅, Rest offen) |
+| Phase 5: Presentation (Slides + Rehearsal) | 30.05.2026 | — |
+| Submission (Teams) | 31.05.2026 | — |
+| Live-Präsentation | 01.06.2026 | — |
 
 ---
 

@@ -1,13 +1,14 @@
 # Company Docs — Übersicht
 
-Hier liegen unsere internen HR-Dokumente für den RAG-Chatbot. Aktuell haben wir zwei parallele Sets, weil wir unabhängig voneinander gestartet sind. Beide decken die gleichen fünf Themen ab — was wir am Ende für die Demo nutzen, klären wir gemeinsam.
+Hier liegen unsere internen HR-Dokumente für den RAG-Chatbot. Aktuell haben wir zwei Sets fertig (rustam, hr-set-a) — beide decken die gleichen fünf Themen ab. Teammitglied Bs Set kommt noch dazu. Welche Sets wir am Ende für die Demo nutzen oder ob wir mergen, klären wir gemeinsam beim Sync.
 
 ## Ordnerstruktur
 
 ```
 company-docs/
-├── rustam/         5 .md + pdf/ (1. Iteration)
-└── hr-set-a/     5 .docx (Original) + 5 .md (pandoc-konvertiert)
+├── rustam/         5 .md + pdf/ (fertig)
+├── hr-set-a/     5 .docx (Original) + 5 .md (pandoc-konvertiert)
+└── de/        kommt noch
 ```
 
 ## Dozent-Anforderungen (zum Reminder)
@@ -21,13 +22,13 @@ Laut Aufgabenstellung:
 
 ## Stand der Sets
 
-| # | Thema | rustam/ (Wörter) | hr-set-a/ (Wörter) |
-|---|-------|------------------|----------------------|
-| 1 | Onboarding | 588 | 339 |
-| 2 | Vacation | 521 | 256 |
-| 3 | Compliance | 543 | 197 |
-| 4 | HR-FAQ | 761 | 136 |
-| 5 | Offboarding | 626 | 139 |
+| # | Thema | rustam/ (Wörter) | hr-set-a/ (Wörter) | de/ |
+|---|-------|------------------|----------------------|----------|
+| 1 | Onboarding | 588 | 339 | kommt noch |
+| 2 | Vacation | 521 | 256 | kommt noch |
+| 3 | Compliance | 543 | 197 | kommt noch |
+| 4 | HR-FAQ | 761 | 136 | kommt noch |
+| 5 | Offboarding | 626 | 139 | kommt noch |
 
 Standard sind ~250–300 Wörter pro Seite. Bei mehreren Docs aus dem hr-set-a-Set sind wir nah an oder unter der "eine Seite"-Schwelle — kann durch Listen, Whitespace und Schriftgröße trotzdem optisch auf eine Seite kommen, sieht man erst nach PDF-Render.
 

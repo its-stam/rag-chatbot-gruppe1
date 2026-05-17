@@ -75,9 +75,11 @@
 - [x] 3 Testfragen definiert
 
 ### Phase 2: Setup
-**Ziel-Ende:** ~20.05.2026 | **Status:** ⏳ Supabase-Setup läuft (Teammitglied B)
-- [ ] Supabase Project + pgvector
-- [ ] LLM API Keys in n8n Credentials
+**Ziel-Ende:** ~20.05.2026 | **Status:** 🟡 LLM-Keys ✅, Supabase ausstehend
+- [ ] Supabase Project + pgvector (Teammitglied B)
+- [ ] Supabase Credentials in n8n
+- [x] Anthropic API Key in n8n Credentials
+- [x] OpenAI API Key in n8n Credentials
 - [x] n8n lokal (Docker, localhost:5678)
 - [x] HR-Docs als PDF (company-docs/rustam/pdf/)
 

@@ -9,69 +9,81 @@
 ## 📁 Ordnerstruktur
 
 ```
-LLM-Agentics-RAG-Projekt/
-├── PRD.md                          # Requirements & Roadmap
+rag-chatbot-gruppe1/
+├── PRD.md                          # Requirements & Roadmap (historisch)
 ├── README.md                       # Dieses File
-├── /docs
-│   ├── documentation.md            # 10-Seiten Dokumentation (Draft)
-│   ├── eu-ai-act-analysis.md       # EU AI Act Analyse
-│   └── implementation-reflection.md # Learnings & Reflection
-├── /workflows
-│   ├── workflow-1-ingestion.json   # n8n Workflow 1 (Export)
-│   ├── workflow-2-query.json       # n8n Workflow 2 (Export)
-│   └── workflow-notes.md           # Node-by-Node Erklärung
-├── /presentations
-│   ├── slides.pdf / .pptx          # Präsentation (15 Min)
-│   ├── speaker-notes.md            # Redeskript
-│   └── demo-script.md              # Live Demo Script
+├── CHANGELOG.md                    # Fortschritt & Phasen-Status
+├── BUILD_LOG.md                    # Iterations-Log
+├── RAG_Project_Assignment.pdf      # Dozent-Originalaufgabe
 ├── /company-docs
+│   ├── README.md                   # Überblick beider Sets + Konflikte
 │   ├── rustam/
 │   │   ├── 01-onboarding-guide.md
 │   │   ├── 02-vacation-policy.md
 │   │   ├── 03-training-compliance-policy.md
 │   │   ├── 04-hr-faq.md
-│   │   └── 05-offboarding-checklist.md
-│   ├── de/                     # 5 Docs (ausstehend)
-│   └── hr-set-a/                  # 5 Docs (ausstehend)
-├── /individual-reports
-│   ├── team-doku-individual-report.md
-│   ├── hr-set-a-individual-report.md
-│   └── rustam-individual-report.md
-└── CHANGELOG.md                    # Fortschritt & Änderungen
+│   │   ├── 05-offboarding-checklist.md
+│   │   └── pdf/                    # 5 PDFs (Dozent-Submission)
+│   ├── hr-set-a/                 # 5 .docx + 5 .md
+│   └── de/                    # kommt noch
+├── /docs
+│   ├── implementation-reflection.md  # 8 Sections, 9 Learnings
+│   ├── qa-brief-18-05.md             # Q&A Dozent-Sprechstunde
+│   └── team-update-17-05.md          # Team-Sync-Briefing
+├── /workflows
+│   ├── rag-workflows-v4.7.json     # Aktuelle Version (Ingestion + Query)
+│   └── _archiv/                    # v4.3, v4.4, v4.6-BROKEN
+└── /individual-reports
+    ├── Contribution_Report_Rustam_Kohen.docx
+    ├── Contribution_Report_Teammitglied B_Paar.docx
+    └── Contribution_Report_Teammitglied A_Teammitglied A.docx
 ```
+
+**Geplant für später (noch nicht angelegt):**
+- `docs/eu-ai-act-analysis.md` — EU AI Act (Teammitglied A)
+- `docs/architecture.md` — Architektur-Diagramm
+- `docs/risks.md` — Risk-Section Case 1
+- `docs/documentation.md` — 10-Seiten Doku
+- `presentations/` — Slides + Speaker Notes + Demo Script
 
 ---
 
 ## 🎯 Quick Start
 
-### 1. Case definieren (today)
-- [x] Firma/Szenario wählen → BergTech Maschinenbau GmbH (HR)
-- [x] Firmenkontext aufschreiben
-- [x] 3 Testfragen definieren
+### 1. Case definiert ✅
+- [x] Firma/Szenario → BergTech Maschinenbau GmbH (HR Knowledge Assistant)
+- [x] Firmenkontext aufgeschrieben
+- [x] 3 Testfragen definiert (Onboarding, Urlaub, Pflichttrainings)
 
-### 2. PDFs vorbereiten (next)
-- [x] 5 Firmendokumente schreiben (company-docs/rustam/, Deutsch, RAG-optimiert)
-- [x] In `/company-docs/rustam/` gespeichert
-- [ ] Format: PDF (vor Submission generieren)
+### 2. HR-Dokumente ✅ (Set-Auswahl ausstehend)
+- [x] rustam/-Set: 5 Docs in Deutsch, RAG-optimiert
+- [x] hr-set-a/-Set: 5 Docs als .docx + .md
+- [ ] de/-Set: kommt noch
+- [x] PDF-Konvertierung des rustam/-Sets
+- [ ] Set-Auswahl oder Merge (beim Team-Sync klären)
 
-### 3. n8n Workflows (Phase 2)
-- [ ] Supabase Project setup
-- [ ] LLM API Key
-- [ ] Workflow 1: PDFs → Vektoren → DB
-- [ ] Workflow 2: Query → Retrieval → LLM Response
-- [ ] Als JSON exportieren
+### 3. n8n Workflows 🟡
+- [ ] Supabase Project + pgvector (Teammitglied B)
+- [ ] LLM API Keys in n8n Credentials
+- [x] Workflow Ingestion (Manual Trigger → Files → Vector Store)
+- [x] Workflow Query (Chat Trigger → AI Agent → Tool: Vector Store)
+- [x] JSON Export (workflows/rag-workflows-v4.7.json)
+- [ ] E2E Live-Test mit den 3 Testfragen
 
-### 4. Dokumentation (Phase 4)
-- [ ] 10-Seiten Doc schreiben
-- [ ] EU AI Act Analyse einbauen
-- [ ] Screenshots + Diagramme
+### 4. Dokumentation ⏳
+- [x] Implementation-Reflection (8 Sections, 9 Learnings)
+- [x] Q&A-Brief für Dozent-Sprechstunde
+- [ ] 10-Seiten Doku zusammenführen
+- [ ] EU AI Act Analyse (Teammitglied A)
+- [ ] Architektur-Diagramm
+- [ ] Risk-Section (Case-1-spezifisch)
 - [ ] PDF generieren
 
-### 5. Präsentation (Phase 5)
-- [ ] Slides vorbereiten (15 Min)
-- [ ] Live Demo trainieren
+### 5. Präsentation —
+- [ ] Foliensatz für 15 Min Sprechzeit
+- [ ] Live Demo Rehearsal
 - [ ] Speaker Notes
-- [ ] Q&A Fragen antizipieren
+- [ ] Q&A Prep (Brief existiert)
 
 ---
 
@@ -139,9 +151,9 @@ LLM-Agentics-RAG-Projekt/
 
 **Team:** Rustam Kohen + Teammitglied B + Teammitglied A
 **Email:** korus23@googlemail.com  
-**Updated:** 09.05.2026
+**Updated:** 17.05.2026
 
 ---
 
-**Status:** 🟡 In Planung  
-**Next:** Case + PDFs definieren
+**Status:** 🟡 Implementation done, Live-Test + Doku offen
+**Next:** Team-Sync 17.05. → Set-Auswahl + Doku-Aufteilung; Q&A Dozent 18.05. 8:00

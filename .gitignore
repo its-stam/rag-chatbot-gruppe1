@@ -7,3 +7,9 @@ __pycache__/
 node_modules/
 .n8n/
 .claude-flow/
+
+# Lokal: docx-Generator + generierte Word-Dateien (Markdown ist die Quelle)
+scripts/
+package.json
+package-lock.json
+docs/rag-architecture-explained.docx

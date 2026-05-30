@@ -116,9 +116,48 @@ Re-Ingest und FAQ-Ergänzung.
 
 Gesamt ~15 Min.
 
-## Q&A-Vorbereitung (häufige Saile-Fragen)
-- "Warum 500 Zeichen Chunks?" → Balance: groß genug für Kontext, klein genug für präzises Retrieval.
-- "Warum topK 8?" → Trefferrate bei dünn belegten Themen; siehe Arbeitszeit-Beispiel.
-- "Warum gpt-5-mini statt Claude?" → OpenAI-Functions-Agent erzwingt OpenAI-Modell; ursprüngliches Modell abgekündigt.
-- "Was passiert bei einer Frage außerhalb der Docs?" → HR-Fallback, keine Halluzination.
-- "Wie verhindert ihr Halluzinationen?" → Gehärteter System-Prompt (Tool-Zwang, nur Doku-Inhalt) + Quellenangabe.
+## Q&A-Vorbereitung — Theorie & Verständnis (Saile-typisch)
+
+Saile fragt eher nach Verständnis und Konzepten als nach technischen Details.
+Diese Fragen kann jeder im Team mit seiner Stärke beantworten.
+
+### "Erklärt mal, wie euer RAG-System funktioniert."
+→ Zwei Workflows: Ingestion (Dokumente einmalig in Vektoren umwandeln und in
+Supabase speichern) und Query (Nutzerfrage vektorisieren, ähnlichste Chunks
+finden, LLM formuliert Antwort). Die Antwort kommt NUR aus unseren HR-Docs, nie
+aus Allgemeinwissen. (Rustam)
+
+### "Wie stellt ihr sicher, dass der Bot nichts Falsches sagt?"
+→ Drei Schichten: 1) System-Prompt mit Tool-Zwang (erst suchen, dann antworten),
+2) Temperatur 0.3, 3) Quellenangabe + Fallback an hr@bergtech.de wenn nichts
+gefunden. Wir erfinden nichts. (Rustam)
+
+### "Was bedeutet der EU AI Act für euren Chatbot?"
+→ Limited Risk (Art. 50): Transparenzpflicht — Nutzer müssen wissen, dass sie
+mit einer KI sprechen. Keine Hochrisiko-Einstufung, da keine rechtswirksamen
+Entscheidungen getroffen werden. (Anastasiia)
+
+### "Wie könnte man das System weiterentwickeln?"
+→ Conversation Memory für Folgefragen, Mehrsprachigkeit, Live-Daten aus SAP HR.
+Embedding-Modell auf domain-spezifische Modelle umstellen. Retrieval mit
+Keyword-Suche kombinieren für bessere Abdeckung. (Juliana — ML-Perspektive)
+
+### "Wo liegen die Grenzen von Embedding-basierter Suche?"
+→ Semantisch ähnlich ≠ inhaltlich korrekt. Bei dünn belegten Themen (wie unser
+Arbeitszeit-Beispiel) findet die Vektorsuche den Chunk nicht zuverlässig.
+Keyword-Suche ist deterministisch aber unflexibel. RAG braucht beide Welten.
+(Juliana — ML-Perspektive)
+
+### "Was war die größte Herausforderung im Projekt?"
+→ Jeder eine Story: Rustam (Workflow-Debugging + LLM-Abkündigung am 30.05.),
+Anastasiia (Doku mit Live-Implementierung abgleichen — Deckblatt 2025→2026 etc.),
+Juliana (Supabase pgvector + match_documents zum Laufen bringen).
+
+---
+
+## Q&A-Vorbereitung — Technik (falls Saile Details fragt)
+
+- "Warum 500 Zeichen Chunks?" → Balance: Kontext vs. präzises Retrieval.
+- "Warum topK 8?" → Trefferrate bei dünn belegten Themen (Arbeitszeit-Beispiel).
+- "Warum gpt-5-mini?" → OpenAI-Functions-Agent braucht OpenAI-Modell.
+- "Embedding-Konsistenz?" → text-embedding-3-small explizit gesetzt, kein Default.

@@ -1,0 +1,353 @@
+{
+  "name": "RAG Chatbot — Ingestion + Query (v4.7 — Gruppe 1, Case 1)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## INGESTION\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
+        "height": 640,
+        "width": 1376,
+        "color": "#0773C5"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1632,
+        304
+      ],
+      "id": "9970722a-dfbe-4bd3-89df-11de393174d3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "documents",
+        "options": {
+          "queryName": "match_documents"
+        }
+      },
+      "id": "42dd21bd-9370-47d8-b197-267edecc4cbf",
+      "name": "Supabase Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        368
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "7mFJtkJ2D4IEsnXE",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "id": "be7cb070-0a2c-4c55-b5e2-02787a9ece8d",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1920,
+        1056
+      ],
+      "webhookId": "rag-chat-v4"
+    },
+    {
+      "parameters": {
+        "agent": "openAiFunctionsAgent",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "Du bist der HR-Assistant der BergTech Maschinenbau GmbH.\n\nARBEITSWEISE (zwingend):\n  - Bei JEDER inhaltlichen Frage rufst du ZUERST das Tool \"Supabase Vector Store\" auf und durchsuchst die HR-Dokumente. Ohne Ausnahme.\n  - Du stellst KEINE Rückfragen bevor du gesucht hast. Niemals \"soll ich nachschauen?\" oder \"meinst du X oder Y?\". Erst suchen, dann antworten.\n  - Du nutzt AUSSCHLIESSLICH den Inhalt der gefundenen Dokumente. Kein allgemeines Wissen, keine Deutschland-Gesetze, keine Beispiel-Listen, keine Vorlagen.\n\nANTWORT:\n  - Antworte knapp und konkret mit den Fakten aus den Dokumenten.\n  - Nenne die Quelle als [Dokumentname].\n  - Wenn die Suche NICHTS Passendes liefert: \"Diese Information liegt mir in den HR-Dokumenten nicht vor. Bitte wende dich an hr@bergtech.de.\" Sonst nichts erfinden.\n\nVERBOTEN:\n  - Allgemeine Firmenregel-Listen oder Vorlagen erstellen.\n  - Auf gesetzliche Mindeststandards ausweichen.\n  - Antworten ohne vorherigen Tool-Aufruf."
+        }
+      },
+      "id": "c1029601-181c-4c59-a217-903febcd2815",
+      "name": "AI Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1,
+      "position": [
+        2176,
+        1056
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## QUERY\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
+        "height": 624,
+        "width": 1152,
+        "color": "#B2A624"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1744,
+        992
+      ],
+      "id": "bc41bb7b-8831-437a-aa67-879c7ebfc613",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2256,
+        1456
+      ],
+      "id": "12b0d638-840b-4825-81aa-4c9d27654eae",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "rOu35isYGAK7PSup",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2208,
+        592
+      ],
+      "id": "71cf962e-67b9-4112-8cad-c95a66f02fbb",
+      "name": "Embeddings OpenAI1",
+      "alwaysOutputData": false,
+      "credentials": {
+        "openAiApi": {
+          "id": "rOu35isYGAK7PSup",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "loader": "textLoader",
+        "textSplittingMode": "custom",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        2416,
+        592
+      ],
+      "id": "1aef5190-a248-474b-86d2-96c3f5c27273",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "chunkSize": 500,
+        "chunkOverlap": 50,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        2416,
+        800
+      ],
+      "id": "e5f0ea77-6940-4077-8603-23caea128a23",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        576
+      ],
+      "id": "d01e8968-567b-48c2-8f59-db15227ec19d",
+      "name": "READ MD-File"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/Users/stm/.n8n-files/company-docs/**/*.md",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        1984,
+        576
+      ],
+      "id": "a55fb3ba-f91d-4ffa-974b-ec116eec63ac",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        2032,
+        1264
+      ],
+      "id": "ee0d94db-3eda-4684-bca4-030563770df9",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "rOu35isYGAK7PSup",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Durchsucht die internen HR-Dokumente der BergTech Maschinenbau GmbH. Enthält Onboarding-Guide, Urlaubsrichtlinie, Compliance- und Schulungsrichtlinie, HR-FAQ und Offboarding Checkliste. Nutze dieses Tool für alle Fragen zu Personalthemen, Richtlinien, Arbeitsabläufen, Urlaub, Einarbeitung und Mitarbeiteraustritt.",
+        "tableName": "documents",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        2192,
+        1280
+      ],
+      "id": "183be220-882a-41da-8af6-68bbcb24cc61",
+      "name": "Supabase Vector Store",
+      "credentials": {
+        "supabaseApi": {
+          "id": "7mFJtkJ2D4IEsnXE",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "READ MD-File": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        []
+      ]
+    },
+    "Supabase Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "b9a1270a-615c-4854-b82f-4822b3c12beb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7eabe7066065a9a2f7474da57a51f64e22c0a18329def4738d9e693895df45f5"
+  },
+  "id": "bcIIdeTKOIwAfRCe",
+  "tags": []
+}

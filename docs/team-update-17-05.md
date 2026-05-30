@@ -138,3 +138,4 @@ Einverstanden?
 2. EU AI Act — ist ~25.05. machbar, oder lieber später? Quellen-Hilfe von meiner Seite?
 3. Präsi-Sprechzeit: Saile gibt 15 Min vor (Slide-Anzahl nicht fix). Aufteilung also nach Minuten — z.B. ~5 Min pro Person, oder anders nach Themen-Beitrag. Was passt euch?
 4. Agentic-Loop als Future-Work-Slide — ja oder nein?
+5. Metadaten in finalen Submission-Files (Anastasiias guter Hinweis vom 17.05.) — kurzer Check vor 31.05. dass keine Datei "Creator: ChatGPT/python-docx/pandoc" o.ä. anzeigt. Pfad in Word: Datei → Informationen → Dokument prüfen → personenbezogene Daten entfernen. Habe heute schon die PDFs (rustam/pdf/) und Workflow-JSONs gesäubert (Commit 00f0a68). Bei den Word-Docs muss jede:r selbst durch.

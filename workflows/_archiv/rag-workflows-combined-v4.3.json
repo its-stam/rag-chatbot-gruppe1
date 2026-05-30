@@ -1,5 +1,5 @@
 {
-  "name": "RAG Chatbot — Ingestion + Query (v4.5 — Gruppe 1, Case 1)",
+  "name": "RAG Chatbot \u2014 Ingestion + Query (v4.5 \u2014 Gruppe 1, Case 1)",
   "nodes": [
     {
       "parameters": {
@@ -52,7 +52,7 @@
     {
       "parameters": {
         "options": {
-          "systemMessage": "Du bist der HR Assistant von BergTech Maschinenbau GmbH.\n\nRegeln:\n1. Antworte ausschließlich mit Fakten aus den bereitgestellten Dokumenten.\n2. Zitiere die Quelle als [Dokumentname].\n3. Wenn die Frage nicht beantwortet werden kann: \"Diese Information liegt mir nicht vor. Bitte wende dich an hr@bergtech.de.\"\n4. Keine Spekulation, keine externen Informationen."
+          "systemMessage": "Du bist der HR Assistant von BergTech Maschinenbau GmbH.\n\nRegeln:\n1. Antworte ausschlie\u00dflich mit Fakten aus den bereitgestellten Dokumenten.\n2. Zitiere die Quelle als [Dokumentname].\n3. Wenn die Frage nicht beantwortet werden kann: \"Diese Information liegt mir nicht vor. Bitte wende dich an hr@bergtech.de.\"\n4. Keine Spekulation, keine externen Informationen."
         }
       },
       "id": "014ccb07-269c-43be-bc65-bb57a1bb874c",
@@ -348,7 +348,7 @@
   },
   "versionId": "eef0a563-dee1-4b33-ab15-332e662dc65c",
   "meta": {
-    "instanceId": "7eabe7066065a9a2f7474da57a51f64e22c0a18329def4738d9e693895df45f5"
+    "instanceId": ""
   },
   "id": "j8AgGTjKS1jErGxf",
   "tags": []

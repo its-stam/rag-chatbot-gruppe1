@@ -9,7 +9,6 @@
 - 🗂 Alte Claude-Version → `_archiv/rag-workflows-v4.7-claude-PRE-SWITCH.json` (Beleg Pre-Switch-Stand)
 - 🐛 Datenqualitäts-Bug gefunden+gefixt: Vector-DB enthielt Metadaten statt Dokumentinhalte (Data-Loader-Fehlkonfig)
 - 🔧 System-Prompt gehärtet: erzwingt Tool-Aufruf bei jeder Frage, verbietet Rückfragen vor Suche, verbietet allgemeines Wissen, expliziter HR-Fallback
-- 📁 `bonus/` Ordner angelegt: v5-Production-Variante als separater Zusatzbeleg (7 Enterprise-Patterns, SQL-Schemas, Comparison) — strikt getrennt vom v4.7-Hauptprojekt
 - 📝 Feedback an Anastasiia zur Gruppendoku (faktische Lücken vs. Live-Implementierung) in `docs/gruppendoku-feedback-anastasiia.md`
 
 ### 17.05.2026

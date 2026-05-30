@@ -66,14 +66,14 @@ rag-chatbot-gruppe1/
 - [x] rustam/-Set: 5 Docs + PDFs — als Quell-Archiv behalten, NICHT ingested
 - [x] Set-Entscheidung getroffen (30.05.): nur anastasiia/-Set in der Vektor-DB
 
-### 3. n8n Workflows 🟡
+### 3. n8n Workflows ✅
 - [x] Supabase Project + pgvector (Juliana)
 - [x] Supabase Credentials in n8n
 - [x] OpenAI API Key in n8n Credentials (Chat + Embeddings)
 - [x] Workflow Ingestion (Manual Trigger → Files → Vector Store)
 - [x] Workflow Query (Chat Trigger → AI Agent → Tool: Vector Store)
 - [x] JSON Export (workflows/v4.7/rag-workflows-v4.7.2.json)
-- [ ] E2E Live-Test der 3 Testfragen — Verifikation nach Re-Ingest ausstehend (siehe docs/reingest-koordination.md)
+- [x] E2E Live-Test der 3 Testfragen (Video 30.05., 16:58)
 
 ### 4. Dokumentation 🟡
 - [x] Implementation-Reflection (8 Sections, 9 Learnings)
@@ -125,7 +125,7 @@ rag-chatbot-gruppe1/
 |-------|----------|--------|
 | Phase 1: Planning | 09.05.2026 | ✅ Done |
 | Phase 2: Setup (Supabase + Credentials) | ~20.05.2026 | ✅ Done — Supabase live, OpenAI Keys ✅ |
-| Phase 3: Implementation (Workflow + Ingestion) | ~22.05.2026 | 🟡 v4.7.2 gebaut (gpt-5-mini, anastasiia/-Set) — verifizierter E2E-Test nach Re-Ingest offen |
+| Phase 3: Implementation (Workflow + Ingestion) | ~22.05.2026 | ✅ Done — v4.7.2 (gpt-5-mini), E2E-Test 30.05. |
 | Phase 4: Documentation (10 Seiten + EU AI Act + Risks) | ~28.05.2026 | 🟡 In Progress (Reflection ✅, EU AI Act ✅, Architektur ✅, Gruppendoku-Draft liegt vor) |
 | Phase 5: Presentation (Slides + Rehearsal) | 30.05.2026 | ⏳ |
 | Submission (Teams) | 31.05.2026 | ⏳ |
@@ -160,5 +160,5 @@ rag-chatbot-gruppe1/
 
 ---
 
-**Status:** 🟡 Workflow v4.7.2 gebaut — E2E-Test nach Re-Ingest offen, Gruppendoku + Slides in Arbeit
-**Next:** Re-Ingest + 3 Testfragen verifizieren; Slides bauen; Submission 31.05.
+**Status:** ✅ Workflow v4.7.2 + E2E-Test done — Gruppendoku + Slides in Arbeit, Submission 31.05.
+**Next:** Slides bauen; Gruppendoku finalisieren; Abgabe Teams

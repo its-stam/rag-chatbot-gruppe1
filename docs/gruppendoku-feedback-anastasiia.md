@@ -75,6 +75,7 @@ Die jetzige Reflexion ist sauber, aber generisch (RAG-Paradigma, Vektordatenbank
 - **Tool-Nutzung muss erzwungen werden.** Ohne explizite Anweisung im System-Prompt wich das Sprachmodell auf allgemeines Wissen aus, statt die Wissensdatenbank zu durchsuchen. Erst ein restriktiver Prompt sicherte die ausschließliche Nutzung der Dokumente.
 - **Abhängigkeit von externen Diensten zeigte sich konkret.** Kontingentgrenzen und die Abkündigung eines Modells führten zu temporären Ausfällen. Das unterstreicht die in Kapitel 6 genannte Drittanbieter-Abhängigkeit als reales, nicht nur theoretisches Risiko.
 - **Konsistenz des Embedding-Modells ist kritisch.** Ingestion und Abfrage müssen dasselbe Embedding-Modell verwenden, andernfalls liefert die Vektorsuche keine Treffer. Das Modell wurde daher explizit gesetzt, statt sich auf Voreinstellungen zu verlassen.
+- **Retrieval-Schwäche bei dünn belegten Themen.** Eine direkte Frage nach den Arbeitszeiten wurde zunächst nicht beantwortet, obwohl die Information vorlag — sie stand nur als beiläufiger Satz in einem Dokument und wurde von der Vektorsuche nicht zuverlässig gefunden. Gegenmaßnahmen: Erhöhung der abgerufenen Passagen (topK von 4 auf 8) und Aufnahme einer expliziten Frage-Antwort-Einheit ins FAQ. Lerneffekt: RAG-Qualität hängt nicht nur vom Modell, sondern maßgeblich von der Struktur und Auffindbarkeit der Quelldokumente ab.
 
 Diese Punkte fügen sich in die bestehende Struktur von Kapitel 7 ein, ohne sie zu ersetzen.
 

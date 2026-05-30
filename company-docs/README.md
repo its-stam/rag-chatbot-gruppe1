@@ -1,14 +1,17 @@
 # Company Docs — Übersicht
 
-Hier liegen unsere internen HR-Dokumente für den RAG-Chatbot. Aktuell haben wir zwei Sets fertig (rustam, anastasiia) — beide decken die gleichen fünf Themen ab. Julianas Set kommt noch dazu. Welche Sets wir am Ende für die Demo nutzen oder ob wir mergen, klären wir gemeinsam beim Sync.
+Hier liegen unsere internen HR-Dokumente für den RAG-Chatbot. Es gibt zwei Sets
+(rustam, anastasiia), die die gleichen fünf Themen abdecken. **Set-Entscheidung
+(30.05.): Für die Demo und die Vektor-DB nutzen wir ausschließlich das
+anastasiia/-Set.** Das rustam/-Set bleibt als Quell-Archiv im Repo, wird aber
+nicht ingested.
 
 ## Ordnerstruktur
 
 ```
 company-docs/
-├── rustam/         5 .md + pdf/ (fertig)
-├── anastasiia/     5 .docx (Original) + 5 .md (pandoc-konvertiert)
-└── juliana/        kommt noch
+├── anastasiia/     5 .md (pandoc aus .docx) — AKTIVES Set, ingested
+└── rustam/         5 .md + pdf/ — Quell-Archiv, NICHT ingested
 ```
 
 ## Saile-Anforderungen (zum Reminder)
@@ -20,39 +23,31 @@ Laut Aufgabenstellung:
 - Upload als PDF
 - Die drei Beispielfragen (Onboarding, Urlaub, Pflichttrainings) müssen damit beantwortbar sein
 
-## Stand der Sets
+## Aktuelle Ingestion
 
-| # | Thema | rustam/ (Wörter) | anastasiia/ (Wörter) | juliana/ |
-|---|-------|------------------|----------------------|----------|
-| 1 | Onboarding | 588 | 339 | kommt noch |
-| 2 | Vacation | 521 | 256 | kommt noch |
-| 3 | Compliance | 543 | 197 | kommt noch |
-| 4 | HR-FAQ | 761 | 136 | kommt noch |
-| 5 | Offboarding | 626 | 139 | kommt noch |
+Der n8n-Workflow (v4.7.2) zieht ausschließlich das anastasiia/-Set:
+`~/.n8n-files/company-docs/anastasiia/**/*.md`. retrieve topK steht auf 8.
 
-Standard sind ~250–300 Wörter pro Seite. Bei mehreren Docs aus dem anastasiia-Set sind wir nah an oder unter der "eine Seite"-Schwelle — kann durch Listen, Whitespace und Schriftgröße trotzdem optisch auf eine Seite kommen, sieht man erst nach PDF-Render.
+## Warum anastasiia/ als aktives Set
 
-## Inhaltliche Unterschiede (Beispiele)
+Die Entscheidung für ein einzelnes Set vermeidet widersprüchliche Antworten:
+beide Sets trafen bei einigen Themen unterschiedliche Aussagen (siehe unten),
+was den Chatbot je nach getroffenem Chunk inkonsistent hätte antworten lassen.
+Ein Set = eine kanonische Antwort pro Frage.
 
-Beim Querlesen sind ein paar Stellen aufgefallen, wo unsere Sets unterschiedliche Aussagen treffen. Wichtig vor allem für die drei Saile-Demo-Fragen — der Bot würde sonst je nach getroffenem Chunk zwei verschiedene Antworten geben.
+## Inhaltliche Unterschiede der Sets (dokumentiert, historisch)
 
 | Frage | rustam/ | anastasiia/ |
 |-------|---------|-------------|
-| Urlaub Vorlaufzeit | 5 Werktage / 14 Tage / 6 Wochen (gestaffelt nach Länge) | mind. 14 Tage Standard, 3 Arbeitstage bei ≤2 Tagen |
+| Urlaub Vorlaufzeit | 5 Werktage / 14 Tage / 6 Wochen (gestaffelt) | mind. 14 Tage Standard, 3 Arbeitstage bei ≤2 Tagen |
 | Krankmeldung | telefonisch vor Arbeitsbeginn, AU ab Tag 3 | bis 08:30 telefonisch oder Mail, AU ab Tag 3 in Personio |
-| Pflichttrainings Onboarding | Liste in eigener Section | UVV, DSGVO, Compliance-Basis, Brandschutz |
+| Pflichttrainings | Liste in eigener Section | UVV, DSGVO, Compliance-Basis, Brandschutz |
 
-Es geht nicht darum welches "richtig" ist (ist ja eine fiktive Firma) — wir müssen uns nur auf eine Linie einigen, damit der Chatbot konsistent antwortet.
+Da der Chatbot nur das anastasiia/-Set nutzt, gelten dessen Aussagen als kanonisch.
 
-## Aktuelle Ingestion
+## Bekannter Recall-Punkt
 
-Aktuell zieht der n8n-Workflow nur das rustam/-Set (Symlink von `~/.n8n-files/company-docs/` ins Repo). Das ist ein Zwischenstand, keine endgültige Auswahl. Sobald wir beim Sync besprechen welches Set wir nehmen oder mergen, passen wir die Ingestion an.
-
-## Was beim nächsten Sync zu klären wäre
-
-1. Welches Set wir als Primary nehmen (oder Merge)
-2. Falls Merge: wer welche Doc-Stelle übernimmt
-3. Konflikte auflösen — pro Frage eine kanonische Antwort
-4. PDF-Render am Ende, um zu prüfen ob alle Docs visuell auf eine Seite kommen
-
-Keine Eile, kein "muss heute" — vor 31.05. ist Zeit.
+Direkte Arbeitszeit-Fragen ("Wie sind die Arbeitszeiten?") werden bisher schwach
+beantwortet, weil die Info nur als Meta-Satz im Onboarding-Guide steht.
+Lösungsvorschlag in `../docs/vorschlag-arbeitszeit-faq.md` (Abstimmung mit
+Anastasiia, da es ihre Docs sind).

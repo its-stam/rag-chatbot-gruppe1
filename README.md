@@ -17,22 +17,27 @@ rag-chatbot-gruppe1/
 ├── RAG_Project_Assignment.pdf      # Saile-Originalaufgabe
 ├── /company-docs
 │   ├── README.md                   # Überblick beider Sets + Konflikte
-│   ├── rustam/
-│   │   ├── 01-onboarding-guide.md
-│   │   ├── 02-vacation-policy.md
-│   │   ├── 03-training-compliance-policy.md
-│   │   ├── 04-hr-faq.md
-│   │   ├── 05-offboarding-checklist.md
-│   │   └── pdf/                    # 5 PDFs (Saile-Submission)
-│   ├── anastasiia/                 # 5 .docx + 5 .md
-│   └── juliana/                    # kommt noch
+│   ├── anastasiia/                 # 5 .md — AKTIVES Set (ingested)
+│   │   ├── 1_Onboarding_Guide_BergTech.md
+│   │   ├── 2_Vacation_Policy_BergTech.md
+│   │   ├── 3_Compliance_Policy_BergTech.md
+│   │   ├── 4_HR_FAQ_BergTech.md
+│   │   └── 5_Offboarding_Checklist_BergTech.md
+│   └── rustam/                     # Quell-Archiv — NICHT ingested (Set-Entscheidung 30.05.)
+│       ├── 01-onboarding-guide.md … 05-offboarding-checklist.md
+│       └── pdf/                    # 5 PDFs
 ├── /docs
-│   ├── implementation-reflection.md  # 8 Sections, 9 Learnings
-│   ├── qa-brief-18-05.md             # Q&A Saile-Sprechstunde
-│   └── team-update-17-05.md          # Team-Sync-Briefing
+│   ├── implementation-reflection.md       # 8 Sections, 9 Learnings
+│   ├── qa-brief-18-05.md                  # Q&A Saile-Sprechstunde
+│   ├── team-update-17-05.md               # Team-Sync-Briefing
+│   ├── docs-review-anastasiia.md          # Quality-Review Nastjas Docs
+│   ├── gruppendoku-feedback-anastasiia.md # Abgleich Doku vs. Live-Implementierung
+│   ├── reingest-koordination.md           # Re-Ingest Ablauf Rustam + Nastja
+│   └── vorschlag-arbeitszeit-faq.md       # FAQ-Ergänzungsvorschlag (Recall-Fix)
 ├── /workflows
 │   ├── v4.7/
-│   │   └── rag-workflows-v4.7.1.json   # Aktuelle Version (gpt-5-mini, Live-Stand 30.05.)
+│   │   ├── rag-workflows-v4.7.1.json   # gpt-5-mini, Live-Stand 30.05.
+│   │   └── rag-workflows-v4.7.2.json   # AKTUELL — nur anastasiia/-Set, retrieve topK 8
 │   └── _archiv/                        # v4.3, v4.4, v4.6-BROKEN, v4.7-claude-PRE-SWITCH
 └── /individual-reports
     ├── Contribution_Report_Rustam_Kohen.docx
@@ -56,12 +61,10 @@ rag-chatbot-gruppe1/
 - [x] Firmenkontext aufgeschrieben
 - [x] 3 Testfragen definiert (Onboarding, Urlaub, Pflichttrainings)
 
-### 2. HR-Dokumente ✅ (Set-Auswahl ausstehend)
-- [x] rustam/-Set: 5 Docs in Deutsch, RAG-optimiert
-- [x] anastasiia/-Set: 5 Docs als .docx + .md
-- [ ] juliana/-Set: kommt noch
-- [x] PDF-Konvertierung des rustam/-Sets
-- [ ] Set-Auswahl oder Merge (beim Team-Sync klären)
+### 2. HR-Dokumente ✅
+- [x] anastasiia/-Set: 5 Docs (.md) — **AKTIVES Set, ingested**
+- [x] rustam/-Set: 5 Docs + PDFs — als Quell-Archiv behalten, NICHT ingested
+- [x] Set-Entscheidung getroffen (30.05.): nur anastasiia/-Set in der Vektor-DB
 
 ### 3. n8n Workflows ✅
 - [x] Supabase Project + pgvector (Juliana)
@@ -69,7 +72,7 @@ rag-chatbot-gruppe1/
 - [x] OpenAI API Key in n8n Credentials (Chat + Embeddings)
 - [x] Workflow Ingestion (Manual Trigger → Files → Vector Store)
 - [x] Workflow Query (Chat Trigger → AI Agent → Tool: Vector Store)
-- [x] JSON Export (workflows/v4.7/rag-workflows-v4.7.1.json)
+- [x] JSON Export (workflows/v4.7/rag-workflows-v4.7.2.json)
 - [x] E2E Live-Test mit den 3 Testfragen (30.05.)
 
 ### 4. Dokumentation ⏳
@@ -122,7 +125,7 @@ rag-chatbot-gruppe1/
 |-------|----------|--------|
 | Phase 1: Planning | 09.05.2026 | ✅ Done |
 | Phase 2: Setup (Supabase + Credentials) | ~20.05.2026 | ✅ Done — Supabase live, OpenAI Keys ✅ |
-| Phase 3: Implementation (Workflow + Ingestion) | ~22.05.2026 | ✅ Done — v4.7.1 (gpt-5-mini), E2E-Test 30.05. |
+| Phase 3: Implementation (Workflow + Ingestion) | ~22.05.2026 | ✅ Done — v4.7.2 (gpt-5-mini, nur anastasiia/-Set), E2E-Test 30.05. |
 | Phase 4: Documentation (10 Seiten + EU AI Act + Risks) | ~28.05.2026 | 🟡 In Progress (Reflection ✅, Gruppendoku-Draft ✅, EU AI Act + Architektur + Risks offen) |
 | Phase 5: Presentation (Slides + Rehearsal) | 30.05.2026 | ⏳ |
 | Submission (Teams) | 31.05.2026 | ⏳ |

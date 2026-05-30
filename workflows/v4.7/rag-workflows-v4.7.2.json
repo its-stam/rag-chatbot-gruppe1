@@ -3,7 +3,7 @@
   "nodes": [
     {
       "parameters": {
-        "content": "## INGESTION\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
+        "content": "## 📥 INGESTION — Dokumente in die Vektor-DB\n\n**Trigger:** Manuell (einmalig zum Befüllen / bei Doc-Updates)\n\n**Ablauf:**\n\n1. **Read Files** — liest die HR-Markdown-Docs vom Dateisystem\n2. **Text Splitter** — Recursive Character, 500 Zeichen, Overlap 50\n3. **Embeddings** — OpenAI `text-embedding-3-small`\n4. **Supabase Insert** — pgvector, Tabelle `documents`\n\n**Quelle:** `company-docs/hr-set-a/**/*.md`",
         "height": 640,
         "width": 1376,
         "color": "#0773C5"
@@ -74,7 +74,7 @@
     },
     {
       "parameters": {
-        "content": "## QUERY\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
+        "content": "## 💬 QUERY — Frage beantworten mit RAG\n\n**Trigger:** Chat (n8n Chat-Sidebar)\n\n**Ablauf:**\n\n1. **AI Agent** — OpenAI Functions Agent, Modell `gpt-5-mini`\n2. **Tool: Vector Store** — Retrieve Top-8 aus Supabase (Cosine Similarity)\n3. **Antwort** — ausschließlich aus gefundenen Docs\n\n**System-Prompt (gehärtet):**\n- Bei jeder Frage zuerst das Vector-Store-Tool aufrufen\n- Nur Inhalt der gefundenen Dokumente nutzen, kein Allgemeinwissen\n- Quelle als `[Dokumentname]` nennen\n- Fallback an `hr@bergtech.de` wenn nichts gefunden",
         "height": 624,
         "width": 1152,
         "color": "#B2A624"

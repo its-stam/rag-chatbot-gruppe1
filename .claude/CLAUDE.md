@@ -8,7 +8,7 @@
 Lade beim Session-Start immer diese Dateien (falls vorhanden):
 - `CONTEXT_SAVE_*.md` — letzter gespeicherter Stand (von /context-save)
 - `docs/projektjournal.md` — Timeline und offene Punkte
-- `docs/praesentation-leitfaden.md` — Step-by-Step für die Live-Demo
+- `docs/präsentation-leitfaden.md` — Step-by-Step für die Live-Demo
 
 ## Wichtige Dateien
 

@@ -15,3 +15,14 @@ package-lock.json
 docs/rag-architecture-explained.docx
 
 bonus/
+
+# Playwright-Test-Artefakte (lokale Browser-Snapshots)
+.playwright-mcp/
+
+# docs/juliana — nur ausgewählte Dateien werden gepusht
+# (Aenderungsvorschlaege_Projektdokumentation.docx, dokumentation-de.html, qa-vorbereitung-de.html)
+docs/juliana/dokumentation-en.html
+docs/juliana/praesentation-de.html
+docs/juliana/presentation-en.html
+docs/juliana/bilder-infografiken-checkliste.md
+docs/juliana/LLM_Agentics_BergTech_HR_RAG_Praesentation_Gruppe1.pptx

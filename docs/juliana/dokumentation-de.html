@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BergTech HR Knowledge Assistant — Projektdokumentation</title>
+<style>
+  :root {
+    --c-text: #111827;
+    --c-muted: #4b5563;
+    --c-accent: #1d4ed8;
+    --c-border: #d1d5db;
+    --c-bg-soft: #f3f4f6;
+    --c-code: #1f2937;
+    --c-warn: #b45309;
+  }
+  * { box-sizing: border-box; }
+  html { font-family: "Source Serif Pro", Georgia, "Times New Roman", serif; color: var(--c-text); line-height: 1.5; }
+  body { max-width: 780px; margin: 2rem auto; padding: 0 2rem; }
+  h1, h2, h3, h4 { font-family: "Inter", "Segoe UI", -apple-system, system-ui, sans-serif; color: var(--c-text); line-height: 1.25; }
+  h1 { font-size: 1.85rem; margin: 0 0 0.25rem; }
+  h2 { font-size: 1.35rem; margin: 2rem 0 0.6rem; padding-bottom: 0.25rem; border-bottom: 2px solid var(--c-accent); }
+  h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; color: var(--c-accent); }
+  h4 { font-size: 0.98rem; margin: 1rem 0 0.3rem; color: var(--c-muted); }
+  p, li { font-size: 0.97rem; }
+  ul, ol { padding-left: 1.4rem; }
+  li { margin-bottom: 0.25rem; }
+  table { width: 100%; border-collapse: collapse; margin: 0.8rem 0 1rem; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 0.4rem 0.6rem; border: 1px solid var(--c-border); vertical-align: top; }
+  th { background: var(--c-bg-soft); font-family: "Inter", sans-serif; }
+  code, pre { font-family: "JetBrains Mono", Consolas, Menlo, monospace; font-size: 0.86rem; }
+  code { background: var(--c-bg-soft); padding: 0.05rem 0.3rem; border-radius: 3px; }
+  pre { background: var(--c-code); color: #f9fafb; padding: 0.8rem 1rem; border-radius: 6px; overflow-x: auto; }
+  pre code { background: transparent; color: inherit; padding: 0; }
+  blockquote { border-left: 3px solid var(--c-accent); margin: 0.8rem 0; padding: 0.4rem 0.9rem; background: var(--c-bg-soft); color: var(--c-muted); font-style: italic; }
+  figure { margin: 1rem 0; }
+  figcaption { font-size: 0.85rem; color: var(--c-muted); margin-top: 0.3rem; }
+  .cover { text-align: center; padding: 3rem 0 2rem; border-bottom: 1px solid var(--c-border); margin-bottom: 1.5rem; }
+  .cover .subtitle { color: var(--c-muted); font-size: 1.05rem; margin-top: 0.4rem; }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; margin-top: 1.6rem; font-size: 0.92rem; }
+  .meta dt { color: var(--c-muted); font-family: "Inter", sans-serif; }
+  .meta dd { margin: 0; }
+  .toc { background: var(--c-bg-soft); padding: 1rem 1.3rem; border-radius: 6px; }
+  .toc ol { margin: 0.3rem 0 0; padding-left: 1.4rem; }
+  .toc a { color: var(--c-text); text-decoration: none; }
+  .toc a:hover { color: var(--c-accent); text-decoration: underline; }
+  .term { font-style: italic; background: #fffbeb; padding: 0.05rem 0.25rem; border-radius: 2px; }
+  .cite { color: var(--c-accent); font-size: 0.85rem; vertical-align: super; text-decoration: none; }
+  .placeholder-figure { border: 2px dashed var(--c-border); background: var(--c-bg-soft); padding: 1.4rem; text-align: center; color: var(--c-muted); font-style: italic; border-radius: 6px; margin: 1rem 0; }
+  .placeholder-figure strong { display: block; font-style: normal; color: var(--c-text); margin-bottom: 0.3rem; }
+  .callout { border-left: 4px solid var(--c-warn); background: #fffbeb; padding: 0.6rem 0.9rem; margin: 0.8rem 0; font-size: 0.92rem; }
+  .footnote { font-size: 0.85rem; color: var(--c-muted); }
+  .page-break { page-break-after: always; }
+  .bib { font-size: 0.88rem; }
+  .bib li { margin-bottom: 0.5rem; }
+  .glossary dt { font-weight: 600; margin-top: 0.6rem; font-family: "Inter", sans-serif; }
+  .glossary dd { margin: 0 0 0.4rem 0; }
+
+  @media print {
+    body { margin: 0; padding: 1.2cm 1.5cm; max-width: none; font-size: 10.5pt; }
+    h1 { font-size: 18pt; }
+    h2 { font-size: 13pt; margin-top: 1.2rem; }
+    h3 { font-size: 11.5pt; }
+    pre, table { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+    .cover { padding: 1.5rem 0; }
+    a { color: inherit; text-decoration: none; }
+    .placeholder-figure { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== COVER & TOC ============== -->
+<header class="cover">
+  <h1>BergTech HR Knowledge Assistant</h1>
+  <div class="subtitle">Ein Retrieval-Augmented-Generation-Chatbot für ein mittelständisches Maschinenbauunternehmen</div>
+  <dl class="meta">
+    <dt>Modul</dt><dd>LLM &amp; Agentics (Prof. Saile)</dd>
+    <dt>Hochschule</dt><dd>Hochschule Albstadt-Sigmaringen, SS 2026</dd>
+    <dt>Gruppe</dt><dd>Gruppe 1 — Case 1 (HR Knowledge Assistant)</dd>
+    <dt>Team</dt><dd>Juliana Paar, Anastasiia Sereda, Rustam Kohen</dd>
+    <dt>Dokumentversion</dt><dd>1.0 — 31.05.2026 (Juliana-Variante)</dd>
+    <dt>Workflow-Stand</dt><dd>n8n-Export <code>v4.7.2</code></dd>
+  </dl>
+</header>
+
+<section class="toc">
+  <h2 style="border:none; margin:0 0 0.4rem; font-size:1.1rem;">Inhaltsverzeichnis</h2>
+  <ol>
+    <li><a href="#kap-1">Ausgangssituation des Unternehmens</a></li>
+    <li><a href="#kap-2">Architekturüberblick</a></li>
+    <li><a href="#kap-3">Detaillierter Workflow</a></li>
+    <li><a href="#kap-4">Beispielfragen &amp; Live-Demo</a></li>
+    <li><a href="#kap-5">Risikoanalyse</a></li>
+    <li><a href="#kap-6">EU-AI-Act-Konformitätsanalyse</a></li>
+    <li><a href="#kap-7">Implementierungsreflexion</a></li>
+    <li><a href="#kap-8">Quellenverzeichnis &amp; Glossar</a></li>
+    <li><a href="#kap-9">Anhang</a></li>
+  </ol>
+</section>
+
+<!-- ============== KAPITEL 1 ============== -->
+<section id="kap-1">
+<h2>1. Ausgangssituation des Unternehmens</h2>
+
+<h3>1.1 Fallunternehmen BergTech Maschinenbau GmbH</h3>
+<p>Das Projekt ist als Auftragsarbeit für die fiktive <strong>BergTech Maschinenbau GmbH</strong> formuliert — ein mittelständisches Industrieunternehmen mit rund 450 Mitarbeitenden, das aus der Saile-Aufgabenstellung „Case 1 — HR Knowledge Assistant" abgeleitet ist. BergTech steht stellvertretend für einen typischen deutschen Industriebetrieb: eine etablierte, prozessgetriebene Organisation mit ausdifferenzierter Personalpolitik, regelmäßigem Onboarding und gewachsener Compliance-Landschaft.</p>
+
+<h3>1.2 Geschäftliches Problem</h3>
+<p>Die zentrale Personalabteilung der BergTech ist mit einer hohen Frequenz an repetitiven Mitarbeiteranfragen konfrontiert. Drei Themencluster dominieren das Anfragevolumen:</p>
+<ul>
+  <li><strong>Onboarding</strong> — Welche Unterlagen sind vor dem ersten Arbeitstag einzureichen? Welche Pflichttrainings stehen an?</li>
+  <li><strong>Urlaub und Abwesenheit</strong> — Wie viele Tage im Voraus muss Urlaub beantragt werden? Wie ist die Krankmeldung geregelt?</li>
+  <li><strong>Compliance &amp; Schulungen</strong> — Welche Pflichtschulungen sind im Onboarding vorgesehen? Welche Fristen gelten?</li>
+</ul>
+<p>Diese Fragen sind in den fünf zentralen HR-Dokumenten (Onboarding-Guide, Vacation Policy, Compliance Policy, HR-FAQ, Offboarding Checklist) bereits vollständig beantwortet — die Mitarbeitenden finden sie dort jedoch nicht schnell genug, weil die Dokumente verteilt im Intranet liegen und keine kontextbezogene Suche bieten. Die HR-Abteilung beantwortet dieselbe Frage daher mehrfach pro Woche manuell.</p>
+
+<h3>1.3 Zielgruppen</h3>
+<table>
+<thead><tr><th>Zielgruppe</th><th>Typische Fragen</th><th>Erwarteter Nutzen</th></tr></thead>
+<tbody>
+<tr><td>Neue Mitarbeitende</td><td>Onboarding-Unterlagen, erste Arbeitstage</td><td>Schnellere Orientierung, weniger Hemmschwelle gegenüber HR</td></tr>
+<tr><td>Bestehende Mitarbeitende</td><td>Urlaub, Krankmeldung, Trainings, FAQ</td><td>Self-Service rund um die Uhr</td></tr>
+<tr><td>HR-Team</td><td>—</td><td>Entlastung von Routineanfragen, mehr Zeit für strategische Aufgaben</td></tr>
+</tbody>
+</table>
+
+<h3>1.4 Lösungsansatz: Retrieval-Augmented Generation</h3>
+<p>Wir realisieren einen Chatbot auf Basis des Architekturmusters <span class="term">Retrieval-Augmented Generation</span> (RAG), das von Lewis et al. (2020) als Verfahren eingeführt wurde, um parametrisches Sprachmodell-Wissen mit nicht-parametrischem externem Wissen zu koppeln<a href="#cite-lewis" class="cite">[1]</a>. Konkret bedeutet das: Anstatt ein <span class="term">Large Language Model (LLM)</span> auf die HR-Dokumente nachzutrainieren (<span class="term">Fine-Tuning</span>) — was rechenintensiv und schwer zu aktualisieren wäre — werden die Dokumente vorab in eine <span class="term">Vektordatenbank</span> geladen und bei jeder Nutzerfrage die relevantesten Textfragmente an das Sprachmodell als Kontext mitgegeben. Das Modell antwortet ausschließlich auf Basis dieser Fragmente. Aktuelle Übersichten zeigen, dass RAG-Ansätze die <span class="term">Halluzinationsrate</span> von LLMs deutlich reduzieren und gleichzeitig die Aktualisierbarkeit der Wissensbasis garantieren<a href="#cite-gao" class="cite">[8]</a><a href="#cite-ji" class="cite">[7]</a>.</p>
+</section>
+
+<!-- ============== KAPITEL 2 ============== -->
+<section id="kap-2">
+<h2>2. Architekturüberblick</h2>
+
+<h3>2.1 Technologie-Stack</h3>
+<p>Die Architektur kombiniert vier Schichten:</p>
+<table>
+<thead><tr><th>Schicht</th><th>Technologie</th><th>Verantwortung</th><th>Begründung der Wahl</th></tr></thead>
+<tbody>
+<tr><td>Orchestrierung</td><td>n8n (lokal, Docker)</td><td>Workflow-Steuerung, Anbindung von LLM, Vektordatenbank und Dateisystem</td><td>Visuelle Modellierung, JSON-Export für Reproduzierbarkeit, native LangChain-Integration, Saile-Vorgabe „einfach halten, 3–4 Hauptnodes"</td></tr>
+<tr><td>Vektordatenbank</td><td>Supabase (Postgres + <code>pgvector</code>)</td><td>Persistenz der Dokumentvektoren, <span class="term">Approximate Nearest Neighbor Search</span></td><td>Kostenfreier Tier, EU-Region (Frankfurt) für DSGVO-Konformität, vertrautes relationales Datenmodell, native Row-Level-Security</td></tr>
+<tr><td>Embedding-Modell</td><td>OpenAI <code>text-embedding-3-small</code></td><td>Abbildung von Text auf 1536-dimensionale Vektoren</td><td>Stärkere Repräsentation bei niedrigeren Kosten als der Vorgänger <code>ada-002</code><a href="#cite-openai-emb" class="cite">[15]</a>; Konsistenz zwischen Ingestion und Abfrage zwingend</td></tr>
+<tr><td>Sprachmodell (Chat)</td><td>OpenAI <code>gpt-5-mini</code></td><td>Antwortformulierung auf Basis retrievter Chunks</td><td>OpenAI-Functions-Agent in n8n erzwingt ein OpenAI-Chat-Modell; nach Modell-Retirement von Claude pragmatischer Single-Provider-Cut (Details siehe Kap. 7)</td></tr>
+</tbody>
+</table>
+
+<h3>2.2 Hochlevel-Datenfluss</h3>
+<p>Das System besteht aus zwei voneinander entkoppelten Pfaden auf einer gemeinsamen n8n-Canvas:</p>
+<ol>
+  <li><strong>Ingestion-Pfad</strong> (einmalig oder bei Dokumentänderungen ausgeführt): Lädt die HR-Markdown-Dateien, zerlegt sie in Textabschnitte (<span class="term">Chunks</span>), erzeugt Vektorrepräsentationen und schreibt sie in die Tabelle <code>documents</code>.</li>
+  <li><strong>Query-Pfad</strong> (pro Nutzeranfrage ausgeführt): Empfängt die Frage über die n8n-Chat-Sidebar, vektorisiert sie mit demselben Embedding-Modell, sucht über <code>pgvector</code> die acht ähnlichsten Chunks und übergibt sie dem LLM zur Antwortformulierung.</li>
+</ol>
+<p>Die beiden Pfade sind bewusst nicht miteinander verdrahtet — die einzige Kopplung ist die geteilte Datenbank. Dadurch ist die Ingestion ein separater Verwaltungsvorgang, der die Antwortzeit der Live-Abfragen nicht beeinflusst.</p>
+
+<div class="placeholder-figure">
+  <strong>Abbildung 1: Architekturdiagramm</strong>
+  <span>Ingestion-Pfad (oben) und Query-Pfad (unten) auf einer Canvas, gekoppelt über die Supabase-<code>documents</code>-Tabelle. → Visual einfügen aus <code>docs/architecture.html</code> oder neu zeichnen (Excalidraw / draw.io).</span>
+</div>
+
+<h3>2.3 Definitionen zentraler Begriffe</h3>
+<ul>
+  <li><span class="term">Embedding</span> — Eine dichte Vektorrepräsentation von Text in einem hochdimensionalen Raum, in dem semantisch ähnliche Texte räumlich nah beieinanderliegen. Wir nutzen 1536-dimensionale Embeddings nach Reimers &amp; Gurevych (2019)<a href="#cite-reimers" class="cite">[3]</a>.</li>
+  <li><span class="term">Chunk</span> — Ein semantisch zusammenhängender Textausschnitt, der durch einen <span class="term">Text-Splitter</span> aus einem Quelldokument erzeugt wird. Wir verwenden Chunks von 500 Zeichen Länge mit 50 Zeichen Überlappung.</li>
+  <li><span class="term">Cosine Similarity</span> — Ein Maß für die Ähnlichkeit zweier Vektoren, das den Kosinus des eingeschlossenen Winkels berechnet. Wertebereich: <code>−1</code> (entgegengesetzt) bis <code>+1</code> (identische Richtung). Bei normierten Embedding-Vektoren ist sie das De-facto-Standardmaß<a href="#cite-karpukhin" class="cite">[2]</a>.</li>
+  <li><span class="term">HNSW</span> (Hierarchical Navigable Small World) — Ein graphbasierter Index für approximative Nächste-Nachbar-Suche mit logarithmischer Komplexität, vorgestellt von Malkov &amp; Yashunin (2020)<a href="#cite-malkov" class="cite">[4]</a>. Wir setzen ihn in <code>pgvector</code> über <code>using hnsw (embedding vector_cosine_ops)</code> ein.</li>
+  <li><span class="term">Top-k</span> — Die Anzahl der ähnlichsten Vektoren, die das Retrieval zurückgibt. Wir nutzen <code>k = 8</code>.</li>
+</ul>
+</section>
+
+<!-- ============== KAPITEL 3 ============== -->
+<section id="kap-3">
+<h2>3. Detaillierter Workflow</h2>
+
+<h3>3.1 Ingestion-Pfad</h3>
+<p>Der Ingestion-Pfad wird über einen <code>Manual Trigger</code> manuell gestartet — bewusst nicht automatisiert, weil sich die HR-Policies nur quartalsweise ändern und ein versehentliches Re-Ingest die Datenbank überfluten würde. Die fünf HR-Markdown-Dokumente liegen unter <code>company-docs/anastasiia/</code>.</p>
+
+<table>
+<thead><tr><th>#</th><th>n8n-Node</th><th>Funktion</th><th>Konfiguration</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>READ MD-File</code> (Manual Trigger)</td><td>Auslöser</td><td>—</td></tr>
+<tr><td>2</td><td><code>Read/Write Files from Disk</code></td><td>Lesen der fünf <code>.md</code>-Dateien</td><td><code>fileSelector: ~/.n8n-files/company-docs/anastasiia/**/*.md</code></td></tr>
+<tr><td>3</td><td><code>Recursive Character Text Splitter</code></td><td>Zerlegung in Chunks</td><td><code>chunkSize: 500</code>, <code>chunkOverlap: 50</code></td></tr>
+<tr><td>4</td><td><code>Default Data Loader</code></td><td>Kombiniert Splitter und Loader, fügt Metadaten an</td><td><code>dataType: binary</code>, <code>loader: textLoader</code>, <code>textSplittingMode: custom</code></td></tr>
+<tr><td>5</td><td><code>Embeddings OpenAI</code></td><td>Vektorisierung</td><td>Modell <code>text-embedding-3-small</code> (1536 dim)</td></tr>
+<tr><td>6</td><td><code>Supabase Vector Store</code> (insert)</td><td>Persistenz</td><td><code>tableName: documents</code>, <code>queryName: match_documents</code></td></tr>
+</tbody>
+</table>
+
+<h4>Designentscheidung: 500 Zeichen, 50 Zeichen Overlap</h4>
+<p>HR-Richtlinien bestehen aus kurzen, dichten Abschnitten — eine Urlaubsregel oder ein FAQ-Eintrag ist typischerweise 200–600 Zeichen lang. Ein Chunk von 500 Zeichen umfasst damit in der Regel <em>eine</em> abgeschlossene Regel und vermeidet, dass zwei thematisch unterschiedliche Abschnitte vermischt werden. Der Overlap von 50 Zeichen kompensiert das Risiko, dass eine Regel genau an der Chunk-Grenze abgeschnitten wird. Dieses Verhältnis von ca. 10% Overlap entspricht gängiger Praxis in der RAG-Literatur<a href="#cite-gao" class="cite">[8]</a>.</p>
+<div class="callout"><strong>Achtung — Zeichen, nicht Tokens.</strong> Der <code>RecursiveCharacterTextSplitter</code> in n8n arbeitet zeichenbasiert. 500 Zeichen entsprechen für deutsche HR-Texte etwa 125–200 <span class="term">Tokens</span> (Wortteile, mit denen ein LLM intern rechnet). Diese Klarstellung ist wichtig, weil viele RAG-Tutorials die Chunk-Größe in Tokens angeben.</div>
+
+<h4>Designentscheidung: Embedding-Modell explizit setzen</h4>
+<p>Beide Embedding-Nodes — Ingestion und Query — sind hartkodiert auf <code>text-embedding-3-small</code> konfiguriert. Würde man stattdessen das Modell als <code>options: {}</code> weglassen, fiele n8n auf den OpenAI-Default <code>ada-002</code> zurück. Eine spätere Default-Änderung des Providers würde unbemerkt zu einer Inkonsistenz zwischen Schreib- und Lesepfad führen — die Vektoren würden nicht mehr in dieselbe geometrische Lage projiziert, das Retrieval würde leer liefern. Dies ist ein klassischer Implementierungsfehler, der nur durch explizite Konfiguration vermeidbar ist.</p>
+
+<h3>3.2 Query-Pfad</h3>
+
+<table>
+<thead><tr><th>#</th><th>n8n-Node</th><th>Funktion</th><th>Konfiguration</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>When chat message received</code></td><td>Chat-Trigger über n8n-Sidebar</td><td>LangChain-Chat-Trigger, <code>public: true</code></td></tr>
+<tr><td>2</td><td><code>AI Agent</code></td><td>Orchestrierung: entscheidet über Tool-Aufruf, ruft LLM, formatiert Antwort</td><td><code>openAiFunctionsAgent</code>, gehärteter System-Prompt</td></tr>
+<tr><td>3</td><td><code>OpenAI Chat Model</code> (Sub-Node)</td><td>Antwortformulierung</td><td>Modell <code>gpt-5-mini</code></td></tr>
+<tr><td>4</td><td><code>Embeddings OpenAI</code> (Sub-Node)</td><td>Vektorisierung der Nutzerfrage</td><td><code>text-embedding-3-small</code></td></tr>
+<tr><td>5</td><td><code>Supabase Vector Store</code> (Tool)</td><td>Retrieval der Top-8 Chunks</td><td><code>mode: retrieve-as-tool</code>, <code>topK: 8</code></td></tr>
+</tbody>
+</table>
+
+<h4>Designentscheidung: <code>topK = 8</code></h4>
+<p>Wir haben den ursprünglichen Wert von <code>k = 5</code> nach einem End-to-End-Test am 30.05.2026 auf <code>k = 8</code> erhöht. Die Beobachtung: einzelne Themen (z.B. Arbeitszeitregelung) sind nur in einem oder zwei Chunks belegt; bei <code>k = 5</code> konkurrieren sie mit häufigeren Themen und werden manchmal verdrängt. Eine Erhöhung auf <code>k = 8</code> reduziert das Risiko, einen relevanten Chunk zu „verlieren", auf Kosten eines geringfügig größeren Kontextfensters für das LLM. Das ist ein klassischer Recall-vs-Präzisions-Trade-off und konsistent mit den empirischen Erkenntnissen von Karpukhin et al. zur Wirkung von <code>k</code><a href="#cite-karpukhin" class="cite">[2]</a>.</p>
+
+<h4>Designentscheidung: Cosine Similarity statt euklidische Distanz</h4>
+<p>OpenAI-Embeddings sind L2-normiert; die geometrische Information liegt in der <em>Richtung</em>, nicht in der Magnitude. Cosine Similarity vergleicht ausschließlich die Richtung und ist damit der theoretisch passende Vergleich. Sie ist außerdem der Standard in <code>pgvector</code> (<code>vector_cosine_ops</code>).</p>
+
+<h4>Designentscheidung: Gehärteter System-Prompt</h4>
+<p>Der zentrale Sicherheitsmechanismus gegen Halluzination ist nicht das LLM, sondern der System-Prompt des AI Agents. Die wesentlichen Regeln:</p>
+<pre><code>Du bist der HR-Assistant der BergTech Maschinenbau GmbH.
+
+ARBEITSWEISE (zwingend):
+  - Bei JEDER inhaltlichen Frage rufst du ZUERST das Tool
+    "Supabase Vector Store" auf. Ohne Ausnahme.
+  - Du stellst KEINE Rückfragen bevor du gesucht hast.
+  - Du nutzt AUSSCHLIESSLICH den Inhalt der gefundenen Dokumente.
+
+ANTWORT:
+  - Antworte knapp und konkret mit den Fakten aus den Dokumenten.
+  - Nenne die Quelle als [Dokumentname].
+  - Wenn die Suche NICHTS Passendes liefert:
+    "Diese Information liegt mir in den HR-Dokumenten nicht vor.
+     Bitte wende dich an hr@bergtech.de."
+
+VERBOTEN:
+  - Allgemeine Firmenregel-Listen oder Vorlagen erstellen.
+  - Auf gesetzliche Mindeststandards ausweichen.
+  - Antworten ohne vorherigen Tool-Aufruf.</code></pre>
+<p>Der Prompt instrumentalisiert eine zentrale Erkenntnis der Prompting-Forschung: Direkte, restriktive Anweisungen sind effektiver als höfliche Hinweise<a href="#cite-brown" class="cite">[5]</a><a href="#cite-wei" class="cite">[19]</a>. In Vorversionen war der Prompt weicher formuliert („antworte auf Basis der Dokumente"), woraufhin der Agent gelegentlich auf allgemeines Weltwissen zurückfiel.</p>
+
+<h4>Designentscheidung: Temperature 0 — und warum nicht 0.3</h4>
+<p>Die <span class="term">Temperature</span> ist ein Sampling-Parameter, der die Zufälligkeit der Token-Auswahl beim Decoding steuert. Bei <code>T = 0</code> wird greedy decoded — das Modell wählt bei jedem Schritt deterministisch das Token mit der höchsten Wahrscheinlichkeit. Höhere Werte (typisch <code>T = 0.7</code> bis <code>1.0</code>) flachen die Verteilung ab und erzeugen kreativere, variantenreichere Ausgaben<a href="#cite-holtzman" class="cite">[6]</a>.</p>
+<p>Für faktentreue, dokumenten­gestützte Q&amp;A-Anwendungen — wie unseren HR-Chatbot — empfiehlt sowohl die einschlägige RAG-Literatur als auch die offizielle Anbieterdokumentation einen Temperatur-Bereich von <code>0</code> bis <code>0.3</code>: niedrige Werte minimieren Halluzinationen und sichern <em>Reproduzierbarkeit</em> der Antworten<a href="#cite-gao" class="cite">[8]</a><a href="#cite-ji" class="cite">[7]</a><a href="#cite-openai-temp" class="cite">[20]</a>. Höhere Werte (<code>≥ 0.7</code>) sind für kreative oder explorative Aufgaben gedacht (Story-Generierung, Brainstorming) und sind für HR-Auskünfte mit rechtlicher Relevanz <em>kontraindiziert</em>: Dieselbe Frage darf nicht heute „14 Tage Vorlauf" und morgen „eine Woche reicht auch" beantworten.</p>
+<p>Innerhalb dieses Korridors haben wir uns für den unteren Extremwert <code>T = 0</code> entschieden. Die initiale Konfiguration unter Anthropic Claude 3 Haiku lief auf <code>T = 0.3</code> — ein für Kundensupport-Chatbots üblicher Industriewert, der den Antworten eine geringe stilistische Variation erlaubt, ohne die Faktenbasis zu gefährden. Nach dem Wechsel auf den OpenAI Functions Agent und der Bug-Serie vom 29.–30.05.2026, bei der das Modell trotz Tool-Verfügbarkeit auf Allgemeinwissen auswich (siehe Kap. 7.3), haben wir die Determinismus-Anforderung weiter verschärft: Determinismus wird jetzt zusätzlich durch den restriktiven System-Prompt erzwungen („antworte knapp und konkret mit den Fakten"). Der API-Parameter selbst ist im aktuellen n8n-Export nicht explizit gesetzt; in einer Produktivversion würden wir <code>temperature: 0</code> redundant <em>auch</em> als Node-Parameter hartkodieren, damit Provider-Default-Änderungen die deterministische Eigenschaft nicht unterlaufen können — eine direkte Konsequenz aus unserer Embedding-Default-Erfahrung (Kap. 7.3, Bug #5).</p>
+
+<h3>3.3 Datenbankschema</h3>
+<pre><code>create extension if not exists vector;
+
+create table documents (
+  id        bigserial primary key,
+  content   text,           -- Chunk-Text
+  metadata  jsonb,           -- Dateiname + Quelle
+  embedding vector(1536)     -- text-embedding-3-small
+);
+
+create index on documents
+  using hnsw (embedding vector_cosine_ops);
+
+alter table documents enable row level security;
+create policy "service_role full access"
+  on documents for all to service_role
+  using (true) with check (true);</code></pre>
+<p>Die <span class="term">Row-Level-Security</span>-Policy stellt sicher, dass nur n8n (mit dem <code>service_role</code>-Key) Zugriff hat. Der öffentliche <code>anon</code>-Key wäre andernfalls in der Lage, die gesamte Vektor-Tabelle auszulesen — ein häufig übersehenes Sicherheitsrisiko bei Supabase-Projekten<a href="#cite-supabase" class="cite">[17]</a>.</p>
+</section>
+
+<!-- ============== KAPITEL 4 ============== -->
+<section id="kap-4">
+<h2>4. Beispielfragen &amp; Live-Demo</h2>
+
+<p>Die folgenden drei Fragen entsprechen den Saile-Vorgaben für Case 1 und werden während der Live-Präsentation am 01.06.2026 in der n8n-Chat-Sidebar live an den Bot gestellt.</p>
+
+<table>
+<thead><tr><th>#</th><th>Frage</th><th>Erwartete Quellenangabe</th><th>Kernantwort (gekürzt)</th></tr></thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>„Welche Unterlagen muss ich vor dem ersten Arbeitstag einreichen?"</td>
+  <td><code>[1_Onboarding_Guide_BergTech]</code></td>
+  <td>Arbeitsvertrag, Personalausweis, Sozialversicherungsausweis, Kontodaten, ggf. Krankenversicherungsnachweis.</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>„Wie viele Tage im Voraus muss ich Urlaub beantragen?"</td>
+  <td><code>[2_Vacation_Policy_BergTech]</code></td>
+  <td>14 Tage Vorlauf für reguläre Urlaube; 3 Arbeitstage für Kurzurlaube ≤ 2 Tage.</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>„Welche Pflichtschulungen gibt es im Onboarding?"</td>
+  <td><code>[3_Compliance_Policy_BergTech]</code></td>
+  <td>UVV-Unterweisung, DSGVO-Grundlagen, Brandschutz, Compliance-Basismodul.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="placeholder-figure">
+  <strong>Abbildung 2–4: Drei Chatbot-Antwort-Screenshots</strong>
+  <span>Pro Demo-Frage ein Screenshot der n8n-Chat-Sidebar mit Frage, Antwort und Quellenangabe. → Während Rehearsal aufnehmen, einbetten.</span>
+</div>
+
+<h3>4.1 Fallback-Verhalten</h3>
+<p>Bei Fragen außerhalb des Wissensbestands antwortet der Bot mit dem deterministischen Satz: <em>„Diese Information liegt mir in den HR-Dokumenten nicht vor. Bitte wende dich an <code>hr@bergtech.de</code>."</em> Dieser Fallback ist die wichtigste Schutzschicht gegen Halluzination und gleichzeitig die Umsetzung der Transparenzpflicht aus Art. 50 EU-AI-Act (Kapitel 6).</p>
+
+<h3>4.2 Erkannte Grenze: dünn belegte Themen</h3>
+<p>Im Test zeigte sich, dass die Frage „Wie sind die Arbeitszeiten?" inkonsistent beantwortet wird — die Information steht nur als nebenbei erwähnter Satz im Onboarding-Guide, hat dadurch ein schwaches Embedding-Signal und wird selbst mit <code>k = 8</code> nicht zuverlässig retrievt. Mitigation: Ergänzung einer expliziten FAQ-Q&amp;A zum Thema Arbeitszeit (siehe <code>docs/vorschlag-arbeitszeit-faq.md</code>). Dies illustriert eine generelle Eigenschaft semantischer Retrieval-Systeme: <em>was im Korpus selten erwähnt wird, ist auch im Vektorraum schwach repräsentiert</em>.</p>
+</section>
+
+<!-- ============== KAPITEL 5 ============== -->
+<section id="kap-5">
+<h2>5. Risikoanalyse</h2>
+
+<p>Die Saile-Aufgabenstellung für Case 1 nennt drei Risiken wörtlich: <em>„Incorrect HR guidance, hallucinated policy information and processing of sensitive employee data."</em> Wir strukturieren die Analyse entlang dieser drei Kernrisiken und ergänzen vier weitere, in der Live-Integration tatsächlich beobachtete Risiken.</p>
+
+<h3>5.1 Risikomatrix</h3>
+<table>
+<thead><tr><th>Risiko</th><th>Wahrsch.</th><th>Schaden</th><th>Mitigation (umgesetzt)</th></tr></thead>
+<tbody>
+<tr>
+  <td>Falsche HR-Auskunft</td><td>mittel</td><td>hoch</td>
+  <td>System-Prompt erzwingt Tool-Aufruf; Quellenangabe im Antwortformat; Fallback an <code>hr@bergtech.de</code></td>
+</tr>
+<tr>
+  <td>Halluzinierte Policy-Infos</td><td>mittel</td><td>hoch</td>
+  <td>Temperature-Verhalten 0 durch deterministischen Prompt; Vorgabe „ausschließlich Dokument-Inhalt"; kein Allgemeinwissen erlaubt<a href="#cite-holtzman" class="cite">[6]</a></td>
+</tr>
+<tr>
+  <td>Verarbeitung sensibler Mitarbeiterdaten</td><td>niedrig</td><td>hoch</td>
+  <td>Keine personenbezogenen Daten in der Wissensbasis (nur Policies); Supabase-Region Frankfurt; <span class="term">Row-Level-Security</span> aktiv; Logs nicht persistent</td>
+</tr>
+<tr>
+  <td>Embedding-Modell-Inkonsistenz</td><td>niedrig</td><td>hoch</td>
+  <td>Modell explizit in beiden Nodes gesetzt; nicht auf Provider-Defaults verlassen</td>
+</tr>
+<tr>
+  <td>Veraltete Policies</td><td>mittel</td><td>mittel</td>
+  <td>Manueller Re-Ingest-Prozess dokumentiert; <code>TRUNCATE</code> + Neuladen bei Policy-Änderung</td>
+</tr>
+<tr>
+  <td>Drittanbieter-Abhängigkeit (Modell-Retirement)</td><td>niedrig</td><td>mittel</td>
+  <td>Real beobachtet am 30.05. (Anthropic-Modell 404); mitigiert durch Single-Provider-Konsolidierung auf OpenAI</td>
+</tr>
+<tr>
+  <td>Prompt-Injection durch Nutzer</td><td>niedrig</td><td>mittel</td>
+  <td>System-Prompt mit „VERBOTEN"-Sektion; kein Tool-Output direkt in System-Prompt eingebettet</td>
+</tr>
+</tbody>
+</table>
+
+<h3>5.2 Verbleibende Restrisiken</h3>
+<p>Wir benennen drei Restrisiken explizit, weil sie für eine Produktivumgebung adressiert werden müssten, im Rahmen des Prototyps aber bewusst akzeptiert sind:</p>
+<ul>
+  <li><strong>Single-Provider-Risiko.</strong> Der Wechsel auf All-OpenAI reduziert Integrationsfehler, schafft aber ein einzelnes Ausfallszenario. In einem Produktivsystem würden wir ein Failover auf einen zweiten Provider (z.B. Anthropic oder Mistral) ergänzen.</li>
+  <li><strong>Kein End-to-End-Audit-Trail.</strong> Aktuell werden Anfragen und Antworten nicht persistent protokolliert. Für eine HR-Anwendung mit rechtlicher Relevanz wäre ein revisionssicheres Logging notwendig.</li>
+  <li><strong>Keine kontinuierliche Qualitätsmessung.</strong> Wir haben keinen automatisierten Evaluator (z.B. <span class="term">RAGAS</span> oder <span class="term">Truelens</span>) integriert. Eine Produktivversion sollte die Antwortqualität laufend mit synthetischen und realen Fragen messen.</li>
+</ul>
+</section>
+
+<!-- ============== KAPITEL 6 ============== -->
+<section id="kap-6">
+<h2>6. EU-AI-Act-Konformitätsanalyse</h2>
+
+<p>Die Verordnung (EU) 2024/1689 (im Folgenden: EU-AI-Act)<a href="#cite-eu-ai" class="cite">[9]</a> ist seit 01. August 2024 in Kraft. Sie definiert risikobasierte Pflichten für die Entwicklung und den Einsatz von KI-Systemen in der Europäischen Union. Wir analysieren das Projekt entlang vier Dimensionen: Akteursrollen, Risikoklasse, anwendbare Pflichten und deren konkrete Umsetzung.</p>
+
+<h3>6.1 Akteursrollen (Art. 3 EU-AI-Act)</h3>
+<table>
+<thead><tr><th>Rolle</th><th>Akteur in unserem Projekt</th><th>Verantwortlichkeit</th></tr></thead>
+<tbody>
+<tr><td><span class="term">Provider</span></td><td>Gruppe 1 (Studierende)</td><td>Entwicklung des KI-Systems, Inbetriebnahme, Konformitätsbewertung</td></tr>
+<tr><td><span class="term">Deployer</span></td><td>BergTech Maschinenbau GmbH</td><td>Verwendung des Systems im eigenen Verantwortungsbereich, Transparenz gegenüber Nutzern, menschliche Aufsicht</td></tr>
+<tr><td><span class="term">Affected Person</span></td><td>BergTech-Mitarbeitende</td><td>Empfangen KI-generierte Antworten; haben Recht auf Transparenz und Beschwerde</td></tr>
+<tr><td><span class="term">GPAI-Provider</span><br>(General-Purpose AI)</td><td>OpenAI (für <code>gpt-5-mini</code> und <code>text-embedding-3-small</code>)</td><td>Bereitstellung des Basismodells, eigene Compliance-Pflichten nach Art. 51 ff.</td></tr>
+</tbody>
+</table>
+
+<h3>6.2 Risikoklassifizierung</h3>
+<p>Der EU-AI-Act unterscheidet vier Risikostufen: <em>unacceptable risk</em> (verboten, Art. 5), <em>high risk</em> (Art. 6 ff.), <em>limited risk</em> (Transparenzpflichten, Art. 50) und <em>minimal risk</em>. Unser System fällt in die Klasse <strong>Limited Risk</strong>, weil:</p>
+<ul>
+  <li>Der Chatbot interagiert direkt mit natürlichen Personen → Art. 50 Abs. 1 ist anwendbar.</li>
+  <li>Er trifft <em>keine</em> rechtswirksamen Entscheidungen (z.B. über Einstellung, Beförderung, Entlassung). Hochrisiko-Tatbestände nach Anhang III Nr. 4 (Beschäftigung, Personalmanagement) sind damit <em>nicht</em> erfüllt.</li>
+  <li>Antworten sind nicht-bindende Informationsauskünfte; finale Entscheidungen liegen bei HR.</li>
+</ul>
+<p>Diese Einordnung ist konsistent mit der Auslegung in Veale &amp; Zuiderveen Borgesius (2021), die den Anwendungsbereich von Art. 50 für rein informationsgebende Chatbots ausführlich diskutieren<a href="#cite-veale" class="cite">[10]</a>, sowie mit der Übersichtsdarstellung des Ada Lovelace Institute<a href="#cite-edwards" class="cite">[12]</a>.</p>
+
+<div class="placeholder-figure">
+  <strong>Abbildung 5: Risikoklassen-Pyramide des EU-AI-Acts</strong>
+  <span>Vier Stufen, unsere Einordnung „Limited Risk" markiert. → Mit Canva/draw.io erstellen.</span>
+</div>
+
+<h3>6.3 Anwendbare Pflichten und konkrete Umsetzung</h3>
+<table>
+<thead><tr><th>Pflicht</th><th>Quelle</th><th>Umsetzung im System</th></tr></thead>
+<tbody>
+<tr>
+  <td>Transparenzhinweis (Nutzer muss wissen, dass er mit KI interagiert)</td>
+  <td>Art. 50 Abs. 1</td>
+  <td>System-Prompt-Selbstbeschreibung („Du bist der HR-Assistant…"); UI-Label „BergTech HR Bot"; Begrüßungstext in Chat-Sidebar</td>
+</tr>
+<tr>
+  <td>AI Literacy beim Personal des Deployers</td>
+  <td>Art. 4</td>
+  <td>Pflichtschulung für HR-Team zur Funktionsweise und zu den Grenzen des Bots (in unserer Empfehlung für BergTech-Rollout enthalten)</td>
+</tr>
+<tr>
+  <td>Verständlichkeit der Ausgaben für betroffene Personen</td>
+  <td>Art. 50 Abs. 5</td>
+  <td>Quellenangabe in jeder Antwort <code>[Dokumentname]</code>; einfache Sprache; expliziter Fallback statt erfundener Antwort</td>
+</tr>
+<tr>
+  <td>Pflichten der GPAI-Provider (gilt nicht direkt für uns, aber relevant für Lieferanten­auswahl)</td>
+  <td>Art. 51 ff.</td>
+  <td>Wahl eines GPAI-Providers, der die Pflichten erfüllt (OpenAI hat Transparenz-Reports veröffentlicht)</td>
+</tr>
+</tbody>
+</table>
+
+<h3>6.4 Empfehlungen für den Produktivbetrieb (BergTech-Rollout)</h3>
+<p>Auch wenn das System in der Limited-Risk-Klasse einzuordnen ist, empfehlen wir BergTech als Deployer drei zusätzliche Maßnahmen analog zu Hacker et al. (2023), die für generative Systeme strengere Standards vorschlagen<a href="#cite-hacker" class="cite">[11]</a>:</p>
+<ol>
+  <li>Sichtbarer KI-Hinweis im Chat-Header (Banner: „Sie chatten mit einem KI-System. Antworten sind unverbindlich und ersetzen keine HR-Beratung.")</li>
+  <li>Quartalsweise Policy-Audits: stimmen Dokumente in der Wissensbasis noch mit den aktuellen Policies überein?</li>
+  <li>Beschwerde-Pfad: Möglichkeit für Nutzer, eine Antwort als falsch zu markieren, mit Eskalation an HR.</li>
+</ol>
+</section>
+
+<!-- ============== KAPITEL 7 ============== -->
+<section id="kap-7">
+<h2>7. Implementierungsreflexion</h2>
+
+<h3>7.1 Drei zentrale Designentscheidungen</h3>
+<table>
+<thead><tr><th>Entscheidung</th><th>Begründung</th><th>Bewertung im Rückblick</th></tr></thead>
+<tbody>
+<tr>
+  <td>n8n als Orchestrator (statt LangChain pur)</td>
+  <td>Visuelle Modellierung, einfacher Export, native Sub-Node-Architektur, Saile-Vorgabe „einfach halten"</td>
+  <td>Tragfähig. Hat die Lernkurve am Anfang verlängert, aber die Reproduzierbarkeit und Demo-Tauglichkeit deutlich erhöht.</td>
+</tr>
+<tr>
+  <td>Supabase mit <code>pgvector</code> (statt Pinecone/Weaviate)</td>
+  <td>Kostenfreier Tier, vertrautes PostgreSQL, EU-Region, RLS</td>
+  <td>Stark. <code>match_documents</code>-Setup war initial knifflig (Ambiguity-Bug, siehe 7.3), funktioniert aber stabil.</td>
+</tr>
+<tr>
+  <td>Linearer RAG-Flow (statt Agentic Loop mit Plan-Execute-Reflect)</td>
+  <td>HR-FAQ ist single-hop, Saile-Vorgabe wenig Nodes, Reflection-Loops können sich verlaufen</td>
+  <td>Korrekt. Für unseren Anwendungsfall bringt ein Agentic Loop keinen messbaren Mehrwert und erhöht das Failure-Risiko in der Live-Demo.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>7.2 Was gut gelaufen ist</h3>
+<ul>
+  <li><strong>Systematisches Debugging über sieben Live-Bugs hinweg.</strong> Am 29.–30.05. trat eine Kette von Blockern auf (Dateizugriff, OpenAI-Kontingent, Agent-Typ, Modell-Retirement, fehlende RPC, SQL-Ambiguität, Data-Loader-Bug). Jeder Fehler wurde isoliert und an der Wurzel gefixt, statt symptomatisch zu kompensieren.</li>
+  <li><strong>Pragmatische Architekturanpassung unter Druck.</strong> Als das Anthropic-Chatmodell während des End-to-End-Tests am 30.05. mit einem 404-Fehler abgewiesen wurde (Modell-Retirement), erfolgte ein klarer Cut auf All-OpenAI (<code>gpt-5-mini</code>). Statt im Modell-Problem zu verharren, wurde die Architektur an die Verfügbarkeit angepasst.</li>
+  <li><strong>Trennung von Stabilität und Eleganz vor der Demo.</strong> n8n 2.22.5 wurde am 30.05. installiert, aber bewusst nicht durch Prozess-Neustart aktiviert — der laufende Agent (basierend auf 2.17.7 mit OpenAI-Functions-Agent) blieb in seiner getesteten Konfiguration.</li>
+</ul>
+
+<h3>7.3 Was schwierig war (Auswahl)</h3>
+<table>
+<thead><tr><th>Bug</th><th>Symptom</th><th>Ursache</th><th>Fix</th></tr></thead>
+<tbody>
+<tr>
+  <td>Embedding-Default-Falle</td>
+  <td>Retrieval lieferte keine Treffer trotz korrekt befüllter DB</td>
+  <td><code>options: {}</code> in n8n-Embedding-Nodes → Default <code>ada-002</code> statt explizit <code>3-small</code></td>
+  <td>Beide Nodes auf <code>text-embedding-3-small</code> hartkodiert</td>
+</tr>
+<tr>
+  <td>Data Loader embeddet Dateinamen statt Inhalt</td>
+  <td>Vektor-DB hat 50 Zeilen, alle <code>content</code>-Felder enthalten Dateinamen</td>
+  <td><code>Default Data Loader</code> stand auf <code>Type: JSON</code>; <code>Read/Write Files</code> liefert aber Binary mit Metadaten-JSON</td>
+  <td><code>Type: Binary, Format: Text, textSplittingMode: custom</code>; alte Daten <code>TRUNCATE</code>, Re-Ingest</td>
+</tr>
+<tr>
+  <td><code>match_documents</code> meldet „column reference ambiguous"</td>
+  <td>PostgREST-Fehler 42702 beim Tool-Aufruf</td>
+  <td>RETURNS-Table-Spaltenname <code>metadata</code> kollidiert in <code>language plpgsql</code> mit Tabellenspalte</td>
+  <td>Funktion neu in <code>language sql</code> mit Tabellen-Alias <code>d.</code></td>
+</tr>
+<tr>
+  <td>Agent halluziniert statt Tool zu nutzen</td>
+  <td>Antworten basieren auf Allgemeinwissen, ignorieren Vektor-DB</td>
+  <td>Weich formulierter System-Prompt erlaubt dem Modell, das Tool zu „überspringen"</td>
+  <td>Prompt gehärtet (Tool-Zwang explizit, Verbots-Sektion)</td>
+</tr>
+<tr>
+  <td>Chat-Sidebar nicht aktivierbar (v4.6)</td>
+  <td>Demo-UI fehlt, nur HTTP-Endpoint vorhanden</td>
+  <td>Verwendung von <code>n8n-nodes-base.webhook</code> statt LangChain-Chat-Trigger</td>
+  <td>Node-Typ auf <code>@n8n/n8n-nodes-langchain.chatTrigger</code> umgestellt</td>
+</tr>
+</tbody>
+</table>
+
+<h3>7.4 Fünf zentrale Learnings</h3>
+<ol>
+  <li><strong>Defaults nie blind vertrauen.</strong> Provider können Defaults jederzeit ändern. Modellnamen explizit in der Konfiguration setzen.</li>
+  <li><strong>Datenmenge ≠ Datenqualität.</strong> <code>SELECT count(*) FROM documents</code> beweist nichts. Nach Ingestion stichprobenartig den <code>content</code> auslesen.</li>
+  <li><strong>Tool-Nutzung muss im Prompt erzwungen werden.</strong> LLMs wählen den Weg des geringsten Widerstands; ohne harte Anweisung umgehen sie das Tool.</li>
+  <li><strong>Single-Provider reduziert die Integrationsoberfläche.</strong> Die ursprünglich eleganter wirkende Multi-Provider-Architektur (Anthropic+OpenAI) wurde zur Fehlerquelle (Retirement). Ein Provider ist robuster für einen Demo-Termin.</li>
+  <li><strong>n8n-Workflows in der UI bauen, nicht im JSON.</strong> Der JSON-Export ist Output, kein Input. Manuelles JSON-Editieren erzeugt subtile Inkonsistenzen.</li>
+</ol>
+
+<h3>7.5 Ausblick: Weiterentwicklungspfade</h3>
+<p>Das vorgestellte System ist ein lauffähiger Prototyp auf MVP-Niveau. Für den produktiven Einsatz bei BergTech und vergleichbaren mittelständischen Unternehmen sehen wir sechs konkrete Weiterentwicklungspfade, geordnet nach erwartetem Nutzen-Aufwand-Verhältnis.</p>
+
+<h4>(1) Retrieval-Qualität verbessern</h4>
+<ul>
+  <li><strong>Hybrid Retrieval</strong> — Kombination unserer semantischen Vektorsuche mit einer lexikalischen <span class="term">BM25</span>-Suche. Adressiert die in Kap. 4.2 dokumentierte Schwäche bei dünn belegten Themen (Arbeitszeit-Frage), in der Literatur als komplementäre Stärke von Dense und Sparse Retrieval etabliert<a href="#cite-karpukhin" class="cite">[2]</a><a href="#cite-gao" class="cite">[8]</a>.</li>
+  <li><strong>Cross-Encoder-Re-Ranking</strong> — die Top-30-Kandidaten aus Cosine-Suche mit einem zweiten, präziseren Modell (z.B. <code>bge-reranker</code>) neu sortieren. Erhöht die Präzision deutlich bei nur marginal höheren Kosten.</li>
+  <li><strong>Adaptive top-k</strong> — bei einfachen Faktenfragen <code>k = 3</code>, bei komplexen Mehrteil-Fragen <code>k = 12</code>. Reduziert Kontextfenster-Rauschen und LLM-Kosten.</li>
+</ul>
+
+<h4>(2) Generation-Qualität &amp; Konsistenz</h4>
+<ul>
+  <li><strong>Temperature explizit als API-Parameter setzen</strong> (siehe Kap. 3.2). Aktuell wird Determinismus nur über den Prompt erzwungen — eine doppelte Absicherung über <code>temperature: 0</code> auf Node-Ebene wäre robuster.</li>
+  <li><strong>Streaming Responses</strong> — Antworten Token für Token ausgeben statt am Stück. Reduziert die wahrgenommene Latenz erheblich; in n8n erfordert dies einen Wechsel des AI-Agent-Nodes (Tools Agent ab n8n 2.22.5).</li>
+  <li><strong>Conversation Memory</strong> — Folgefragen wie „und was ist mit Kurzurlauben?" auflösen, ohne dass Nutzer die Frage neu formulieren müssen. In n8n via LangChain-Memory-Sub-Node implementierbar; entscheidend ist eine Session-ID, die an die Chat-Sidebar bindet.</li>
+</ul>
+
+<h4>(3) Daten &amp; Operations</h4>
+<ul>
+  <li><strong>Automatisierter Re-Ingest</strong> — Trigger über Git-Hook oder Sharepoint-Webhook: sobald ein HR-Dokument aktualisiert wird, läuft die Ingestion-Pipeline. Eliminiert das größte operative Risiko (veraltete Wissensbasis).</li>
+  <li><strong>Versionsmetadaten</strong> in der <code>metadata</code>-Spalte (z.B. <code>{"version": "2026-Q2", "valid_from": "2026-04-01"}</code>). Erlaubt Stichtags-Antworten („Was war die Regelung am 1. Mai?") und sauberes Rollback.</li>
+  <li><strong>Upsert statt Truncate-and-Insert</strong> — bei Re-Ingest nur die geänderten Chunks ersetzen, nicht die gesamte Tabelle leeren. Vermeidet kurzzeitige Antwort-Ausfälle und schont das Embedding-API-Kontingent.</li>
+</ul>
+
+<h4>(4) Evaluierung &amp; Qualitätsmessung</h4>
+<ul>
+  <li><strong>RAGAS-Integration</strong> — automatisierte Bewertung jeder Antwort mit den Metriken Faithfulness, Answer Relevancy und Context Precision (siehe Definitionen in Ji et al. 2023<a href="#cite-ji" class="cite">[7]</a>).</li>
+  <li><strong>Goldfragen-Suite</strong> — 30–50 manuell kuratierte Fragen mit erwarteten Antworten + Quellen, die in CI nach jedem Re-Ingest geprüft werden. Verhindert Regressionen.</li>
+  <li><strong>Drift-Detection</strong> — wöchentliche Vergleichsläufe; signifikante Veränderungen in Antwortverteilung melden.</li>
+</ul>
+
+<h4>(5) Skalierung &amp; Multi-Modal</h4>
+<ul>
+  <li><strong>PDF-Loader mit Tabellen- und Bild-Extraktion</strong> (z.B. <code>unstructured.io</code>). Aktuell reine Markdown-Verarbeitung; produktive HR-Dokumente enthalten oft Tabellen und Diagramme, deren Inhalt verlorengeht.</li>
+  <li><strong>Mehrsprachigkeit</strong> — viele Industriebetriebe haben internationale Belegschaft. Zwei Optionen: separate Vektor-Tabelle pro Sprache oder ein multilinguales Embedding-Modell (z.B. <code>multilingual-e5-large</code>).</li>
+  <li><strong>Caching-Schicht</strong> — exakt oder semantisch identische Wiederholfragen aus einem Cache beantworten. Spart deutlich LLM-Kosten bei skalierender Nutzung.</li>
+</ul>
+
+<h4>(6) Compliance, Governance &amp; Sicherheit</h4>
+<ul>
+  <li><strong>Revisionssichere Audit-Logs</strong> — jede Frage, jede retrievte Chunk-ID und jede Antwort persistent loggen. Pflicht für rechtlich relevante HR-Auskünfte.</li>
+  <li><strong>Feedback-Pfad</strong> — „War diese Antwort hilfreich?"-Button; negative Bewertungen automatisch an HR eskalieren. Adressiert Art. 50 Abs. 5 EU-AI-Act.</li>
+  <li><strong>Granulare RLS</strong> — Zugriffsrechte je HR-Dokument: nicht jeder Mitarbeiter darf das Compliance-Handbuch sehen. Lässt sich über <code>metadata</code>-Filter in der <code>match_documents</code>-RPC abbilden.</li>
+  <li><strong>Prompt-Injection-Filter</strong> — Eingaben gegen bekannte Angriffsmuster prüfen (z.B. „Ignore previous instructions"). Aktuell nur durch System-Prompt-Robustheit mitigiert.</li>
+</ul>
+
+<h4>Priorisierung</h4>
+<p>Würden wir die Arbeit fortsetzen, wäre die Reihenfolge:
+(a) <em>Automatisierter Re-Ingest</em> und <em>RAGAS-Goldfragen</em> als Operations-Grundlage,
+(b) <em>Hybrid Retrieval</em> und <em>explizite Temperature</em> als Qualitäts-Quick-Wins,
+(c) <em>Audit-Logs</em> und <em>Feedback-Pfad</em> als Compliance-Pflicht vor BergTech-Rollout,
+(d) <em>Conversation Memory</em> und <em>Multi-Modal</em> als nutzerseitige Komfortverbesserungen.</p>
+</section>
+
+<!-- ============== KAPITEL 8 ============== -->
+<section id="kap-8">
+<h2>8. Quellenverzeichnis &amp; Glossar</h2>
+
+<h3>8.1 Wissenschaftliche Quellen (peer-reviewed)</h3>
+<ol class="bib">
+  <li id="cite-lewis"><strong>Lewis, P., Perez, E., Piktus, A. et al. (2020).</strong> Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, 33. arXiv:2005.11401. — Originalpaper zum RAG-Konzept.</li>
+  <li id="cite-karpukhin"><strong>Karpukhin, V., Oğuz, B., Min, S. et al. (2020).</strong> Dense Passage Retrieval for Open-Domain Question Answering. <em>Proceedings of EMNLP 2020</em>. arXiv:2004.04906. — Empirische Grundlage für Top-k-Werte und Dense Retrieval.</li>
+  <li id="cite-reimers"><strong>Reimers, N. &amp; Gurevych, I. (2019).</strong> Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. <em>Proceedings of EMNLP-IJCNLP 2019</em>. arXiv:1908.10084. — Grundlage moderner Sentence-Embeddings.</li>
+  <li id="cite-malkov"><strong>Malkov, Y. A. &amp; Yashunin, D. A. (2020).</strong> Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs. <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>, 42(4), 824–836. arXiv:1603.09320. — HNSW-Index-Algorithmus.</li>
+  <li id="cite-brown"><strong>Brown, T. B., Mann, B., Ryder, N. et al. (2020).</strong> Language Models are Few-Shot Learners. <em>NeurIPS</em>, 33. arXiv:2005.14165. — GPT-3-Paper, Grundlagen Prompting.</li>
+  <li id="cite-holtzman"><strong>Holtzman, A., Buys, J., Du, L. et al. (2020).</strong> The Curious Case of Neural Text Degeneration. <em>ICLR 2020</em>. arXiv:1904.09751. — Theorie hinter Temperature- und Sampling-Strategien.</li>
+  <li id="cite-ji"><strong>Ji, Z., Lee, N., Frieske, R. et al. (2023).</strong> Survey of Hallucination in Natural Language Generation. <em>ACM Computing Surveys</em>, 55(12), Article 248. DOI: 10.1145/3571730. — Taxonomie der LLM-Halluzination.</li>
+  <li id="cite-gao"><strong>Gao, Y., Xiong, Y., Gao, X. et al. (2024).</strong> Retrieval-Augmented Generation for Large Language Models: A Survey. arXiv:2312.10997. — Aktuellster RAG-Survey.</li>
+</ol>
+
+<h3>8.2 Regulatorische Primärquellen</h3>
+<ol class="bib" start="9">
+  <li id="cite-eu-ai"><strong>Europäisches Parlament und Rat (2024).</strong> Verordnung (EU) 2024/1689 vom 13. Juni 2024 zur Festlegung harmonisierter Vorschriften für künstliche Intelligenz (Artificial Intelligence Act). <em>ABl. L, 2024/1689</em>. CELEX 32024R1689. <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">eur-lex.europa.eu/eli/reg/2024/1689/oj</a>.</li>
+  <li id="cite-veale"><strong>Veale, M. &amp; Zuiderveen Borgesius, F. (2021).</strong> Demystifying the Draft EU Artificial Intelligence Act. <em>Computer Law Review International</em>, 22(4), 97–112. DOI: 10.9785/cri-2021-220402.</li>
+  <li id="cite-hacker"><strong>Hacker, P., Engel, A. &amp; Mauer, M. (2023).</strong> Regulating ChatGPT and other Large Generative AI Models. <em>Proceedings of ACM FAccT 2023</em>, 1112–1123. DOI: 10.1145/3593013.3594067.</li>
+  <li id="cite-edwards"><strong>Edwards, L. (2022).</strong> Expert explainer: The EU AI Act — A summary of its significance and scope. <em>Ada Lovelace Institute</em>, 11 April 2022. <a href="https://www.adalovelaceinstitute.org/resource/eu-ai-act-explainer/">adalovelaceinstitute.org/resource/eu-ai-act-explainer</a>.</li>
+</ol>
+
+<h3>8.3 HR-AI / Workplace Adoption</h3>
+<ol class="bib" start="13">
+  <li id="cite-tambe"><strong>Tambe, P., Cappelli, P. &amp; Yakubovich, V. (2019).</strong> Artificial Intelligence in Human Resources Management: Challenges and a Path Forward. <em>California Management Review</em>, 61(4), 15–42. DOI: 10.1177/0008125619867910.</li>
+  <li id="cite-vrontis"><strong>Vrontis, D., Christofi, M., Pereira, V., Tarba, S., Makrides, A. &amp; Trichina, E. (2022).</strong> Artificial intelligence, robotics, advanced technologies and human resource management: A systematic review. <em>The International Journal of Human Resource Management</em>, 33(6), 1237–1266. DOI: 10.1080/09585192.2020.1871398.</li>
+</ol>
+
+<h3>8.4 Tool-Dokumentation (ergänzend)</h3>
+<ol class="bib" start="15">
+  <li id="cite-openai-emb"><strong>OpenAI (2024).</strong> New embedding models and API updates. <a href="https://openai.com/index/new-embedding-models-and-api-updates/">openai.com/index/new-embedding-models-and-api-updates</a>.</li>
+  <li><strong>pgvector Project (2024).</strong> pgvector – Open-source vector similarity search for Postgres. <a href="https://github.com/pgvector/pgvector">github.com/pgvector/pgvector</a>.</li>
+  <li id="cite-supabase"><strong>Supabase (2024).</strong> AI &amp; Vectors Guide. <a href="https://supabase.com/docs/guides/ai">supabase.com/docs/guides/ai</a>.</li>
+  <li><strong>n8n (2024).</strong> LangChain Nodes Documentation. <a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/">docs.n8n.io/integrations/builtin/cluster-nodes</a>.</li>
+  <li id="cite-wei"><strong>Wei, J., Wang, X., Schuurmans, D. et al. (2022).</strong> Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. <em>NeurIPS 2022</em>. arXiv:2201.11903.</li>
+  <li id="cite-openai-temp"><strong>OpenAI (2024).</strong> API Reference — Chat Completions: temperature parameter. <a href="https://platform.openai.com/docs/api-reference/chat/create#chat-create-temperature">platform.openai.com/docs/api-reference/chat/create</a>. — Empfiehlt für deterministische, faktenorientierte Anwendungen den Bereich <code>0</code>–<code>0.3</code>.</li>
+</ol>
+
+<h3>8.5 Glossar</h3>
+<dl class="glossary">
+  <dt>Approximate Nearest Neighbor (ANN)</dt>
+  <dd>Verfahren zur näherungsweisen Suche der nächsten Nachbarn in hochdimensionalen Räumen mit logarithmischer statt linearer Laufzeit. Wir nutzen den HNSW-Algorithmus.</dd>
+
+  <dt>Chunk</dt>
+  <dd>Ein semantisch zusammenhängender Textabschnitt fester (oder geregelter) Maximallänge, der durch einen Splitter aus einem Quelldokument erzeugt wird.</dd>
+
+  <dt>Cosine Similarity</dt>
+  <dd>Ähnlichkeitsmaß, das den Kosinus des Winkels zwischen zwei Vektoren berechnet. Standardmaß für normierte Embedding-Vektoren.</dd>
+
+  <dt>Embedding</dt>
+  <dd>Dichte numerische Vektorrepräsentation von Text in einem hochdimensionalen Raum, in dem semantische Ähnlichkeit als räumliche Nähe abgebildet ist.</dd>
+
+  <dt>GPAI (General-Purpose AI)</dt>
+  <dd>Begriff aus dem EU-AI-Act für universell einsetzbare KI-Modelle (z.B. GPT-Familie). Unterliegen besonderen Pflichten nach Art. 51 ff.</dd>
+
+  <dt>Halluzination</dt>
+  <dd>Generierung von Inhalt, der plausibel klingt, aber faktisch falsch oder nicht im Kontext belegt ist. Zentrales Risiko bei LLMs.</dd>
+
+  <dt>HNSW (Hierarchical Navigable Small World)</dt>
+  <dd>Graphbasierter Index für approximative Nächste-Nachbar-Suche mit hervorragender Performance bei Embeddings.</dd>
+
+  <dt>Limited Risk</dt>
+  <dd>Risikoklasse des EU-AI-Acts für KI-Systeme, die direkt mit natürlichen Personen interagieren, ohne rechtswirksame Entscheidungen zu treffen. Hauptpflicht: Transparenz (Art. 50).</dd>
+
+  <dt>pgvector</dt>
+  <dd>PostgreSQL-Erweiterung, die einen <code>vector</code>-Datentyp und Ähnlichkeitsoperatoren für Embedding-basierte Suche bereitstellt.</dd>
+
+  <dt>RAG (Retrieval-Augmented Generation)</dt>
+  <dd>Architekturmuster, das ein LLM zur Generierung mit einem externen Retrieval-System kombiniert, um faktentreue Antworten ohne Fine-Tuning zu ermöglichen.</dd>
+
+  <dt>Row-Level-Security (RLS)</dt>
+  <dd>PostgreSQL-Sicherheitsmechanismus, der Zugriffe auf Zeilenebene über Policies steuert. Pflicht für Supabase-Tabellen im <code>public</code>-Schema.</dd>
+
+  <dt>System-Prompt</dt>
+  <dd>Anweisungstext, der dem LLM vor jeder Nutzerinteraktion mitgegeben wird und Rolle, Verhalten und Beschränkungen festlegt.</dd>
+
+  <dt>Temperature</dt>
+  <dd>Sampling-Parameter, der die Schärfe der Wahrscheinlichkeits­verteilung über das nächste Token beim Decoding steuert. <code>T = 0</code> erzwingt greedy decoding (deterministisch); <code>T &lt; 1</code> verschärft die Verteilung; <code>T &gt; 1</code> flacht sie ab. Für faktentreue RAG-Systeme empfehlen sowohl Lehrbuchliteratur als auch Anbieter-Dokumentationen <code>T ∈ [0, 0.3]</code><a href="#cite-holtzman" class="cite">[6]</a><a href="#cite-openai-temp" class="cite">[20]</a>.</dd>
+
+  <dt>Token</dt>
+  <dd>Kleinste textuelle Einheit, mit der ein LLM rechnet (typischerweise Wortteile). Ein deutscher Satz hat etwa 1,5–2× so viele Tokens wie Wörter.</dd>
+
+  <dt>Vektordatenbank</dt>
+  <dd>Datenbank, die für die Speicherung und Ähnlichkeitssuche von Embedding-Vektoren optimiert ist.</dd>
+</dl>
+</section>
+
+<!-- ============== KAPITEL 9 ANHANG ============== -->
+<section id="kap-9">
+<h2>9. Anhang</h2>
+
+<h3>A.1 Vollständiger System-Prompt</h3>
+<p>Auszug aus <code>workflows/v4.7/rag-workflows-v4.7.2.json</code>, Node <code>AI Agent1</code>, Parameter <code>options.systemMessage</code>:</p>
+<pre><code>Du bist der HR-Assistant der BergTech Maschinenbau GmbH.
+
+ARBEITSWEISE (zwingend):
+  - Bei JEDER inhaltlichen Frage rufst du ZUERST das Tool
+    "Supabase Vector Store" auf und durchsuchst die HR-Dokumente.
+    Ohne Ausnahme.
+  - Du stellst KEINE Rückfragen bevor du gesucht hast.
+    Niemals "soll ich nachschauen?" oder "meinst du X oder Y?".
+    Erst suchen, dann antworten.
+  - Du nutzt AUSSCHLIESSLICH den Inhalt der gefundenen Dokumente.
+    Kein allgemeines Wissen, keine Deutschland-Gesetze,
+    keine Beispiel-Listen, keine Vorlagen.
+
+ANTWORT:
+  - Antworte knapp und konkret mit den Fakten aus den Dokumenten.
+  - Nenne die Quelle als [Dokumentname].
+  - Wenn die Suche NICHTS Passendes liefert:
+    "Diese Information liegt mir in den HR-Dokumenten nicht vor.
+     Bitte wende dich an hr@bergtech.de."
+    Sonst nichts erfinden.
+
+VERBOTEN:
+  - Allgemeine Firmenregel-Listen oder Vorlagen erstellen.
+  - Auf gesetzliche Mindeststandards ausweichen.
+  - Antworten ohne vorherigen Tool-Aufruf.</code></pre>
+
+<h3>A.2 Supabase-Schema (vollständig)</h3>
+<pre><code>create extension if not exists vector;
+
+create table documents (
+  id        bigserial primary key,
+  content   text,
+  metadata  jsonb,
+  embedding vector(1536)
+);
+
+create or replace function match_documents (
+  query_embedding vector(1536),
+  match_count int default null,
+  filter jsonb default '{}'
+) returns table (
+  id bigint,
+  content text,
+  metadata jsonb,
+  similarity float
+)
+language sql
+as $$
+  select d.id, d.content, d.metadata,
+         1 - (d.embedding &lt;=&gt; query_embedding) as similarity
+  from documents d
+  where d.metadata @&gt; filter
+  order by d.embedding &lt;=&gt; query_embedding
+  limit match_count;
+$$;
+
+create index on documents
+  using hnsw (embedding vector_cosine_ops);
+
+alter table documents enable row level security;
+
+create policy "service_role full access"
+  on documents for all to service_role
+  using (true) with check (true);</code></pre>
+
+<h3>A.3 Workflow-Konfigurationszusammenfassung</h3>
+<table>
+<thead><tr><th>Parameter</th><th>Wert</th></tr></thead>
+<tbody>
+<tr><td>Workflow-Version</td><td><code>v4.7.2</code></td></tr>
+<tr><td>n8n-Version (Laufzeit)</td><td>2.17.7</td></tr>
+<tr><td>Chat-Trigger-Typ</td><td><code>@n8n/n8n-nodes-langchain.chatTrigger</code></td></tr>
+<tr><td>Agent-Typ</td><td><code>openAiFunctionsAgent</code></td></tr>
+<tr><td>Chat-Modell</td><td><code>gpt-5-mini</code> (OpenAI)</td></tr>
+<tr><td>Embedding-Modell</td><td><code>text-embedding-3-small</code> (1536 dim)</td></tr>
+<tr><td>Chunk-Größe</td><td>500 Zeichen</td></tr>
+<tr><td>Chunk-Overlap</td><td>50 Zeichen</td></tr>
+<tr><td>Retrieval Top-k</td><td>8</td></tr>
+<tr><td>Similarity-Maß</td><td>Cosine</td></tr>
+<tr><td>Index-Typ</td><td>HNSW (vector_cosine_ops)</td></tr>
+<tr><td>Vector-DB</td><td>Supabase, Region Frankfurt (EU-Central)</td></tr>
+<tr><td>RLS</td><td>aktiviert (service_role only)</td></tr>
+<tr><td>Wissensbasis</td><td>5 HR-Markdown-Dokumente (<code>company-docs/anastasiia/</code>)</td></tr>
+</tbody>
+</table>
+
+<p class="footnote" style="margin-top:2rem;">© 2026 Juliana Paar — persönliche Arbeitsunterlage zum Projekt „BergTech HR Knowledge Assistant" (Gruppe 1, Modul „LLM &amp; Agentics", Hochschule Albstadt-Sigmaringen, SS 2026). Kein offizielles Abgabedokument.</p>
+</section>
+
+</body>
+</html>

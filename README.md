@@ -31,8 +31,9 @@ rag-chatbot-gruppe1/
 │   ├── qa-brief-18-05.md             # Q&A Saile-Sprechstunde
 │   └── team-update-17-05.md          # Team-Sync-Briefing
 ├── /workflows
-│   ├── rag-workflows-v4.7.json     # Aktuelle Version (Ingestion + Query)
-│   └── _archiv/                    # v4.3, v4.4, v4.6-BROKEN
+│   ├── v4.7/
+│   │   └── rag-workflows-v4.7.1.json   # Aktuelle Version (gpt-5-mini, Live-Stand 30.05.)
+│   └── _archiv/                        # v4.3, v4.4, v4.6-BROKEN, v4.7-claude-PRE-SWITCH
 └── /individual-reports
     ├── Contribution_Report_Rustam_Kohen.docx
     ├── Contribution_Report_Juliana_Paar.docx
@@ -62,15 +63,14 @@ rag-chatbot-gruppe1/
 - [x] PDF-Konvertierung des rustam/-Sets
 - [ ] Set-Auswahl oder Merge (beim Team-Sync klären)
 
-### 3. n8n Workflows 🟡
-- [ ] Supabase Project + pgvector (Juliana)
-- [ ] Supabase Credentials in n8n eintragen (sobald Projekt steht)
-- [x] Anthropic API Key in n8n Credentials (Chat-Modell)
-- [x] OpenAI API Key in n8n Credentials (Embeddings)
+### 3. n8n Workflows ✅
+- [x] Supabase Project + pgvector (Juliana)
+- [x] Supabase Credentials in n8n
+- [x] OpenAI API Key in n8n Credentials (Chat + Embeddings)
 - [x] Workflow Ingestion (Manual Trigger → Files → Vector Store)
 - [x] Workflow Query (Chat Trigger → AI Agent → Tool: Vector Store)
-- [x] JSON Export (workflows/rag-workflows-v4.7.json)
-- [ ] E2E Live-Test mit den 3 Testfragen
+- [x] JSON Export (workflows/v4.7/rag-workflows-v4.7.1.json)
+- [x] E2E Live-Test mit den 3 Testfragen (30.05.)
 
 ### 4. Dokumentation ⏳
 - [x] Implementation-Reflection (8 Sections, 9 Learnings)
@@ -121,12 +121,12 @@ rag-chatbot-gruppe1/
 | Phase | Deadline | Status |
 |-------|----------|--------|
 | Phase 1: Planning | 09.05.2026 | ✅ Done |
-| Phase 2: Setup (Supabase + Credentials) | ~20.05.2026 | 🟡 Anthropic + OpenAI Keys ✅, Supabase läuft (Juliana) |
-| Phase 3: Implementation (Workflow + Ingestion) | ~22.05.2026 | 🟡 Großteils done — v4.7 gepusht, Live-Test fehlt |
-| Phase 4: Documentation (10 Seiten + EU AI Act + Risks) | ~28.05.2026 | ⏳ In Progress (implementation-reflection ✅, Rest offen) |
-| Phase 5: Presentation (Slides + Rehearsal) | 30.05.2026 | — |
-| Submission (Teams) | 31.05.2026 | — |
-| Live-Präsentation | 01.06.2026 | — |
+| Phase 2: Setup (Supabase + Credentials) | ~20.05.2026 | ✅ Done — Supabase live, OpenAI Keys ✅ |
+| Phase 3: Implementation (Workflow + Ingestion) | ~22.05.2026 | ✅ Done — v4.7.1 (gpt-5-mini), E2E-Test 30.05. |
+| Phase 4: Documentation (10 Seiten + EU AI Act + Risks) | ~28.05.2026 | 🟡 In Progress (Reflection ✅, Gruppendoku-Draft ✅, EU AI Act + Architektur + Risks offen) |
+| Phase 5: Presentation (Slides + Rehearsal) | 30.05.2026 | ⏳ |
+| Submission (Teams) | 31.05.2026 | ⏳ |
+| Live-Präsentation | 01.06.2026 | ⏳ |
 
 ---
 
@@ -153,9 +153,9 @@ rag-chatbot-gruppe1/
 
 **Team:** Rustam Kohen + Juliana Paar + Anastasiia Sereda
 **Email:** korus23@googlemail.com  
-**Updated:** 17.05.2026
+**Updated:** 30.05.2026
 
 ---
 
-**Status:** 🟡 Implementation done, Live-Test + Doku offen
-**Next:** Team-Sync 17.05. → Set-Auswahl + Doku-Aufteilung; Q&A Saile 18.05. 8:00
+**Status:** ✅ Implementation + Live-Test done (gpt-5-mini, 30.05.) — Doku + Slides offen
+**Next:** Gruppendoku finalisieren, Architektur + Risks ergänzen, Slides bauen; Submission 31.05.

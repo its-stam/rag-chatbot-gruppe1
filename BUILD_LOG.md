@@ -8,6 +8,48 @@
 
 ## Iterationen
 
+### [2026-05-30] Iteration 5 — Live-Integration + LLM-Switch
+
+**Phase:** Implementation (Live)
+**Status:** done
+
+**Was gebaut:**
+- E2E Live-Test mit 3 Demo-Fragen erfolgreich (Onboarding, Urlaub, Pflichttrainings)
+- LLM-Switch: Claude 3.5 Haiku → OpenAI gpt-5-mini (OpenAI-Functions-Agent erzwingt OpenAI-Chat-Modell, Claude-Modell abgekündigt)
+- Workflow neu exportiert: v4.7.1 (13 Nodes, gpt-5-mini)
+- System-Prompt gehärtet (Tool-Zwang, keine Rückfragen vor Suche, kein Allgemeinwissen, HR-Fallback)
+
+**Gefundene Bugs (Live-Integration):**
+1. Vector-DB enthielt Metadaten statt Dokumentinhalte (Data-Loader-Fehlkonfig) — erst durch inhaltliche Stichprobe erkennbar
+2. LLM wich ohne expliziten Prompt-Zwang auf Allgemeinwissen aus statt Tool zu nutzen
+3. Modell-Abkündigung + Kontingentgrenzen → temporäre Ausfälle (Drittanbieter-Abhängigkeit real)
+4. Embedding-Konsistenz: Ingestion + Query müssen dasselbe Modell nutzen, sonst keine Treffer
+
+**Doku-Take-Aways (für Gruppendoku):**
+- Datenmenge ≠ Datenqualität (Metadaten-Bug als Lesson)
+- Tool-Nutzung muss im Prompt erzwungen werden
+- LLM-Switch als pragmatische Architekturentscheidung dokumentieren
+
+### [2026-05-17] Iteration 4 — Workflow v4.7 Chat-Trigger-Fix
+
+**Phase:** Implementation
+**Status:** done
+
+**Was gebaut:**
+- Chat Trigger Fix: `n8n-nodes-base.webhook` → `@n8n/n8n-nodes-langchain.chatTrigger` (Sidebar-Integration)
+- Respond-to-Webhook-Node entfernt (AI Agent ist letztes Node)
+- 5 HR-Docs als PDF konvertiert (Saile-Vorgabe)
+- Alte Versionen archiviert (v4.3, v4.4, v4.6-BROKEN)
+
+### [2026-05-16] Iteration 3 — Workflow v4.4 Fixes
+
+**Phase:** Implementation
+**Status:** done
+
+**Was gebaut:**
+- Read/Write Files: `operation` + `fileSelector` ergänzt (waren leer)
+- Supabase Vector Store (retrieve): `tableName: "documents"` gesetzt
+
 ### [2026-05-11] Iteration 2 — Workflow v4.3 Hardening
 
 **Phase:** Setup (Pre-Sprint, Post-Review)
@@ -76,18 +118,17 @@
 |--------|-------|--------|--------|
 | Pre   | 10.05 | ✅ Done | Workflow v4.2, Docs gepusht, Name fix |
 | Pre   | 11.05 | ✅ Done | Workflow v4.3 Hardening, Q&A-Vorbereitung |
-| 1 | 13.05 | ⏳ | Supabase + Credentials |
-| 2 | 14.-15.05 | — | Workflow live testen |
-| 3 | 16.-19.05 | — | 3 Demo-Fragen, Tuning |
-| 4 | 20.-21.05 | — | E2E Test, Deployment (optional) |
-| 5 | 22.-27.05 | — | Doku + EU AI Act |
-| 6 | 28.-31.05 | — | Slides, Rehearsal, Submission |
+| 1 | 13.-15.05 | ✅ Done | Supabase + Credentials, v4.4 Fixes |
+| 2 | 16.-17.05 | ✅ Done | v4.7 Chat-Trigger-Fix, PDFs, Archiv |
+| 3 | 18.-29.05 | ✅ Done | Q&A Saile, Gruppendoku-Draft |
+| 4 | 30.05 | ✅ Done | Live-Integration, LLM-Switch gpt-5-mini, E2E-Test, v4.7.1 |
+| 5 | 30.-31.05 | ⏳ | Doku finalisieren, Slides, Submission |
 
 ---
 
 ## Konventionen
 
 - **Screenshots:** `/workflows/screens/iter-N-titel.png`
-- **JSON Exports:** `/workflows/rag-workflows-combined.json`
-- **System Prompts:** `/workflows/prompts/system-vN.md`
-- **API Keys:** **NIEMALS** in Files committen, nur lokal in `.env`
+- **JSON Exports:** `/workflows/v4.7/rag-workflows-v4.7.1.json` (aktuell), alte Versionen in `/workflows/_archiv/`
+- **System Prompts:** im Workflow-JSON (AI-Agent-Node), nicht separat
+- **API Keys:** **NIEMALS** in Files committen, nur lokal in n8n-Credentials

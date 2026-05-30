@@ -8,3 +8,4 @@ node_modules/
 .n8n/
 .claude-flow/
 bonus/
+CONTEXT_SAVE_*

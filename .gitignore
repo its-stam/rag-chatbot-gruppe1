@@ -15,3 +15,14 @@ package-lock.json
 docs/rag-architecture-explained.docx
 
 bonus/
+
+# Playwright-Test-Artefakte (lokale Browser-Snapshots)
+.playwright-mcp/
+
+# docs/team-doku — nur ausgewählte Dateien werden gepusht
+# (Aenderungsvorschlaege_Projektdokumentation.docx, dokumentation-de.html, qa-vorbereitung-de.html)
+docs/de/dokumentation-en.html
+docs/de/praesentation-de.html
+docs/de/presentation-en.html
+docs/de/bilder-infografiken-checkliste.md
+docs/de/LLM_Agentics_BergTech_HR_RAG_Praesentation_Gruppe1.pptx

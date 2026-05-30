@@ -27,12 +27,14 @@ rag-chatbot-gruppe1/
 │       ├── 01-onboarding-guide.md … 05-offboarding-checklist.md
 │       └── pdf/                    # 5 PDFs
 ├── /docs
+│   ├── architecture.html                   # Architektur-Diagramm
+│   ├── präsentation-leitfaden.md           # Step-by-Step für die Live-Demo
 │   ├── implementation-reflection.md       # 8 Sections, 9 Learnings
 │   ├── qa-brief-18-05.md                  # Q&A Saile-Sprechstunde
 │   ├── team-update-17-05.md               # Team-Sync-Briefing
-│   ├── docs-review-anastasiia.md          # Quality-Review Nastjas Docs
+│   ├── docs-review-anastasiia.md          # Quality-Review Anastasiias Docs
 │   ├── gruppendoku-feedback-anastasiia.md # Abgleich Doku vs. Live-Implementierung
-│   ├── reingest-koordination.md           # Re-Ingest Ablauf Rustam + Nastja
+│   ├── reingest-koordination.md           # Re-Ingest Ablauf Rustam + Anastasiia
 │   └── vorschlag-arbeitszeit-faq.md       # FAQ-Ergänzungsvorschlag (Recall-Fix)
 ├── /workflows
 │   ├── v4.7/
@@ -46,10 +48,8 @@ rag-chatbot-gruppe1/
 ```
 
 **Geplant für später (noch nicht angelegt):**
-- `docs/eu-ai-act-analysis.md` — EU AI Act (Anastasiia)
-- `docs/architecture.md` — Architektur-Diagramm
-- `docs/risks.md` — Risk-Section Case 1
-- `docs/documentation.md` — 10-Seiten Doku
+- `docs/risks.md` — Risk-Section Case 1 (in Gruppendoku Kap. 6 enthalten)
+- `docs/documentation.md` — 10-Seiten Doku (Gruppendoku liegt als .docx vor)
 - `presentations/` — Slides + Speaker Notes + Demo Script
 
 ---
@@ -73,15 +73,15 @@ rag-chatbot-gruppe1/
 - [x] Workflow Ingestion (Manual Trigger → Files → Vector Store)
 - [x] Workflow Query (Chat Trigger → AI Agent → Tool: Vector Store)
 - [x] JSON Export (workflows/v4.7/rag-workflows-v4.7.2.json)
-- [ ] E2E Live-Test der 3 Testfragen — Verifikation nach Re-Ingest ausstehend (Sync mit Nastja, siehe docs/reingest-koordination.md)
+- [ ] E2E Live-Test der 3 Testfragen — Verifikation nach Re-Ingest ausstehend (siehe docs/reingest-koordination.md)
 
-### 4. Dokumentation ⏳
+### 4. Dokumentation 🟡
 - [x] Implementation-Reflection (8 Sections, 9 Learnings)
 - [x] Q&A-Brief für Saile-Sprechstunde
-- [ ] 10-Seiten Doku zusammenführen
-- [ ] EU AI Act Analyse (Anastasiia)
-- [ ] Architektur-Diagramm
-- [ ] Risk-Section (Case-1-spezifisch)
+- [x] Architektur-Diagramm (docs/architecture.html)
+- [x] EU AI Act Analyse (Anastasiia)
+- [ ] 10-Seiten Doku finalisieren (Gruppendoku als .docx liegt vor)
+- [ ] Risk-Section (in Gruppendoku Kap. 6 enthalten)
 - [ ] PDF generieren
 
 ### 5. Präsentation ⏳
@@ -96,11 +96,11 @@ rag-chatbot-gruppe1/
 
 ### Documentation
 - [ ] Company Situation (1 S.)
-- [ ] Architecture (1 S.)
+- [x] Architecture (1 S.) — docs/architecture.html
 - [ ] Workflow Details (2 S.)
 - [ ] Example Questions (1 S.)
 - [ ] Risks (1 S.)
-- [ ] EU AI Act (1.5 S.)
+- [x] EU AI Act (1.5 S.) — von Anastasiia geliefert
 - [x] Reflection (1.5 S.) — implementation-reflection.md liegt vor
 - [ ] Appendix (notes, logs, code)
 
@@ -126,7 +126,7 @@ rag-chatbot-gruppe1/
 | Phase 1: Planning | 09.05.2026 | ✅ Done |
 | Phase 2: Setup (Supabase + Credentials) | ~20.05.2026 | ✅ Done — Supabase live, OpenAI Keys ✅ |
 | Phase 3: Implementation (Workflow + Ingestion) | ~22.05.2026 | 🟡 v4.7.2 gebaut (gpt-5-mini, anastasiia/-Set) — verifizierter E2E-Test nach Re-Ingest offen |
-| Phase 4: Documentation (10 Seiten + EU AI Act + Risks) | ~28.05.2026 | 🟡 In Progress (Reflection ✅, Gruppendoku-Draft ✅, EU AI Act + Architektur + Risks offen) |
+| Phase 4: Documentation (10 Seiten + EU AI Act + Risks) | ~28.05.2026 | 🟡 In Progress (Reflection ✅, EU AI Act ✅, Architektur ✅, Gruppendoku-Draft liegt vor) |
 | Phase 5: Presentation (Slides + Rehearsal) | 30.05.2026 | ⏳ |
 | Submission (Teams) | 31.05.2026 | ⏳ |
 | Live-Präsentation | 01.06.2026 | ⏳ |
@@ -160,5 +160,5 @@ rag-chatbot-gruppe1/
 
 ---
 
-**Status:** 🟡 Workflow v4.7.2 gebaut (gpt-5-mini, anastasiia/-Set) — verifizierter E2E-Test, Doku + Slides offen
-**Next:** Re-Ingest-Sync mit Nastja, dann 3 Testfragen verifizieren; Gruppendoku + Architektur + Risks; Slides; Submission 31.05.
+**Status:** 🟡 Workflow v4.7.2 gebaut — E2E-Test nach Re-Ingest offen, Gruppendoku + Slides in Arbeit
+**Next:** Re-Ingest + 3 Testfragen verifizieren; Slides bauen; Submission 31.05.

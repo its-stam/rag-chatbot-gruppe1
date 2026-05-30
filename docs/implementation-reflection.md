@@ -3,13 +3,13 @@
 **Projekt:** LLM & Agentics, Gruppe 1, Case 1  
 **Firma:** BergTech Maschinenbau GmbH (Dozent-Vorgabe)  
 **Produkt:** HR Knowledge Assistant — RAG-Chatbot mit n8n + Supabase  
-**Stand:** 11.05.2026 | **Deadline:** 31.05.2026 | **Präsentation:** 01.06.2026
+**Stand:** 30.05.2026 | **Deadline:** 31.05.2026 | **Präsentation:** 01.06.2026
 
 ---
 
 ## Executive Summary
 
-Workflow steht, Docs stehen, Architektur validiert. 3 Nodes pro Section, Dozent-konform. Das Produkt ist zu 60% fertig — was fehlt sind Credentials, Supabase-Setup und die komplette Doku. 
+Workflow v4.7.2 steht, E2E-Test bestanden (Video 30.05.), Docs komplett. Das Produkt ist zu ~90% fertig — was fehlt sind Slides und Gruppendoku-Finalisierung. Team-Lieferung: Teammitglied A (EU AI Act + Gruppendoku), Teammitglied B (Supabase-Infra).
 
 ---
 
@@ -60,9 +60,9 @@ Was produziert wurde:
 
 **Learning:** Drag-and-Drop in der UI > JSON editieren. Die Connection-Logik ist versionsabhängig.
 
-### 4. Team-Commits: 0
+### 4. Team-Arbeitsteilung
 
-Teammitglied B (Supabase) und Teammitglied A (EU AI Act) haben Stand 10.05. keine Commits. Das blockiert Phase 3 Setup (Supabase brauchen wir für den Live-Test) und die EU AI Act Sektion in der Doku.
+ Später: Teammitglied A lieferte EU AI Act und Gruppendoku (.docx), Teammitglied B die Supabase-Infrastruktur.  
 
 **Risk:** 
 

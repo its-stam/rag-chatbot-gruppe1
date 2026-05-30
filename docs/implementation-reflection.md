@@ -3,13 +3,13 @@
 **Projekt:** LLM & Agentics, Gruppe 1, Case 1  
 **Firma:** BergTech Maschinenbau GmbH (Saile-Vorgabe)  
 **Produkt:** HR Knowledge Assistant — RAG-Chatbot mit n8n + Supabase  
-**Stand:** 11.05.2026 | **Deadline:** 31.05.2026 | **Präsentation:** 01.06.2026
+**Stand:** 30.05.2026 | **Deadline:** 31.05.2026 | **Präsentation:** 01.06.2026
 
 ---
 
 ## Executive Summary
 
-Workflow steht, Docs stehen, Architektur validiert. 3 Nodes pro Section, Saile-konform. Das Produkt ist zu 60% fertig — was fehlt sind Credentials, Supabase-Setup und die komplette Doku. Blockiert durch Team: 0 Commits von Juliana und Anastasiia seit Projektstart.
+Workflow v4.7.2 steht, E2E-Test bestanden (Video 30.05.), Docs komplett. Das Produkt ist zu ~90% fertig — was fehlt sind Slides und Gruppendoku-Finalisierung. Team-Lieferung: Anastasiia (EU AI Act + Gruppendoku), Juliana (Supabase-Infra).
 
 ---
 
@@ -60,9 +60,9 @@ Was produziert wurde:
 
 **Learning:** Drag-and-Drop in der UI > JSON editieren. Die Connection-Logik ist versionsabhängig.
 
-### 4. Team-Commits: 0
+### 4. Team-Lieferung kam spät, aber kam (Supabase fehlt noch)
 
-Juliana (Supabase) und Anastasiia (EU AI Act) haben Stand 10.05. keine Commits. Das blockiert Phase 3 Setup (Supabase brauchen wir für den Live-Test) und die EU AI Act Sektion in der Doku.
+Anfangs 0 Commits von beiden Teammates. Später: Anastasiia lieferte EU AI Act und Gruppendoku (.docx), Juliana die Supabase-Infrastruktur. Juliana setzte sich erst am 30.05. nach 2 Wochen Stille wieder in Kontakt. Fairness-Regel: 33 % für alle, keine schlechte Bewertung.
 
 **Risk:** Wenn das so bleibt, muss Rustam Supabase + EU AI Act allein machen. Das ist machbar, aber eng für die Deadline.
 

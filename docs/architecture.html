@@ -43,137 +43,145 @@
   </header>
 
   <div class="card-svg">
-  <svg viewBox="0 0 1060 640" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <svg viewBox="0 0 1000 605" xmlns="http://www.w3.org/2000/svg" width="100%">
     <defs>
       <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
         <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
       </pattern>
-      <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <marker id="arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
         <path d="M0,0 L6,3 L0,6 Z" fill="#64748b"/>
       </marker>
-      <marker id="arrowTool" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <path d="M0,0 L6,3 L0,6 Z" fill="#34d399"/>
+      <marker id="arrowSub" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#475569"/>
+      </marker>
+      <marker id="arrowStart" markerWidth="9" markerHeight="9" refX="3" refY="3" orient="auto">
+        <path d="M6,0 L0,3 L6,6 Z" fill="#475569"/>
+      </marker>
+      <marker id="arrowStartMain" markerWidth="9" markerHeight="9" refX="3" refY="3" orient="auto">
+        <path d="M6,0 L0,3 L6,6 Z" fill="#64748b"/>
       </marker>
     </defs>
-    <rect width="1060" height="640" fill="url(#grid)"/>
+    <rect width="1000" height="605" fill="url(#grid)"/>
 
-    <!-- ===================== CONNECTIONS (drawn first, behind boxes) ===================== -->
-    <!-- INGESTION main flow -->
-    <line x1="225" y1="120" x2="285" y2="120" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <line x1="465" y1="120" x2="700" y2="120" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <!-- splitter -> loader -> vectorstore (sub nodes feeding insert) -->
-    <line x1="345" y1="250" x2="345" y2="215" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-    <line x1="345" y1="335" x2="345" y2="300" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-    <line x1="560" y1="250" x2="700" y2="160" stroke="#22d3ee" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-    <!-- loader -> insert -->
-    <line x1="430" y1="190" x2="700" y2="135" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
+    <!-- ============ INGESTION ============ -->
+    <rect x="30" y="55" width="940" height="215" rx="12" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4" opacity="0.45"/>
+    <text x="48" y="80" fill="#34d399" font-size="12" font-weight="700">INGESTION  ·  einmalig / bei Doc-Update</text>
 
-    <!-- QUERY main flow -->
-    <line x1="225" y1="430" x2="430" y2="430" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <!-- chat model -> agent -->
-    <line x1="345" y1="555" x2="480" y2="475" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrowTool)"/>
-    <!-- vector tool -> agent -->
-    <line x1="700" y1="475" x2="575" y2="445" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrowTool)"/>
-    <!-- embeddings -> retrieve store -->
-    <line x1="760" y1="560" x2="760" y2="510" stroke="#22d3ee" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-
-    <!-- ===================== INGESTION BOUNDARY ===================== -->
-    <rect x="40" y="70" width="820" height="280" rx="12" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4" opacity="0.5"/>
-    <text x="58" y="92" fill="#34d399" font-size="11" font-weight="700">📥 INGESTION  ·  Manueller Trigger</text>
+    <!-- main flow -->
+    <line x1="190" y1="120" x2="248" y2="120" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <line x1="422" y1="120" x2="768" y2="120" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <!-- sub: splitter -> loader -> insert ; embeddings -> insert -->
+    <line x1="632" y1="218" x2="658" y2="218" stroke="#475569" stroke-width="1.2" stroke-dasharray="3,3" marker-start="url(#arrowStart)" marker-end="url(#arrowSub)"/>
+    <line x1="810" y1="195" x2="820" y2="158" stroke="#475569" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrowSub)"/>
+    <line x1="450" y1="200" x2="766" y2="148" stroke="#475569" stroke-width="1.2" stroke-dasharray="3,3" marker-start="url(#arrowStart)" marker-end="url(#arrowSub)"/>
 
     <!-- READ MD-File -->
     <g>
-      <rect x="105" y="95" width="120" height="50" rx="6" fill="#0f172a"/>
-      <rect x="105" y="95" width="120" height="50" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
-      <text x="165" y="116" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="500">READ MD-File</text>
-      <text x="165" y="131" fill="#64748b" font-size="8" text-anchor="middle">Manual Trigger</text>
+      <rect x="60" y="95" width="130" height="50" rx="6" fill="#0f172a"/>
+      <rect x="60" y="95" width="130" height="50" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+      <text x="125" y="116" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">READ MD-File</text>
+      <text x="125" y="132" fill="#64748b" font-size="8" text-anchor="middle">Manual Trigger</text>
     </g>
     <!-- Read/Write Files -->
     <g>
-      <rect x="285" y="95" width="180" height="50" rx="6" fill="#0f172a"/>
-      <rect x="285" y="95" width="180" height="50" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
-      <text x="375" y="113" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="500">Read/Write Files</text>
-      <text x="375" y="131" fill="#64748b" font-size="8" text-anchor="middle">anastasiia/**/*.md</text>
+      <rect x="252" y="95" width="170" height="50" rx="6" fill="#0f172a"/>
+      <rect x="252" y="95" width="170" height="50" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+      <text x="337" y="114" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">Read/Write Files</text>
+      <text x="337" y="132" fill="#64748b" font-size="8" text-anchor="middle">anastasiia/**/*.md</text>
     </g>
-    <!-- Text Splitter -->
+    <!-- Supabase INSERT -->
     <g>
-      <rect x="270" y="250" width="150" height="50" rx="6" fill="#0f172a"/>
-      <rect x="270" y="250" width="150" height="50" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
-      <text x="345" y="271" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Text Splitter</text>
-      <text x="345" y="287" fill="#64748b" font-size="8" text-anchor="middle">500 / overlap 50</text>
+      <rect x="770" y="95" width="160" height="60" rx="6" fill="#0f172a"/>
+      <rect x="770" y="95" width="160" height="60" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="850" y="118" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">Supabase</text>
+      <text x="850" y="134" fill="#a78bfa" font-size="9" text-anchor="middle">INSERT · pgvector</text>
+      <text x="850" y="147" fill="#64748b" font-size="8" text-anchor="middle">Tabelle documents</text>
     </g>
-    <!-- Data Loader -->
+    <!-- Embeddings (ingest, sub) -->
     <g>
-      <rect x="270" y="335" width="150" height="48" rx="6" fill="#0f172a"/>
-      <rect x="270" y="335" width="150" height="48" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
-      <text x="345" y="363" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Data Loader</text>
+      <rect x="290" y="195" width="155" height="48" rx="6" fill="#0f172a"/>
+      <rect x="290" y="195" width="155" height="48" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+      <text x="367" y="215" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Embeddings</text>
+      <text x="367" y="230" fill="#64748b" font-size="8" text-anchor="middle">text-embedding-3-small</text>
     </g>
-    <!-- Embeddings (ingest) -->
+    <!-- Text Splitter (sub) -->
     <g>
-      <rect x="490" y="250" width="150" height="50" rx="6" fill="#0f172a"/>
-      <rect x="490" y="250" width="150" height="50" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
-      <text x="565" y="271" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Embeddings</text>
-      <text x="565" y="287" fill="#64748b" font-size="8" text-anchor="middle">text-embedding-3-small</text>
+      <rect x="480" y="195" width="150" height="48" rx="6" fill="#0f172a"/>
+      <rect x="480" y="195" width="150" height="48" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="555" y="215" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Text Splitter</text>
+      <text x="555" y="230" fill="#64748b" font-size="8" text-anchor="middle">500 / Overlap 50</text>
     </g>
-    <!-- Supabase Insert -->
+    <!-- Default Data Loader (sub) -->
     <g>
-      <rect x="700" y="95" width="140" height="80" rx="6" fill="#0f172a"/>
-      <rect x="700" y="95" width="140" height="80" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
-      <text x="770" y="128" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">Supabase</text>
-      <text x="770" y="144" fill="#e2e8f0" font-size="10" text-anchor="middle">Vector Store</text>
-      <text x="770" y="160" fill="#a78bfa" font-size="8" text-anchor="middle">INSERT · pgvector</text>
+      <rect x="660" y="195" width="160" height="48" rx="6" fill="#0f172a"/>
+      <rect x="660" y="195" width="160" height="48" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="740" y="215" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Default Data Loader</text>
+      <text x="740" y="230" fill="#64748b" font-size="8" text-anchor="middle">Chunks + Metadaten</text>
     </g>
 
-    <!-- ===================== QUERY BOUNDARY ===================== -->
-    <rect x="40" y="380" width="880" height="240" rx="12" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4" opacity="0.5"/>
-    <text x="58" y="402" fill="#22d3ee" font-size="11" font-weight="700">💬 QUERY  ·  Chat Trigger</text>
+    <!-- ============ QUERY ============ -->
+    <rect x="30" y="320" width="940" height="215" rx="12" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4" opacity="0.45"/>
+    <text x="48" y="345" fill="#22d3ee" font-size="12" font-weight="700">QUERY  ·  pro Nutzerfrage</text>
 
-    <!-- Chat trigger -->
+    <!-- main flow -->
+    <line x1="190" y1="390" x2="378" y2="390" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <line x1="562" y1="390" x2="768" y2="390" stroke="#64748b" stroke-width="1.6" marker-start="url(#arrowStartMain)" marker-end="url(#arrow)"/>
+    <text x="640" y="382" fill="#64748b" font-size="8">Tool-Call</text>
+    <!-- sub arrows -->
+    <line x1="375" y1="465" x2="430" y2="422" stroke="#475569" stroke-width="1.2" stroke-dasharray="3,3" marker-start="url(#arrowStart)" marker-end="url(#arrowSub)"/>
+    <line x1="850" y1="465" x2="850" y2="424" stroke="#475569" stroke-width="1.2" stroke-dasharray="3,3" marker-start="url(#arrowStart)" marker-end="url(#arrowSub)"/>
+
+    <!-- Chat Message -->
     <g>
-      <rect x="105" y="405" width="120" height="50" rx="6" fill="#0f172a"/>
-      <rect x="105" y="405" width="120" height="50" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
-      <text x="165" y="426" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Chat Message</text>
-      <text x="165" y="441" fill="#64748b" font-size="8" text-anchor="middle">Chat Trigger</text>
+      <rect x="60" y="365" width="130" height="50" rx="6" fill="#0f172a"/>
+      <rect x="60" y="365" width="130" height="50" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+      <text x="125" y="386" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">Chat Message</text>
+      <text x="125" y="402" fill="#64748b" font-size="8" text-anchor="middle">Chat Trigger</text>
     </g>
     <!-- AI Agent -->
     <g>
-      <rect x="430" y="400" width="145" height="60" rx="6" fill="#0f172a"/>
-      <rect x="430" y="400" width="145" height="60" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
-      <text x="502" y="426" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">AI Agent</text>
-      <text x="502" y="442" fill="#64748b" font-size="8" text-anchor="middle">OpenAI Functions</text>
+      <rect x="378" y="360" width="184" height="60" rx="6" fill="#0f172a"/>
+      <rect x="378" y="360" width="184" height="60" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+      <text x="470" y="385" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">AI Agent</text>
+      <text x="470" y="401" fill="#64748b" font-size="8" text-anchor="middle">OpenAI Functions Agent</text>
     </g>
-    <!-- Chat Model -->
+    <!-- Supabase RETRIEVE -->
     <g>
-      <rect x="270" y="555" width="150" height="50" rx="6" fill="#0f172a"/>
-      <rect x="270" y="555" width="150" height="50" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
-      <text x="345" y="576" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Chat Model</text>
-      <text x="345" y="592" fill="#fbbf24" font-size="8" text-anchor="middle">gpt-5-mini</text>
+      <rect x="770" y="360" width="160" height="60" rx="6" fill="#0f172a"/>
+      <rect x="770" y="360" width="160" height="60" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="850" y="383" fill="#e2e8f0" font-size="11" text-anchor="middle" font-weight="600">Supabase</text>
+      <text x="850" y="399" fill="#a78bfa" font-size="9" text-anchor="middle">RETRIEVE · Tool</text>
+      <text x="850" y="412" fill="#64748b" font-size="8" text-anchor="middle">top-8 · Cosine</text>
     </g>
-    <!-- Vector Store retrieve (tool) -->
+    <!-- Chat Model (sub) -->
     <g>
-      <rect x="700" y="425" width="140" height="60" rx="6" fill="#0f172a"/>
-      <rect x="700" y="425" width="140" height="60" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
-      <text x="770" y="450" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="600">Supabase</text>
-      <text x="770" y="465" fill="#a78bfa" font-size="8" text-anchor="middle">RETRIEVE · Tool</text>
-      <text x="770" y="478" fill="#64748b" font-size="8" text-anchor="middle">top-8 · cosine</text>
+      <rect x="300" y="465" width="150" height="48" rx="6" fill="#0f172a"/>
+      <rect x="300" y="465" width="150" height="48" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+      <text x="375" y="485" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Chat Model</text>
+      <text x="375" y="500" fill="#fbbf24" font-size="9" text-anchor="middle">gpt-5-mini</text>
     </g>
-    <!-- Embeddings (retrieve) -->
+    <!-- Embeddings query (sub) -->
     <g>
-      <rect x="685" y="560" width="150" height="48" rx="6" fill="#0f172a"/>
-      <rect x="685" y="560" width="150" height="48" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
-      <text x="760" y="588" fill="#e2e8f0" font-size="9" text-anchor="middle">Embeddings (Query)</text>
+      <rect x="772" y="465" width="156" height="48" rx="6" fill="#0f172a"/>
+      <rect x="772" y="465" width="156" height="48" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+      <text x="850" y="485" fill="#e2e8f0" font-size="10" text-anchor="middle" font-weight="500">Embeddings</text>
+      <text x="850" y="500" fill="#64748b" font-size="8" text-anchor="middle">text-embedding-3-small</text>
     </g>
 
     <!-- legend -->
-    <g transform="translate(58,608)">
-      <rect x="0" y="-2" width="11" height="11" rx="2" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
-      <text x="16" y="8" fill="#94a3b8" font-size="9">Trigger / Agent</text>
-      <rect x="150" y="-2" width="11" height="11" rx="2" fill="rgba(8,51,68,0.4)" stroke="#22d3ee"/>
-      <text x="166" y="8" fill="#94a3b8" font-size="9">Embeddings</text>
-      <rect x="290" y="-2" width="11" height="11" rx="2" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
-      <text x="306" y="8" fill="#94a3b8" font-size="9">Supabase / Vector</text>
-      <rect x="455" y="-2" width="11" height="11" rx="2" fill="rgba(120,53,15,0.3)" stroke="#fbbf24"/>
-      <text x="471" y="8" fill="#94a3b8" font-size="9">LLM (gpt-5-mini)</text>
+    <g transform="translate(48,558)">
+      <rect x="0" y="-9" width="11" height="11" rx="2" fill="rgba(6,78,59,0.4)" stroke="#34d399"/>
+      <text x="16" y="0" fill="#94a3b8" font-size="9">Trigger / Agent</text>
+      <rect x="150" y="-9" width="11" height="11" rx="2" fill="rgba(8,51,68,0.4)" stroke="#22d3ee"/>
+      <text x="166" y="0" fill="#94a3b8" font-size="9">Embeddings</text>
+      <rect x="300" y="-9" width="11" height="11" rx="2" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/>
+      <text x="316" y="0" fill="#94a3b8" font-size="9">Supabase / Vector</text>
+      <rect x="470" y="-9" width="11" height="11" rx="2" fill="rgba(120,53,15,0.3)" stroke="#fbbf24"/>
+      <text x="486" y="0" fill="#94a3b8" font-size="9">LLM (gpt-5-mini)</text>
+      <line x1="640" y1="-4" x2="668" y2="-4" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <text x="674" y="0" fill="#94a3b8" font-size="9">Datenfluss</text>
+      <line x1="772" y1="-4" x2="800" y2="-4" stroke="#475569" stroke-width="1.5" marker-start="url(#arrowStart)" marker-end="url(#arrowSub)"/>
+      <text x="806" y="0" fill="#94a3b8" font-size="9">Anfrage / Antwort</text>
     </g>
   </svg>
   </div>

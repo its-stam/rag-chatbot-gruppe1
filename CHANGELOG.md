@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### 30.05.2026 — Live-Integration + LLM-Switch
+- ✅ E2E Live-Test mit 3 Demo-Fragen erfolgreich (Onboarding, Urlaub, Pflichttrainings)
+- 🔧 LLM-Switch: Anthropic Claude 3.5 Haiku → **OpenAI gpt-5-mini**. Grund: OpenAI-Functions-Agent erzwingt OpenAI-Chat-Modell, Anthropic-Modell zudem abgekündigt
+- 🔧 Workflow neu exportiert: `workflows/v4.7/rag-workflows-v4.7.1.json` (13 Nodes, gpt-5-mini)
+- 🗂 Alte Claude-Version → `_archiv/rag-workflows-v4.7-claude-PRE-SWITCH.json` (Beleg Pre-Switch-Stand)
+- 🐛 Datenqualitäts-Bug gefunden+gefixt: Vector-DB enthielt Metadaten statt Dokumentinhalte (Data-Loader-Fehlkonfig)
+- 🔧 System-Prompt gehärtet: erzwingt Tool-Aufruf bei jeder Frage, verbietet Rückfragen vor Suche, verbietet allgemeines Wissen, expliziter HR-Fallback
+- 📁 `bonus/` Ordner angelegt: v5-Production-Variante als separater Zusatzbeleg (7 Enterprise-Patterns, SQL-Schemas, Comparison) — strikt getrennt vom v4.7-Hauptprojekt
+- 📝 Feedback an Teammitglied A zur Gruppendoku (faktische Lücken vs. Live-Implementierung) in `docs/gruppendoku-feedback-hr-set-a.md`
+
 ### 17.05.2026
 - 🐛 Workflow v4.7: Chat Trigger Fix — v4.6 hatte `n8n-nodes-base.webhook` statt `@n8n/n8n-nodes-langchain.chatTrigger` → kein n8n Chat-Sidebar möglich
 - 🔧 v4.7: `When chat message received` Node (langchain, public=true), Respond-to-Webhook entfernt (AI Agent letztes Node)
@@ -84,17 +94,18 @@
 - [x] HR-Docs als PDF (company-docs/rustam/pdf/)
 
 ### Phase 3: Implementation
-**Ziel-Ende:** ~22.05.2026 | **Status:** 🟡 Workflow done, Live-Test fehlt
+**Ziel-Ende:** ~22.05.2026 | **Status:** ✅ DONE
 - [x] Workflow Ingestion (Manual Trigger → Read/Write Files → Supabase)
 - [x] Workflow Query (Chat Trigger → AI Agent → Tool: Vector Store)
-- [x] JSON Export (rag-workflows-v4.7.json)
-- [ ] E2E Testing (3 Testfragen mit echten Embeddings, wartet auf Phase 2)
+- [x] JSON Export (v4.7.1, gpt-5-mini)
+- [x] E2E Testing (3 Testfragen mit echten Embeddings, 30.05.)
 
 ### Phase 4: Documentation
-**Ziel-Ende:** ~28.05.2026 | **Status:** ⏳ Implementation-Reflection done, Rest offen
+**Ziel-Ende:** ~28.05.2026 | **Status:** 🟡 In Progress
 - [x] Implementation-Reflection (8 Sections, 9 Learnings)
 - [x] Q&A-Brief (qa-brief-18-05.md)
-- [ ] 10-Seiten Doku
+- [x] Gruppendoku-Draft (Teammitglied A) + Feedback-Abgleich (30.05.)
+- [ ] 10-Seiten Doku finalisieren
 - [ ] EU AI Act Analyse (Teammitglied A)
 - [ ] Architektur-Diagramm
 - [ ] Risk-Section (Case-1-spezifisch)
@@ -102,42 +113,41 @@
 - [ ] PDF Generation der Doku
 
 ### Phase 5: Presentation
-**Ziel-Ende:** 30.05.2026 | **Status:** —
+**Ziel-Ende:** 30.05.2026 | **Status:** ⏳
 - [ ] Foliensatz (15 Min Sprechzeit)
 - [ ] Live Demo Rehearsal
 - [ ] Speaker Notes
 - [ ] Q&A Prep (Brief existiert)
 
 ### Submission + Live-Präsi
-- **Submission Teams:** 31.05.2026 | **Status:** —
-- **Live-Präsentation:** 01.06.2026, 15 Min + 10 Min Q&A | **Status:** —
+- **Submission Teams:** 31.05.2026 | **Status:** ⏳
+- **Live-Präsentation:** 01.06.2026, 15 Min + 10 Min Q&A | **Status:** ⏳
 
 ---
 
 ## Issue Tracking
 
 ### Open
-- **#3:** Supabase + LLM API Setup (Teammitglied B)
 - **#4:** EU AI Act Analyse (Teammitglied A)
-- **#5:** Teammitglied Bs 5 HR-Docs (kommt noch)
-- **#6:** 10-Seiten Doku zusammenführen (Gruppe)
+- **#6:** 10-Seiten Doku finalisieren (Gruppe)
 - **#7:** Architektur-Diagramm (Rustam)
 - **#8:** Risk-Section Case 1 (Gruppe)
 - **#9:** Foliensatz 15 Min (Gruppe)
-- **#10:** Live Demo Rehearsal (nach Supabase live)
-- **#11:** Set-Auswahl rustam/ vs hr-set-a/ vs de/ (Sync-Entscheidung)
 
 ### In Progress
-- Workflow Live-Test (wartet auf Supabase)
-- Doku-Drafts pro Person
+- Gruppendoku-Finalisierung (Draft + Feedback-Abgleich liegt vor)
 
 ### Closed
 - **#1:** Case definiert (BergTech HR, 09.05)
 - **#2:** rustam/-Set 5 HR-Docs geschrieben + gepusht (09.05)
 - **#2b:** hr-set-a/-Set 5 HR-Docs ins Repo (17.05, hochgeladen 09.05)
+- **#3:** Supabase + LLM API Setup — Supabase live, OpenAI Keys (30.05)
+- **#10:** Workflow Live-Test E2E mit 3 Demo-Fragen (30.05)
+- **#11:** Set-Auswahl — rustam/-Set in Ingestion (30.05)
 - **#12:** Workflow v4.7 Chat-Trigger-Fix (17.05)
 - **#13:** HR-Docs als PDF konvertiert (17.05)
 - **#14:** Repo-Description NovaWork → BergTech (17.05)
+- **#15:** LLM-Switch Claude → gpt-5-mini + Re-Export v4.7.1 (30.05)
 
 ---
 
@@ -150,5 +160,5 @@
 
 ---
 
-**Last Updated:** 17.05.2026  
-**Next Sync:** Team-Treffen 17.05. (Set-Auswahl, Doku-Aufteilung, Präsi-Verteilung)
+**Last Updated:** 30.05.2026  
+**Next:** Gruppendoku finalisieren (Architektur + Risks + EU AI Act), Slides bauen, Submission 31.05.

@@ -77,3 +77,60 @@ Die jetzige Reflexion ist sauber, aber generisch (RAG-Paradigma, Vektordatenbank
 - **Konsistenz des Embedding-Modells ist kritisch.** Ingestion und Abfrage müssen dasselbe Embedding-Modell verwenden, andernfalls liefert die Vektorsuche keine Treffer. Das Modell wurde daher explizit gesetzt, statt sich auf Voreinstellungen zu verlassen.
 
 Diese Punkte fügen sich in die bestehende Struktur von Kapitel 7 ein, ohne sie zu ersetzen.
+
+---
+
+## Update 30.05. (Stand nach Team-Sync und Workflow v4.7.2)
+
+Diese Punkte sind nach dem ursprünglichen Feedback dazugekommen. Bitte zusätzlich
+zu den obigen Stellen in der Doku berücksichtigen.
+
+### A) Set-Entscheidung — nur ein Dokumentensatz
+
+Wir nutzen für die Vektor-DB und die Demo **ausschließlich Anastasiias Dokumentensatz**
+(5 Markdown-Docs). Rustams Satz bleibt als Quell-Archiv im Repo, wird aber NICHT
+ingested.
+
+- **Warum:** Beide Sätze trafen bei einigen Themen unterschiedliche Aussagen
+  (z.B. Urlaubs-Vorlaufzeit). Ein einzelner Satz garantiert pro Frage genau eine
+  kanonische Antwort und vermeidet widersprüchliche Chatbot-Antworten.
+- **Für die Doku:** Wo erwähnt wird "fünf interne Dokumente" — klarstellen, dass
+  es sich um den einen, finalen Satz handelt, nicht um eine Zusammenführung mehrerer.
+
+### B) Retrieval-Parameter aktualisiert: topK = 8
+
+Im vorherigen Feedback (Punkt 7) stand "k = 5 bzw. Node auf 4". Final umgesetzt
+ist jetzt **topK = 8**.
+
+- **Für die Doku (Kap. 4.2):** Die Zahl der zurückgegebenen Passagen auf **8**
+  korrigieren, falls dort noch 4 oder 5 steht.
+- **Begründung (für Q&A):** Mehr abgerufene Passagen erhöhen die Trefferwahrscheinlichkeit
+  bei Themen, die nur in einem einzelnen Chunk stehen.
+
+### C) Bekannter Recall-Punkt: Arbeitszeit-Frage
+
+Bei der direkten Frage "Wie sind die Arbeitszeiten?" verwies der Chatbot an HR,
+obwohl die Information vorhanden ist.
+
+- **Ursache:** Die Arbeitszeit-Info (Kernarbeitszeit 09:00-15:00, max. 10h) steht
+  nur als beiläufiger Satz im Onboarding-Guide ("Arbeitszeitordnung: Erklärt die
+  Kernarbeitszeit..."). Es gibt keine eigene, suchbare Q&A dazu. Für die Vektorsuche
+  ist dieser eine Meta-Satz zu schwach.
+- **Lösungsvorschlag:** Eine eigene Q&A "Wie sind die Arbeitszeiten bei BergTech?"
+  ins FAQ-Dokument aufnehmen (konkreter Textvorschlag liegt bei). Da es deine Docs
+  sind, entscheidest du, ob/wie wir das einfügen.
+- **Für die Doku:** Optional als ehrliches Beispiel in Kapitel 7 (Reflexion) — zeigt
+  systematisches Vorgehen bei RAG-Recall-Problemen.
+
+### D) Re-Ingest noch durchzuführen (Koordination Rustam + Nastja)
+
+Damit die Vektor-DB sauber nur Anastasiias Satz enthält, muss einmal neu ingested
+werden — in dieser Reihenfolge:
+
+1. **Nastja (Supabase):** `TRUNCATE documents;` im SQL Editor, dann Bescheid geben
+2. **Rustam (n8n):** Ingestion-Workflow neu laufen lassen
+3. **Gemeinsam verifizieren:** `SELECT count(*)` > 0 und Stichprobe, dass echter
+   Dokumenttext (keine Metadaten-Header) in der Tabelle steht
+4. **Rustam:** 3 Demo-Fragen + Arbeitszeit-Frage durchtesten
+
+Erst nach diesem Schritt gilt der E2E-Live-Test als bestanden.

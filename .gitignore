@@ -9,3 +9,4 @@ node_modules/
 .claude-flow/
 bonus/
 CONTEXT_SAVE_*
+RETRO_*

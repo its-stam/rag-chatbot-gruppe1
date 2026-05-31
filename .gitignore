@@ -7,6 +7,23 @@ __pycache__/
 node_modules/
 .n8n/
 .claude-flow/
+
+# Lokal: docx-Generator + generierte Word-Dateien (Markdown ist die Quelle)
+scripts/
+package.json
+package-lock.json
+docs/rag-architecture-explained.docx
+
 bonus/
 CONTEXT_SAVE_*
 RETRO_*
+
+# Playwright-Test-Artefakte (lokale Browser-Snapshots)
+.playwright-mcp/
+
+# docs/team-doku — nur ausgewaehlte Dateien werden gepusht
+docs/de/dokumentation-en.html
+docs/de/praesentation-de.html
+docs/de/presentation-en.html
+docs/de/bilder-infografiken-checkliste.md
+docs/de/LLM_Agentics_BergTech_HR_RAG_Praesentation_Gruppe1.pptx

@@ -30,7 +30,7 @@ Workflow v4.7.2 steht, E2E-Test bestanden (Video 30.05.), Docs komplett. Das Pro
 
 ### 1. KI-generierte n8n-JSONs sind wertlos (3 Iterationen verloren)
 
-**Root cause:** AI-Agent und Claude erzeugten syntaktisch korrektes JSON mit falschen Node-Types und fehlenden Sub-Node-Connections.
+**Root cause:** Automatisch generierte Workflow-JSONs waren syntaktisch korrekt, hatten aber falsche Node-Types und fehlende Sub-Node-Connections.
 
 Was produziert wurde:
 - `n8n-nodes-base.supabase` → existiert nicht für Vector-Operationen
@@ -60,11 +60,11 @@ Was produziert wurde:
 
 **Learning:** Drag-and-Drop in der UI > JSON editieren. Die Connection-Logik ist versionsabhängig.
 
-### 4. Team-Arbeitsteilung
+### 4. Integration war von der Supabase-Bereitstellung abhängig
 
- Später: Teammitglied A lieferte EU AI Act und Gruppendoku (.docx), Teammitglied B die Supabase-Infrastruktur.  
+Der Live-Test des Query-Pfads setzt eine bereitstehende Supabase-Instanz mit befülltem Vektor-Store voraus. Bis die Infrastruktur stand, liessen sich Ingestion und Retrieval nur isoliert testen.
 
-**Risk:** 
+**Learning:** Abhängigkeiten zwischen Infrastruktur (Supabase) und Workflow (n8n) früh synchronisieren, damit der erste End-to-End-Lauf nicht ans Ende des Zeitplans rutscht.
 
 ### 5. Embedding-Modell-Default-Falle (11.05 entdeckt)
 
@@ -220,7 +220,7 @@ Das ist doppelt gefährlich:
 
 4. **AI Agent Node ist mächtiger als er aussieht.** Intern: LLM-Call + Tool-Auswahl + Retrieval + Antwort-Formatierung. 3 Nodes auf dem Canvas, 5 Sub-Nodes unsichtbar.
 
-5. **Ein zweiter Review-Durchlauf findet Bugs, die man selbst übersieht.**  Bei sicherheitskritischer Konfiguration (Embedding-Modelle, Chunking) lohnt ein zweiter Review-Durchlauf.
+5. **Ein unabhängiger zweiter Review-Durchlauf findet Bugs, die man selbst übersieht.** Bei sicherheitskritischer Konfiguration (Embedding-Modelle, Chunking) lohnt ein zweiter Blick, bevor man live geht.
 
 6. **Transkripte lesen, nicht raten.** Firmenname, Dokumenttypen, Node-Limit — alles steht wörtlich in Dozents Aufzeichnung.
 
@@ -255,7 +255,7 @@ Das ist doppelt gefährlich:
 | Individual Grading Report | Rustam | — | Niedrig |
 | Q&A Vorbereitung | Alle | Präsi | Niedrig |
 
-**Kritischer Pfad:** Supabase → Live-Test → Rehearsal → Präsentation. 
+**Kritischer Pfad:** Supabase → Live-Test → Rehearsal → Präsentation.
 
 ---
 

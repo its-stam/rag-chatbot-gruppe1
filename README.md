@@ -8,6 +8,10 @@ content when retrieval comes back empty.
 Coursework for the *LLM & Agentics* module, HS Albstadt-Sigmaringen, May 2026.
 Graded 1.0.
 
+![The two n8n workflows: ingestion on top, query below, joined only through the Supabase documents table](docs/screenshots/n8n-canvas.png)
+
+*Rendered from the workflow export in `workflows/v4.7/`, node positions and connections as in the file.*
+
 ## Setup
 
 | Component | Choice |
